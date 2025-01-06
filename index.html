@@ -3,162 +3,168 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hammad Ezad - Resume</title>
+  <title>Hammad Ezad - Data Science & Machine Learning Portfolio</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
     }
-    h1 {
-      margin-bottom: 10px;
+    header {
+      background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      padding: 20px 10px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+    }
+    header img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-top: 15px;
+    }
+    header p {
+      margin: 5px 0;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+    .container {
+      padding: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 40px;
     }
     h2 {
+      color: #2575fc;
+      border-bottom: 3px solid #ddd;
+      padding-bottom: 5px;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 20px;
+    }
+    ul li {
+      margin-bottom: 10px;
+    }
+    .button {
+      display: inline-block;
+      background-color: #2575fc;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
       margin-top: 20px;
     }
-    .section {
+    footer {
+      background-color: #6a11cb;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    footer p {
+      margin: 0;
+    }
+    .portfolio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
       margin-top: 20px;
+    }
+    .portfolio-item {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .portfolio-item:hover {
+      transform: scale(1.05);
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .portfolio-item h3 {
+      padding: 15px;
+      margin: 0;
+      background: #2575fc;
+      color: white;
+    }
+    .portfolio-item p {
+      padding: 15px;
+      margin: 0;
     }
   </style>
 </head>
 <body>
-  <h1>Hammad Ezad</h1>
-  <p>MOBILE 0336-7062494 | Email hammadezad6@gmail.com | <a href="https://github.com/hammadezad">Github</a> | <a href="https://www.linkedin.com/in/hammad-ezad-51927522/">LinkedIn</a></p>
+  <header>
+    <h1>Hammad Ezad</h1>
+    <img src="your-photo-url.jpg" alt="Hammad Ezad">
+    <p>Data Scientist | Machine Learning Expert | Business Strategist</p>
+    <nav>
+      <a href="mailto:hammadezad@gmail.com">Email</a> |
+      <a href="https://github.com/hammadezad">GitHub</a> |
+      <a href="https://www.linkedin.com/in/hammad-ezad-51927522/">LinkedIn</a>
+    </nav>
+  </header>
 
-  <div class="section">
-    <h2>Work Experience</h2>
-    <h3>Interactive Research and Development (Karachi)</h3>
-    <p>Data Research Manager - Maternal and Child Health Evaluation Team</p>
-    <p>May 2022 - Present</p>
-    <ul>
-      <li>Worked on the project of evaluating the impact of expanding small incentives to promote immunizations in Sindh under the leadership of Chief PI, Prof. Rachel Glennerster (University of Chicago).</li>
-      <li>Assessed and predicted the timeliness of 2.5 million children for immunizations based on socio-economic factors using logistic regression, decision tree, and xgboost with 79% accuracy.</li>
-      <li>Developed a comprehensive data architecture by leveraging R language to efficiently store and retrieve data from Open Data Kit (ODK) and seamlessly integrate it into Power BI for advanced data visualization and analysis.</li>
-      <li>Implemented a phone survey along with high-frequency checks and dashboarding (Power BI) to ensure its successful execution.</li>
-      <li>Design and develop evaluation frameworks, methodologies, and data collection survey instruments (ODK, surveyCTO).</li>
-      <li>Created, developed, and managed databases to store and organize monitoring and evaluation survey data in encrypted format on the server.</li>
-      <li>Prepared and presented reports and findings to stakeholders, including senior management and external partners.</li>
-      <li>Prepared survey instruments for Household survey and collected data for Pilot Study.</li>
-      <li>Performed sampling for deciding the number of blocks in the two least immunized districts of Sindh Province, Pakistan, and created a report through R Markdown.</li>
-      <li>Converting the UC level shapefiles into small blocks based on the population for sampling using QGIS.</li>
-    </ul>
-    <p><strong>Technical Skills:</strong> Python (logistic regression, decision tree, xgboost), R, Sata, Power Bi, ODK, surveyCTO, QGIS</p>
+  <div class="container">
+    <section>
+      <h2>About Me</h2>
+      <p>Welcome to my portfolio! I am a results-driven Data Scientist with a Master's in Quantitative Economics and over 6 years of experience in predictive analytics, machine learning, and business optimization. I have successfully deployed end-to-end data solutions, predictive models, and machine learning algorithms to enhance operational efficiency and support strategic decision-making across various domains.</p>
+      <a class="button" href="https://github.com/hammadezad">Explore My GitHub Repositories</a>
+    </section>
+
+    <section>
+      <h2>Portfolio</h2>
+      <div class="portfolio">
+        <div class="portfolio-item">
+          <img src="project1-image-url.jpg" alt="Project 1">
+          <h3>Real-time Loan Approval System</h3>
+          <p>Designed and implemented a machine learning model for a financial firm, reducing loan processing time by 40%.</p>
+        </div>
+        <div class="portfolio-item">
+          <img src="project2-image-url.jpg" alt="Project 2">
+          <h3>Immunization Optimization</h3>
+          <p>Predicted the timeliness of 2.5 million child immunizations using machine learning, achieving 79% accuracy.</p>
+        </div>
+        <div class="portfolio-item">
+          <img src="project3-image-url.jpg" alt="Project 3">
+          <h3>Fraud Prevention Analytics</h3>
+          <p>Deployed predictive analytics to detect and reduce fraudulent activities by 30% using advanced social network analysis.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Contact Me</h2>
+      <p>If you're looking for a dedicated data scientist or machine learning expert to elevate your project, let's connect!</p>
+      <a class="button" href="mailto:hammadezad@gmail.com">Get in Touch</a>
+    </section>
   </div>
 
-  <div class="section">
-    <h2>Federation of Pakistan Chambers of Commerce and Industry Karachi, Pakistan</h2>
-    <p>Senior Researcher - Policy Research Unit</p>
-    <p>July 2021 - May 2022</p>
-    <ul>
-      <li>Led a team of four junior researchers to conduct policy research analysis for the Energy and Agriculture Sector of Pakistan.</li>
-      <li>Wrote a report on the cross-subsidization of electricity tariffs in Pakistan and recommended interim solutions to the problem of higher tariffs for industries in Pakistan.</li>
-      <li>Developed a gravity model analysis on the Pakistan citrus fruit industry, revealing a trade potential of 1 billion USD.</li>
-      <li>Utilized relevant data and variables such as trade volumes, geographic distance, and economic indicators to develop the gravity model.</li>
-      <li>Analyzed the results to gain insights into the determinants of trade flows, identify potential trade partners, and inform decision-making in the fruit industry.</li>
-      <li>Wrote a comparative analysis on the five important crops in Pakistan.</li>
-      <li>Achievement: Received a certificate from the Governor Sindh for the best performance in the team.</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Institute of Business Administration, Karachi Karachi, Pakistan</h2>
-    <p>Research Associate - SME Internalization - Part-time</p>
-    <p>Sept 2021 - Feb 2022</p>
-    <ul>
-      <li>Conducted literature review on SME Internationalization.</li>
-      <li>Prepared a survey for the small and medium enterprises to study the concept of intermittent internationalization of SMEs.</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Love for Data Karachi, Pakistan</h2>
-    <p>Data Analyst</p>
-    <p>Feb 2021 - July 2021</p>
-    <ul>
-      <li>Implemented data engineering, data modeling, and statistical testing techniques to optimize operations and drive data-informed decision making.</li>
-      <li>Conducted loan default and late payment prediction modeling using logistic regression in Python, resulting in a significant reduction in default rates by 15% and improved late payment prediction accuracy by 20%.</li>
-      <li>Achieved an increase in default model accuracy by 25% and enhanced the f1-score through extensive feature engineering, leading to more accurate risk assessment and mitigation strategies.</li>
-      <li>Utilized in-depth data analysis, including social network analysis, to identify and establish robust rules for fraud prevention, resulting in a 30% decrease in fraudulent activities.</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Education</h2>
-    <p>Konstanz Universität Konstanz, Germany</p>
-    <p>M.S. Quantitative Economics</p>
-    <p>2017–2020</p>
-    <ul>
-      <li>Courses: Advanced Econometrics, International Economics, Probability and Statistical Theory</li>
-    </ul>
-
-    <p>Alma Mater Studiorum – Università di Bologna Bologna, Italy</p>
-    <p>MSc in Economics</p>
-    <p>Feb 2020 – June 2020</p>
-    <ul>
-      <li>Courses: History of Economic Thought, Financial Econometrics</li>
-    </ul>
-
-    <p>CFA Institute 2017 USA</p>
-    <p>CFA Level 1 - Passed</p>
-    <p>Feb 2020 – June 2020</p>
-    <ul>
-      <li>Courses: Accounting and Finance, Corporate Finance, Alternatives and Derivatives</li>
-    </ul>
-
-    <p>Institute of Business Administration, Karachi Karachi, Pakistan</p>
-    <p>B.Sc (Hons) Economics and Mathematics</p>
-    <p>2013–2017</p>
-    <ul>
-      <li>Courses: Probability and Statistics, Statistical Inference, Econometrics, Real/Complex Analysis, Operation Research</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Skills</h2>
-    <p><strong>Programming:</strong> Python (Pandas, NumPy, Scikit-learn, etc.), R (ggplot2), SQL.</p>
-    <p><strong>Miscellaneous:</strong> Shell (Bash/Zsh), LATEX (Overleaf/R Markdown), Power Bi, Microsoft Office, Git.</p>
-    <p><strong>Soft Skills:</strong> Time Management, Teamwork, Problem-solving, Documentation, Engaging Presentation, Data Analysis, Research, Project Management, Resilience, Strategic Planning</p>
-  </div>
-
-  <div class="section">
-    <h2>Research and Projects</h2>
-    <p><strong>Masters Thesis:</strong> Pan-African-ism: Effect of foreign and local banks on the financial inclusion of the African Industrial complex</p>
-    <p>Konstanz Universität, 2020</p>
-
-    <p><strong>Seminar Paper:</strong> IRRBB: Going concern vs Gone concern</p>
-    <p>Konstanz Universität, 2018</p>
-
-    <p><strong>Seminar:</strong> Applied Risk Management</p>
-    <p>Konstanz Universität, 2018</p>
-
-    <p><strong>Bachelors Thesis:</strong> Examining the tax buoyancy of developing countries-panel data analysis</p>
-    <p>IBA, Karachi, 2016</p>
-
-    <p><strong>Course Paper:</strong> Determinants of Low tax revenues in Pakistan- A time-series analysis using VECM Model</p>
-    <p>IBA, Karachi, 2015</p>
-
-    <p><strong>Course Paper:</strong> Factors affecting the unemployment rate in Pakistan (2001-2013)</p>
-    <p>IBA, Karachi, 2015</p>
-
-    <p><strong>Course Paper:</strong> Finding Determinants of Low Birth Weight in India</p>
-    <p>IBA, Karachi, 2014</p>
-  </div>
-
-  <div class="section">
-    <h2>Achievements</h2>
-    <p>2017 Graduate Record Examinations (GRE) - Score: 326/340</p>
-    <p>2018 Erasmus Scholarship, Konstanz Universität, Germany</p>
-  </div>
-
-  <div class="section">
-    <h2>Languages</h2>
-    <p>English - Professional proficiency</p>
-    <p>Urdu - Native proficiency</p>
-    <p>Punjabi - Bilingual proficiency</p>
-    <p>German - Beginner level proficiency</p>
-  </div>
-
-  <div class="section">
-    <h2>References</h2>
-    <p>References available upon request.</p>
-  </div>
+  <footer>
+    <p>&copy; 2025 Hammad Ezad | Data Science & Machine Learning Portfolio</p>
+  </footer>
 </body>
 </html>
