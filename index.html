@@ -71,18 +71,6 @@
       border-radius: 5px;
       margin-top: 20px;
     }
-    footer {
-      background-color: #6a11cb;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-    footer p {
-      margin: 0;
-    }
     .portfolio {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -114,6 +102,31 @@
       padding: 15px;
       margin: 0;
     }
+    footer {
+      background-color: #6a11cb;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    footer p {
+      margin: 0;
+    }
+    /* Responsive tweak for smaller screens */
+    @media (max-width: 600px) {
+      .portfolio-item img {
+        height: 120px;
+      }
+      header img {
+        width: 90px;
+        height: 90px;
+      }
+      h2 {
+        font-size: 1.3em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -124,14 +137,17 @@
     <nav>
       <a href="mailto:hammadezad2211@gmail.com">Email</a> |
       <a href="https://github.com/hammadezad">GitHub</a> |
-      <a href="https://www.linkedin.com/in/hammad-ezad-51927522/">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/hammad-ezad-51927522/">LinkedIn</a> |
+      <a href="#models">ML Models</a>
     </nav>
   </header>
 
   <div class="container">
     <section>
       <h2>About Me</h2>
-      <p>Welcome to my portfolio! I am a results-driven Data Scientist with a Master's in Quantitative Economics and over 6 years of experience in predictive analytics, machine learning, and business optimization. I have successfully deployed end-to-end data solutions, predictive models, and machine learning algorithms to enhance operational efficiency and support strategic decision-making across various domains.</p>
+      <p>
+        Welcome to my portfolio! I am a results-driven Data Scientist with a Master's in Quantitative Economics and over 6 years of experience in predictive analytics, machine learning, and business optimization. I have successfully deployed end-to-end data solutions, predictive models, and machine learning algorithms to enhance operational efficiency and support strategic decision-making across various domains.
+      </p>
       <a class="button" href="https://github.com/hammadezad">Explore My GitHub Repositories</a>
     </section>
 
@@ -153,6 +169,38 @@
           <h3>Fraud Prevention Analytics</h3>
           <p>Deployed predictive analytics to detect and reduce fraudulent activities by 30% using advanced social network analysis.</p>
         </div>
+      </div>
+    </section>
+
+    <!-- New ML Models Section -->
+    <section id="models">
+      <h2>Machine Learning Models</h2>
+      <div class="portfolio">
+        <div class="portfolio-item">
+          <img src="regression_plot.jpg" alt="Linear Regression Diagram">
+          <h3>Simple Linear Regression</h3>
+          <p>
+            Built a linear regression model to predict housing prices based on area.<br>
+            <strong>Result:</strong> R² Score = 0.82
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <img src="decision_tree.png" alt="Decision Tree Diagram">
+          <h3>Decision Tree Classifier</h3>
+          <p>
+            Classified customer churn for a telecom client.<br>
+            <strong>Accuracy:</strong> 75%
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <img src="clustering.png" alt="Clustering Diagram">
+          <h3>K-Means Clustering</h3>
+          <p>
+            Segmented retail customers for marketing.<br>
+            <strong>Clusters:</strong> 4
+          </p>
+        </div>
+        <!-- Add more models as needed -->
       </div>
     </section>
 
