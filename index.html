@@ -64,42 +64,58 @@
       text-align: left;
       background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
       color: #fff;
-      padding: 54px 8px 38px 8px;
+      padding: 62px 0 58px 0;   /* More top/bottom, less on sides */
       position: relative;
-      gap: 38px;
+      gap: 60px;                /* More gap between columns */
+      width: 100vw;             /* Full viewport width */
+      min-width: 100vw;
+      box-sizing: border-box;
     }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: row;
+      gap: 64px;
+      max-width: 1320px;      /* WIDER than the rest of the site */
+      margin: 0 auto;
+      width: 100%;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
     .hero-left {
-      max-width: 320px;
+      max-width: 340px;
       min-width: 240px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
     .hero-right {
-      max-width: 540px;
-      min-width: 260px;
+      max-width: 700px;
+      min-width: 280px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
     }
-    .hero h1, .hero .roles, .hero .badge, .hero .hero-links { text-align: center; }
     .hero-summary {
-      margin-top: 12px;
-      font-size: 1.13em;
-      background: #fff8; /* More solid white with just a hint of transparency */
+      margin-top: 13px;
+      font-size: 1.15em;
+      background: #fff8;
       border-radius: 16px;
-      padding: 22px 30px 20px 30px;
-      box-shadow: 0 2px 12px #38bdf81a;
-      color: #1c1c1c;   /* Darker color for text */
+      padding: 28px 36px 24px 36px;
+      box-shadow: 0 2px 16px #38bdf81a;
+      color: #222;
       font-weight: 500;
-      line-height: 1.58;
+      line-height: 1.62;
     }
-    @media (max-width: 950px) {
-      .hero { flex-direction: column; align-items: center; text-align: center;}
-      .hero-left, .hero-right { max-width: 100%; min-width: unset; }
-      .hero-summary { padding: 16px 8px;}
+
+    @media (max-width: 1200px) {
+      .hero-inner { flex-direction: column; gap: 24px; max-width: 98vw; }
+      .hero { padding: 38px 0 28px 0; }
+      .hero-summary { padding: 18px 10px 18px 10px;}
     }
+
 
     .badge {
       display: inline-block;
