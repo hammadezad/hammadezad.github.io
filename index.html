@@ -288,6 +288,35 @@
       .nav-links {gap: 13px;}
       .summary-section {padding: 10px 3px;}
     }
+    .project-tabs {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 7px;
+}
+.project-tab-link {
+  flex: 1;
+  text-align: center;
+  padding: 7px 0;
+  border-radius: 6px 6px 0 0;
+  background: #f1f5fa;
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid #e5e7eb;
+  border-bottom: none;
+  cursor: pointer;
+  transition: background 0.17s, color 0.17s;
+  font-size: 1em;
+}
+.project-tab-link.active, .project-tab-link:hover {
+  background: #2563eb;
+  color: #fff;
+}
+.project-tab-content {
+  padding: 13px 0 0 0;
+  border-top: 1px solid #e5e7eb;
+  min-height: 48px;
+}
   </style>
   <script>
     // Highlight active navbar link on scroll
@@ -418,8 +447,7 @@
         });
       });
   </script>
-</body>
-</html>
+
 
 <script>
   fetch('projects.json')
@@ -472,3 +500,8 @@
   }
   </script>
   
+
+
+</body>
+</html>
+
