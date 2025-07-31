@@ -118,17 +118,27 @@
       padding: 12px 10px 10px 10px;
       box-shadow: 0 2px 10px #0001;
     }
-    .hero-summary {
-      margin-top: 0;
-      font-size: 1.13em;
+    .hero-headline {
+      font-size: 1.45em;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 18px;
+      text-align: left;
+      white-space: nowrap;       /* Prevents line breaks */
+      overflow: hidden;
+      text-overflow: ellipsis;
       background: #fff8;
-      border-radius: 16px;
-      padding: 30px 38px 28px 38px;
-      box-shadow: 0 2px 16px #38bdf81a;
-      color: #232323;
-      font-weight: 500;
-      line-height: 1.64;
+      border-radius: 8px;
+      padding: 10px 16px;
+      box-shadow: 0 2px 10px #0001;
+      max-width: 100%;
     }
+    @media (max-width: 800px) {
+      .hero-headline {
+        font-size: 1.02em;
+        white-space: normal;     /* Allow wrapping on very small screens */
+        text-align: center;
+      }
     @media (max-width: 1100px) {
       .hero-inner { flex-direction: column; gap: 34px; }
       .hero { padding: 32px 0 12px 0; }
@@ -503,12 +513,12 @@
           <a href="mailto:hammadezad2211@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
           <a href="https://github.com/hammadezad" title="GitHub"><i class="fab fa-github"></i></a>
           <a href="https://www.linkedin.com/in/hammad-ezad-51927522/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a class="resume-btn-small" href="Hammad_Ezad_CV.pdf" download>Resume <i class="fa fa-download"></i></a>
         </div>
-        <a class="resume-btn" href="Hammad_Ezad_CV.pdf" download style="margin-top:17px;">Download Resume</a>
       </div>
       <div class="hero-right">
-        <div class="hero-headline" style="font-size:1.5em; font-weight:700; color:#1e293b; margin-bottom:14px; text-align:center;">
-          Senior Data Scientist&nbsp;|&nbsp;GenAI, Machine Learning & Optimization Expert
+        <div class="hero-headline">
+          Senior Data Scientist | GenAI, Machine Learning & Optimization Expert
         </div>
         <div class="summary-section hero-summary">
           I am a Senior Data Scientist and AI Engineer with a strong foundation in quantitative economics, experienced in building and deploying scalable GenAI, machine learning, and optimization solutions across industries. With expertise in Python, NLP, LLMs, Azure, Salesforce, and Gurobi, I have led high-impact projects that modernize legacy systems, automate business processes, and deliver measurable results—reducing costs by up to 65%, improving speed and accuracy, and transforming data into actionable value for finance, healthcare, and logistics clients. Recognized for my end-to-end project leadership, rapid prototyping, and ability to deliver production-ready solutions in complex, regulated environments, I thrive at the intersection of business strategy and cutting-edge technology.
@@ -516,6 +526,7 @@
       </div>
     </div>
   </section>
+  
   
   
   
