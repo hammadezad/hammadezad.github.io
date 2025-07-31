@@ -1,0 +1,12 @@
+[
+  {"name": "Python", "icon": "fab fa-python"},
+  {"name": "SQL", "icon": "fas fa-database"},
+  {"name": "Machine Learning", "icon": "fa fa-brain"},
+  {"name": "Deep Learning", "icon": "fa fa-layer-group"},
+  {"name": "AWS", "icon": "fab fa-aws"},
+  {"name": "Data Visualization", "icon": "fa fa-chart-bar"},
+  {"name": "MLOps", "icon": "fa fa-cogs"},
+  {"name": "GenAI", "icon": "fa fa-robot"},
+  {"name": "Pandas", "icon": "fas fa-stream"},
+  {"name": "Gurobi", "icon": "fas fa-project-diagram"}
+]
