@@ -168,6 +168,17 @@
       font-size: 1.05em;
       opacity: 0.7;
     }
+    .education-list {
+      margin-bottom: 20px;
+    }
+    .education-entry {
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .education-entry:last-child {
+      border-bottom: none;
+    }
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
@@ -304,6 +315,7 @@
       <a href="#about" class="active">About</a>
       <a href="#summary">Summary</a>
       <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
       <a href="#portfolio">Projects</a>
       <a href="#models">ML Models</a>
       <a href="#contact">Contact</a>
@@ -330,10 +342,16 @@
   </section>
 
   <div class="container">
-    <!-- SKILLS SECTION (NOW DYNAMIC) -->
+    <!-- SKILLS SECTION -->
     <section id="skills">
       <h2>Skills</h2>
       <div class="skills-list" id="skills-list"></div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education">
+      <h2>Education</h2>
+      <div class="education-list" id="education-list"></div>
     </section>
 
     <!-- PORTFOLIO/PROJECTS SECTION -->
@@ -381,6 +399,24 @@
           span.className = 'skill-chip';
           span.innerHTML = `<i class="${skill.icon}"></i> ${skill.name}`;
           skillsList.appendChild(span);
+        });
+      });
+  </script>
+  <!-- DYNAMIC EDUCATION SCRIPT -->
+  <script>
+    fetch('education.json')
+      .then(response => response.json())
+      .then(eduArr => {
+        const eduDiv = document.getElementById('education-list');
+        eduArr.forEach(edu => {
+          const entry = document.createElement('div');
+          entry.className = 'education-entry';
+          entry.innerHTML = `
+            <strong>${edu.degree}</strong><br>
+            <span style="color:#2563eb;">${edu.institution}</span> &mdash; <span>${edu.year}</span><br>
+            <small style="color:#444;">${edu.details || ''}</small>
+          `;
+          eduDiv.appendChild(entry);
         });
       });
   </script>
