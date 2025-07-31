@@ -357,9 +357,7 @@
     <!-- PORTFOLIO/PROJECTS SECTION -->
     <section id="portfolio">
       <h2>Featured Projects</h2>
-      <div class="portfolio-grid">
-        <!-- ... your project cards ... -->
-      </div>
+      <div class="portfolio-grid" id="projects-list"></div>
     </section>
 
     <!-- MACHINE LEARNING MODELS SECTION -->
@@ -422,3 +420,55 @@
   </script>
 </body>
 </html>
+
+<script>
+  fetch('projects.json')
+    .then(response => response.json())
+    .then(projects => {
+      const projList = document.getElementById('projects-list');
+      projList.innerHTML = '';
+      projects.forEach((proj, idx) => {
+        const card = document.createElement('div');
+        card.className = 'portfolio-card';
+        // Tab Links
+        const codeTab = `<a class="project-tab-link active" data-tab="code${idx}" onclick="showTab(${idx}, 'code')">Code</a>`;
+        const videoTab = proj.video ? `<a class="project-tab-link" data-tab="video${idx}" onclick="showTab(${idx}, 'video')">Video</a>` : '';
+        const explanationTab = `<a class="project-tab-link" data-tab="explanation${idx}" onclick="showTab(${idx}, 'explanation')">Explanation</a>`;
+        // Tab Content
+        const codeContent = `<div class="project-tab-content" id="code${idx}"><a href="${proj.code}" target="_blank">View GitHub Repository <i class="fab fa-github"></i></a></div>`;
+        const videoContent = proj.video ? `<div class="project-tab-content" id="video${idx}" style="display:none;"><a href="${proj.video}" target="_blank">Watch Demo Video <i class="fab fa-youtube"></i></a></div>` : '';
+        const explanationContent = `<div class="project-tab-content" id="explanation${idx}" style="display:none;"><a href="${proj.explanation}" target="_blank">Read Detailed Case Study <i class="fa fa-file-alt"></i></a></div>`;
+        card.innerHTML = `
+          <img src="${proj.cover}" alt="${proj.title}">
+          <div class="portfolio-card-content">
+            <h3>${proj.title}</h3>
+            <p>${proj.summary}</p>
+            <div class="project-tabs">
+              ${codeTab}
+              ${videoTab}
+              ${explanationTab}
+            </div>
+            ${codeContent}
+            ${videoContent}
+            ${explanationContent}
+          </div>
+        `;
+        projList.appendChild(card);
+      });
+    });
+  // Tab Switching Function
+  function showTab(idx, tab) {
+    const tabs = ['code', 'video', 'explanation'];
+    tabs.forEach(t => {
+      const tabBtn = document.querySelector(`.project-tab-link[data-tab="${t}${idx}"]`);
+      const tabContent = document.getElementById(`${t}${idx}`);
+      if (tabBtn) tabBtn.classList.remove('active');
+      if (tabContent) tabContent.style.display = 'none';
+    });
+    const activeBtn = document.querySelector(`.project-tab-link[data-tab="${tab}${idx}"]`);
+    const activeContent = document.getElementById(`${tab}${idx}`);
+    if (activeBtn) activeBtn.classList.add('active');
+    if (activeContent) activeContent.style.display = '';
+  }
+  </script>
+  
