@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hammad Ezad | Data Science Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #6a11cb;
+      --bg: #f8fafc;
+      --card-bg: #fff;
+      --border: #e5e7eb;
+      --text-main: #22223b;
+      --accent: #38bdf8;
+      --badge: #f1c40f;
+      --summary-bg: #eff6ff;
+    }
+    html { scroll-behavior: smooth;}
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Roboto', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+    .navbar {
+      background: var(--card-bg);
+      box-shadow: 0 2px 16px #0001;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+    }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      padding: 14px 0;
+    }
+    .nav-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.09em;
+      transition: color 0.15s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 3px;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+      padding: 56px 16px 38px 16px;
+      position: relative;
+    }
+    .hero img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      box-shadow: 0 6px 32px #1e293b40;
+      border: 5px solid #fff;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--badge);
+      color: #222;
+      border-radius: 16px;
+      padding: 5px 14px;
+      font-size: 1em;
+      font-weight: 600;
+      margin: 5px 0 10px 0;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: 2.5em;
+      margin: 0 0 7px 0;
+      letter-spacing: 1px;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .hero .roles {
+      font-size: 1.16em;
+      margin-bottom: 13px;
+      opacity: 0.98;
+      font-weight: 400;
+    }
+    .hero .about-highlight {
+      font-size: 1.09em;
+      margin-bottom: 8px;
+      font-weight: 500;
+      opacity: 0.97;
+    }
+    .hero .hero-links a {
+      color: #fff;
+      font-size: 1.13em;
+      margin: 0 11px;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .hero .hero-links a:hover {
+      color: var(--badge);
+    }
+    .summary-section {
+      max-width: 700px;
+      background: var(--summary-bg);
+      border-radius: 16px;
+      padding: 22px 32px 20px 32px;
+      margin: 32px auto 32px auto;
+      box-shadow: 0 2px 12px #38bdf81a;
+      font-size: 1.16em;
+      text-align: center;
+      font-weight: 500;
+      line-height: 1.55;
+    }
+    .container {
+      max-width: 970px;
+      margin: 0 auto;
+      padding: 30px 15px 70px 15px;
+    }
+    section {
+      margin-bottom: 50px;
+    }
+    h2 {
+      color: var(--primary);
+      border-bottom: 2.2px solid var(--border);
+      display: inline-block;
+      padding-bottom: 4px;
+      font-size: 1.47em;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-bottom: 10px;
+    }
+    .skill-chip {
+      background: linear-gradient(90deg, #e0eafc 0%, #cfdef3 100%);
+      color: var(--primary);
+      padding: 9px 19px;
+      border-radius: 20px;
+      border: 1.1px solid var(--border);
+      font-size: 1.04em;
+      font-weight: 600;
+      box-shadow: 0 2px 10px #0001;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .skill-chip i {
+      font-size: 1.05em;
+      opacity: 0.7;
+    }
+    .education-list {
+      margin-bottom: 20px;
+    }
+    .education-entry {
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .education-entry:last-child {
+      border-bottom: none;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+      gap: 25px;
+    }
+    .portfolio-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 2px 20px #0001;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s, box-shadow 0.18s;
+      border: 1.1px solid var(--border);
+      min-height: 310px;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-5px) scale(1.016);
+      box-shadow: 0 7px 32px #0002;
+      border-color: var(--accent);
+    }
+    .portfolio-card img {
+      width: 100%;
+      height: 154px;
+      object-fit: cover;
+      background: #f4f4f9;
+    }
+    .portfolio-card-content {
+      padding: 17px 20px 13px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .portfolio-card h3 {
+      margin: 0 0 7px 0;
+      color: var(--primary);
+      font-size: 1.18em;
+      font-weight: 700;
+    }
+    .portfolio-card p {
+      margin: 0 0 7px 0;
+      font-size: 1em;
+      color: #444;
+    }
+    .portfolio-card .card-links {
+      margin-top: 7px;
+    }
+    .portfolio-card .card-links a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      margin-right: 12px;
+      font-size: 0.99em;
+      transition: color 0.16s;
+    }
+    .portfolio-card .card-links a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .contact-links a {
+      color: var(--primary);
+      font-size: 1.4em;
+      margin-right: 18px;
+      transition: color 0.18s;
+      vertical-align: middle;
+    }
+    .contact-links a:hover { color: var(--accent);}
+    .resume-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 11px 30px;
+      border-radius: 24px;
+      font-size: 1.09em;
+      font-weight: 700;
+      margin-top: 19px;
+      text-decoration: none;
+      transition: background 0.18s;
+      box-shadow: 0 2px 18px #1e90ff22;
+      border: none;
+    }
+    .resume-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    footer {
+      background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+      text-align: center;
+      padding: 15px 0 8px 0;
+      position: relative;
+      font-size: 1em;
+      margin-top: 24px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 -2px 14px #0001;
+    }
+    @media (max-width: 900px) {
+      .container {padding: 18px 6px 70px 6px;}
+      .summary-section {padding: 16px 8px;}
+    }
+    @media (max-width: 600px) {
+      .hero img {width: 80px; height: 80px;}
+      .portfolio-card img {height: 90px;}
+      .portfolio-grid {grid-template-columns: 1fr;}
+      h2 {font-size: 1.13em;}
+      .nav-links {gap: 13px;}
+      .summary-section {padding: 10px 3px;}
+    }
+  </style>
+  <script>
+    // Highlight active navbar link on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 60;
+          if (pageYOffset >= sectionTop) current = section.getAttribute('id');
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if(link.getAttribute('href').includes(current)) link.classList.add('active');
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-links">
+      <a href="#about" class="active">About</a>
+      <a href="#summary">Summary</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#portfolio">Projects</a>
+      <a href="#models">ML Models</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <img src="my_picture.jpg" alt="Hammad Ezad">
+    <div class="badge">MSc Quantitative Economics, Konstanz</div>
+    <h1>Hammad Ezad</h1>
+    <div class="roles">Data Scientist &bull; Machine Learning Engineer &bull; Business Strategist</div>
+    <div class="about-highlight">Economist turned data scientist passionate about bridging analytics, impact, and real-world business.</div>
+    <div class="hero-links">
+      <a href="mailto:hammadezad2211@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
+      <a href="https://github.com/hammadezad" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/hammad-ezad-51927522/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </section>
+
+  <!-- SUMMARY SECTION -->
+  <section class="summary-section" id="summary">
+    I combine a strong background in economics with hands-on experience in machine learning and applied AI. With a master’s in Quantitative Economics from Konstanz University, I bring analytical depth and business perspective to every project. I thrive on delivering end-to-end solutions—deploying GenAI and ML in production, automating business processes, and translating complex data into real impact. I am currently focused on building cloud-native, scalable data products for finance, health, and tech.
+  </section>
+
+  <div class="container">
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills-list" id="skills-list"></div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education">
+      <h2>Education</h2>
+      <div class="education-list" id="education-list"></div>
+    </section>
+
+    <!-- PORTFOLIO/PROJECTS SECTION -->
+    <section id="portfolio">
+      <h2>Featured Projects</h2>
+      <div class="portfolio-grid">
+        <!-- ... your project cards ... -->
+      </div>
+    </section>
+
+    <!-- MACHINE LEARNING MODELS SECTION -->
+    <section id="models">
+      <h2>Machine Learning Models</h2>
+      <div class="portfolio-grid">
+        <!-- ... your ML model cards ... -->
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-links">
+        <a href="mailto:hammadezad2211@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
+        <a href="https://github.com/hammadezad" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/hammad-ezad-51927522/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <div>
+        <a class="resume-btn" href="Hammad_Ezad_Resume.pdf" download>Download Resume</a>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <p>&copy; 2025 Hammad Ezad | Data Science & Machine Learning Portfolio</p>
+  </footer>
+
+  <!-- DYNAMIC SKILLS SCRIPT -->
+  <script>
+    fetch('skills.json')
+      .then(response => response.json())
+      .then(skills => {
+        const skillsList = document.getElementById('skills-list');
+        skillsList.innerHTML = '';
+        skills.forEach(skill => {
+          const span = document.createElement('span');
+          span.className = 'skill-chip';
+          span.innerHTML = `<i class="${skill.icon}"></i> ${skill.name}`;
+          skillsList.appendChild(span);
+        });
+      });
+  </script>
+  <!-- DYNAMIC EDUCATION SCRIPT -->
+  <script>
+    fetch('education.json')
+      .then(response => response.json())
+      .then(eduArr => {
+        const eduDiv = document.getElementById('education-list');
+        eduArr.forEach(edu => {
+          const entry = document.createElement('div');
+          entry.className = 'education-entry';
+          entry.innerHTML = `
+            <strong>${edu.degree}</strong><br>
+            <span style="color:#2563eb;">${edu.institution}</span> &mdash; <span>${edu.year}</span><br>
+            <small style="color:#444;">${edu.details || ''}</small>
+          `;
+          eduDiv.appendChild(entry);
+        });
+      });
+  </script>
+</body>
+</html>
