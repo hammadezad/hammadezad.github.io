@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Post | Hammad Ezad</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { font-family: 'Inter', 'Roboto', Arial, sans-serif; background:#f8fafc; color:#22223b; max-width:700px; margin:30px auto; padding:22px; border-radius:15px; box-shadow:0 2px 20px #0001;}
+    a { color: #2563eb; }
+    h1, h2, h3 { color: #2563eb;}
+    pre { background: #eff6ff; padding: 7px 13px; border-radius: 6px; overflow-x: auto;}
+    code { background: #eee; border-radius: 4px; padding: 2px 5px;}
+    img { max-width: 100%; }
+    .blog-date { font-size:0.93em; color:#888; margin-bottom:15px;}
+    .back-link { display:inline-block; margin-bottom:18px; color:#2563eb; text-decoration:none;}
+    .back-link:hover { text-decoration: underline;}
+  </style>
+</head>
+<body>
+  <a href="../../index.html#blogs" class="back-link">&larr; Back to Blogs</a>
+  <div id="blog-content">Loading blog...</div>
+  <script>
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+    const blogFile = getQueryParam('file');
+    fetch(blogFile)
+      .then(resp => resp.text())
+      .then(md => {
+        document.getElementById('blog-content').innerHTML = marked.parse(md);
+      })
+      .catch(err => {
+        document.getElementById('blog-content').innerHTML = "Blog not found!";
+      });
+  </script>
+</body>
+</html>

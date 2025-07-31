@@ -1,0 +1,17 @@
+[
+    {
+      "title": "What is System Design?",
+      "summary": "Intro to system design, its importance in tech interviews, and real-world architecture.",
+      "cover": "system_design/system-design-cover.jpg",
+      "date": "2025-08-01",
+      "link": "system_design/blog-viewer.html?file=system_design/what-is-system-design.md"
+    },
+    {
+      "title": "Load Balancers Demystified",
+      "summary": "A clear explanation of load balancers, their types, and why every scalable app uses them.",
+      "cover": "system_design/load-balancer.jpg",
+      "date": "2025-08-02",
+      "link": "system_design/blog-viewer.html?file=system_design/load-balancer.md"
+    }
+  ]
+  
