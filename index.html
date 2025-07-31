@@ -68,7 +68,7 @@
     .hero-inner {
       display: flex;
       flex-direction: row;
-      align-items: center;   /* centers vertically */
+      align-items: center;
       justify-content: center;
       gap: 64px;
       max-width: 1320px;
@@ -82,14 +82,16 @@
       flex-direction: column;
       align-items: center;
     }
-    .profile-pic-big {
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
+    .profile-pic-squarish {
+      width: 190px;
+      height: 190px;
+      border-radius: 26px;
       box-shadow: 0 6px 32px #1e293b40;
       border: 6px solid #fff;
       object-fit: cover;
       margin-bottom: 15px;
+      background: #eaeaea;
+      display: block;
     }
     .hero-left h1 {
       font-size: 2.12em;
@@ -99,6 +101,9 @@
     }
     .hero-links {
       margin: 13px 0 0 0;
+      display: flex;
+      gap: 12px;
+      align-items: center;
     }
     .hero-right {
       max-width: 760px;
@@ -108,21 +113,20 @@
       justify-content: center;
     }
     .hero-headline {
-      font-size: 1.25em;
+      font-size: 1.13em;            /* Slightly smaller for one-line fit */
       font-weight: 700;
       color: #1e293b;
       margin-bottom: 18px;
       text-align: left;
-      white-space: nowrap;       /* Prevents line breaks */
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       background: #fff8;
       border-radius: 8px;
-      padding: 10px 16px;
+      padding: 8px 16px;
       box-shadow: 0 2px 10px #0001;
       max-width: 100%;
     }
-
     .hero-summary {
       margin-top: 0;
       font-size: 1.13em;
@@ -137,8 +141,15 @@
     @media (max-width: 1100px) {
       .hero-inner { flex-direction: column; gap: 34px; }
       .hero { padding: 32px 0 12px 0; }
-      .hero-headline { font-size: 1.15em; }
-      .profile-pic-big { width: 112px; height: 112px;}
+      .profile-pic-squarish { width: 112px; height: 112px; border-radius: 12px;}
+      .hero-headline { font-size: 0.98em; white-space: normal; text-align: center; }
+    }
+    @media (max-width: 800px) {
+      .profile-pic-squarish {
+        width: 98px;
+        height: 98px;
+        border-radius: 10px;
+      }
     }
 
 
