@@ -3,6 +3,7 @@
       "title": "Senior Data Scientist",
       "company": "Royal Cyber Inc., Islamabad, Pakistan",
       "period": "12/2023 – today",
+      "logo": "logos/royalcyberLogo.png",
       "projects": [
         {
           "name": "Salesforce GenAI Automation",
@@ -33,6 +34,7 @@
       "title": "Data Manager",
       "company": "University of Chicago - IRD Global, Karachi, Pakistan",
       "period": "05/2022 – 11/2023",
+      "logo": "logos/uchicagoLogo.png",
       "projects": [
         {
           "name": "Vaccination Timeliness Prediction",
@@ -51,6 +53,7 @@
       "title": "Senior Data Scientist",
       "company": "Federation of Pakistan Chambers of Commerce & Industry, Pakistan",
       "period": "07/2021 – 05/2022",
+      "logo": "logos/fpccilogo.png",
       "projects": [
         {
           "name": "Gravity Model for Exports",
@@ -67,6 +70,7 @@
       "title": "Data Scientist",
       "company": "Love for Data, Karachi, Pakistan",
       "period": "10/2020 – 07/2021",
+      "logo": "logos/lovefordataLogo.png",
       "projects": [
         {
           "name": "Loan Default Prediction",
