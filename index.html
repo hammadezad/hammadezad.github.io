@@ -58,23 +58,49 @@
     }
     .hero {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: left;
       background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
       color: #fff;
-      padding: 56px 16px 38px 16px;
+      padding: 54px 8px 38px 8px;
       position: relative;
+      gap: 38px;
     }
-    .hero img {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      box-shadow: 0 6px 32px #1e293b40;
-      border: 5px solid #fff;
-      object-fit: cover;
-      margin-bottom: 15px;
+    .hero-left {
+      max-width: 320px;
+      min-width: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+    .hero-right {
+      max-width: 540px;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .hero h1, .hero .roles, .hero .badge, .hero .hero-links { text-align: center; }
+    .hero-summary {
+      margin-top: 12px;
+      font-size: 1.10em;
+      background: #ffffff20;
+      border-radius: 16px;
+      padding: 22px 30px 20px 30px;
+      box-shadow: 0 2px 12px #38bdf81a;
+      color: #f8fafc;
+      font-weight: 500;
+      line-height: 1.55;
+    }
+    @media (max-width: 950px) {
+      .hero { flex-direction: column; align-items: center; text-align: center;}
+      .hero-left, .hero-right { max-width: 100%; min-width: unset; }
+      .hero-summary { padding: 16px 8px;}
+    }
+
     .badge {
       display: inline-block;
       background: var(--badge);
@@ -371,17 +397,28 @@
 
   <!-- HERO -->
   <section class="hero" id="about">
-    <img src="my_picture.jpg" alt="Hammad Ezad">
-    <div class="badge">MSc Quantitative Economics, Konstanz</div>
-    <h1>Hammad Ezad</h1>
-    <div class="roles">Data Scientist &bull; Machine Learning Engineer &bull; Business Strategist</div>
-    <div class="about-highlight">Economist turned data scientist passionate about bridging analytics, impact, and real-world business.</div>
-    <div class="hero-links">
-      <a href="mailto:hammadezad2211@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
-      <a href="https://github.com/hammadezad" title="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/hammad-ezad-51927522/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <div class="hero-left">
+      <img src="my_picture.jpg" alt="Hammad Ezad">
+      <div class="badge">MSc Quantitative Economics, Konstanz</div>
+      <h1>Hammad Ezad</h1>
+      <div class="roles">Data Scientist &bull; Machine Learning Engineer &bull; Business Strategist</div>
+      <div class="hero-links">
+        <a href="mailto:hammadezad2211@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
+        <a href="https://github.com/hammadezad" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/hammad-ezad-51927522/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <a class="resume-btn" href="Hammad_Ezad_CV.pdf" download style="margin-top:17px;">Download Resume</a>
+    </div>
+    <div class="hero-right">
+      <div class="about-highlight">
+        Economist turned data scientist passionate about bridging analytics, impact, and real-world business.
+      </div>
+      <div class="summary-section hero-summary">
+        I combine a strong background in economics with hands-on experience in machine learning and applied AI. With a master’s in Quantitative Economics from Konstanz University, I bring analytical depth and business perspective to every project. I thrive on delivering end-to-end solutions—deploying GenAI and ML in production, automating business processes, and translating complex data into real impact. I am currently focused on building cloud-native, scalable data products for finance, health, and tech.
+      </div>
     </div>
   </section>
+  
 
   <!-- SUMMARY SECTION -->
   <section class="summary-section" id="summary">

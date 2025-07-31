@@ -2,15 +2,15 @@
   {
     "degree": "MSc Quantitative Economics",
     "institution": "University of Konstanz",
-    "year": "2023",
+    "year": "2020",
     "details": "Focus: Econometrics, Predictive Analytics, Machine Learning",
     "logo": "logos/konstanzLogo.png"
   },
   {
-    "degree": "BBA",
+    "degree": "BSc Ecnomics and Mathematics",
     "institution": "IBA Karachi",
-    "year": "2017",
-    "details": "Specialization: Business Analytics",
+    "year": "2016",
+    "details": "Specialization: Econometrics",
     "logo": "logos/ibaLogo.png"
   }
 ]
