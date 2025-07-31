@@ -82,17 +82,32 @@
       flex-direction: column;
       align-items: center;
     }
+
+    .profile-pic-card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 32px;
+      box-shadow: 0 6px 24px #1e293b19;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid #f4f4fa;
+      width: 220px;
+      height: 220px;
+      box-sizing: border-box;
+    }
+
     .profile-pic-squarish {
       width: 190px;
       height: 190px;
       border-radius: 26px;
-      box-shadow: 0 6px 32px #1e293b40;
-      border: 6px solid #fff;
       object-fit: cover;
-      margin-bottom: 15px;
-      background: #eaeaea;
       display: block;
+      background: #eaeaea;
+      /* No border on image itself, handled by card */
     }
+
     .hero-left h1 {
       font-size: 2.12em;
       margin: 14px 0 7px 0;
@@ -102,8 +117,33 @@
     .hero-links {
       margin: 13px 0 0 0;
       display: flex;
-      gap: 12px;
+      gap: 13px;
       align-items: center;
+    }
+    .resume-btn-small {
+      display: inline-flex;
+      align-items: center;
+      background: #2563eb;
+      color: #fff;
+      padding: 5px 16px;
+      border-radius: 14px;
+      font-size: 1em;
+      font-weight: 600;
+      margin-left: 6px;
+      text-decoration: none;
+      box-shadow: 0 1px 8px #1e90ff1a;
+      border: none;
+      transition: background 0.17s;
+      height: 34px;
+      line-height: 1.1;
+    }
+    .resume-btn-small:hover {
+      background: #38bdf8;
+      color: #fff;
+    }
+    .resume-btn-small i {
+      margin-left: 7px;
+      font-size: 1.1em;
     }
     .hero-right {
       max-width: 760px;
@@ -113,7 +153,7 @@
       justify-content: center;
     }
     .hero-headline {
-      font-size: 1.13em;            /* Slightly smaller for one-line fit */
+      font-size: 1.13em;
       font-weight: 700;
       color: #1e293b;
       margin-bottom: 18px;
@@ -126,7 +166,11 @@
       padding: 8px 16px;
       box-shadow: 0 2px 10px #0001;
       max-width: 100%;
+      letter-spacing: 0.2px;
+      line-height: 1.2;
+      display: inline-block;
     }
+
     .hero-summary {
       margin-top: 0;
       font-size: 1.13em;
@@ -141,16 +185,15 @@
     @media (max-width: 1100px) {
       .hero-inner { flex-direction: column; gap: 34px; }
       .hero { padding: 32px 0 12px 0; }
-      .profile-pic-squarish { width: 112px; height: 112px; border-radius: 12px;}
+      .profile-pic-card { width: 130px; height: 130px; padding: 7px; border-radius: 13px; }
+      .profile-pic-squarish { width: 112px; height: 112px; border-radius: 10px;}
       .hero-headline { font-size: 0.98em; white-space: normal; text-align: center; }
     }
     @media (max-width: 800px) {
-      .profile-pic-squarish {
-        width: 98px;
-        height: 98px;
-        border-radius: 10px;
-      }
+      .profile-pic-card { width: 98px; height: 98px; padding: 4px; border-radius: 8px; }
+      .profile-pic-squarish { width: 90px; height: 90px; border-radius: 7px; }
     }
+
 
 
 
@@ -513,7 +556,9 @@
   <section class="hero" id="about">
     <div class="hero-inner">
       <div class="hero-left">
-        <img src="my_picture.jpg" alt="Hammad Ezad" class="profile-pic-big">
+        <div class="profile-pic-card">
+          <img src="my_picture.jpg" alt="Hammad Ezad" class="profile-pic-squarish">
+        </div>
         <h1>Hammad Ezad</h1>
         <div class="hero-links">
           <a href="mailto:hammadezad2211@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
@@ -532,6 +577,7 @@
       </div>
     </div>
   </section>
+  
   
   
   
