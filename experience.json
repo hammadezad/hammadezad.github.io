@@ -1,0 +1,82 @@
+[
+    {
+      "title": "Senior Data Scientist",
+      "company": "Royal Cyber Inc., Islamabad, Pakistan",
+      "period": "12/2023 – today",
+      "projects": [
+        {
+          "name": "Salesforce GenAI Automation",
+          "desc": [
+            "Built a production-ready GenAI stack using LLaMA 3 and PHI-3 hosted on Azure with FastAPI and strict privacy controls.",
+            "Implemented prompt masking/unmasking and custom trust boundary layers for GDPR-compliant usage.",
+            "Enabled real-time email generation and sentiment classification via API, reducing sales drafting time by 90%.",
+            "Deployed speech-to-text (NLP) connectors with Salesforce to generate real-time call summaries, accelerating customer-service resolution by 25%.",
+            "Reduced LLM operational cost by up to 65% compared to Salesforce Einstein GPT through strategic model benchmarking.",
+            "Built a CI/CD pipeline for LLM updates, monitoring, and deployment scalability across enterprise clients."
+          ],
+          "tech": "Python, LLaMA 3, PHI-3, FastAPI, Azure Container Apps, Salesforce API"
+        },
+        {
+          "name": "Vehicle Routing Optimization",
+          "desc": [
+            "Rebuilt the entire routing engine from scratch using Python and Gurobi Cloud, reducing solve time from 60 minutes to under 5 minutes for 100+ orders.",
+            "Delivered a secure Azure DevOps CI/CD pipeline with MuleSoft integration, enabling fully automated optimization.",
+            "Enabled 15% cost savings in fixed and distance-based logistics by optimizing vehicle utilization and flex handling.",
+            "Supported real-time planning and coordination with trucking partners through daily reruns and reporting automation.",
+            "Recognized by Niagara Bottling leadership for replacing legacy AMPL/Oracle systems with a flexible, production-grade system."
+          ],
+          "tech": "Python, Gurobi Cloud, Azure DevOps, Oracle DB"
+        }
+      ]
+    },
+    {
+      "title": "Data Manager",
+      "company": "University of Chicago - IRD Global, Karachi, Pakistan",
+      "period": "05/2022 – 11/2023",
+      "projects": [
+        {
+          "name": "Vaccination Timeliness Prediction",
+          "desc": [
+            "Built predictive models using XGBoost and Logistic Regression on 30+ features (geo, gender, history, weather, weekday).",
+            "Used SMOTE to counter data imbalance and achieved 87% accuracy, 98% recall for key vaccines (e.g., Measles1).",
+            "Integrated with the ZM mobile app for real-time intervention by frontline health workers.",
+            "Improved vaccination timeliness significantly in 12 high-need districts.",
+            "Developed a full pipeline and handed off a sustainable model for continued deployment."
+          ],
+          "tech": "Python, XGBoost, Logistic Regression, SMOTE"
+        }
+      ]
+    },
+    {
+      "title": "Senior Data Scientist",
+      "company": "Federation of Pakistan Chambers of Commerce & Industry, Pakistan",
+      "period": "07/2021 – 05/2022",
+      "projects": [
+        {
+          "name": "Gravity Model for Exports",
+          "desc": [
+            "Built Poisson Pseudo Maximum Likelihood model to estimate the untapped market value of $1.07B in horticulture exports.",
+            "Identified high-potential markets (Afghanistan, India, Iran, China) and product categories.",
+            "Delivered export optimization insights used in cold chain investment planning."
+          ],
+          "tech": "Python, Trade Map, FAO, IMF, World Bank"
+        }
+      ]
+    },
+    {
+      "title": "Data Scientist",
+      "company": "Love for Data, Karachi, Pakistan",
+      "period": "10/2020 – 07/2021",
+      "projects": [
+        {
+          "name": "Loan Default Prediction",
+          "desc": [
+            "Engineered 20+ features (income, credit history, demographics) and trained ML models, achieving 92% ROC-AUC.",
+            "Integrated the model into the loan decisioning API, reducing default rates by 18% and underwriting time by 60%."
+          ],
+          "tech": "Python, scikit-learn, SQL, REST API"
+        }
+      ]
+    }
+  ]
+  
