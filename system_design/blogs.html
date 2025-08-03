@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Design Blogs | Hammad Ezad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', 'Roboto', Arial, sans-serif; background:#f8fafc; color:#22223b; max-width:800px; margin:30px auto; padding:22px; border-radius:15px; box-shadow:0 2px 20px #0001;}
+    h1 { color:#2563eb; }
+    .blog-list { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    @media (max-width:700px){ .blog-list{ grid-template-columns:1fr; } }
+    .blog-card {
+      background: #fff; border-radius: 10px; box-shadow: 0 2px 12px #0001;
+      overflow: hidden; border: 1px solid #e5e7eb; margin-bottom: 25px; padding: 0 0 13px 0;
+      display: flex; flex-direction: column;
+      min-height: 200px;
+    }
+    .blog-card img { width:100%; height:60px; object-fit:cover; border-radius:10px 10px 0 0;}
+    .blog-card-content { padding: 14px 18px 8px 18px; flex:1; }
+    .blog-card h3 { color:#2563eb; margin:0 0 8px 0;}
+    .blog-card p { margin: 0 0 9px 0; }
+    .blog-date { color:#888; font-size:0.97em;}
+    .read-link {
+      display:inline-block; margin-top:9px;
+      background:#2563eb; color:#fff; padding:7px 18px; border-radius: 7px; text-decoration:none; font-weight:600; font-size:1.07em;
+      box-shadow: 0 1px 8px #1e90ff1a; transition: background 0.18s;
+    }
+    .read-link:hover { background:#38bdf8; color:#fff; }
+    .back-link { display:inline-block; margin-bottom:18px; color:#2563eb; text-decoration:none;}
+    .back-link:hover { text-decoration: underline;}
+  </style>
+</head>
+<body>
+  <a href="../index.html" class="back-link">&larr; Back to Portfolio</a>
+  <h1>System Design Blogs</h1>
+  <div class="blog-list" id="blogs-list"></div>
+  <script>
+    fetch('../blogs.json')
+      .then(response => response.json())
+      .then(blogs => {
+        const blogsList = document.getElementById('blogs-list');
+        blogsList.innerHTML = '';
+        if(Array.isArray(blogs)) {
+          blogs.forEach(blog => {
+            const card = document.createElement('div');
+            card.className = 'blog-card';
+            card.innerHTML = `
+              <img src="../${blog.cover}" alt="${blog.title}">
+              <div class="blog-card-content">
+                <h3>${blog.title}</h3>
+                <p>${blog.summary}</p>
+                <a class="read-link" href="../${blog.link}" target="_blank">Read Blog</a>
+                <div class="blog-date">${blog.date}</div>
+              </div>
+            `;
+            blogsList.appendChild(card);
+          });
+        } else {
+          // For single-object blogs.json fallback (your current format)
+          const blog = blogs;
+          const card = document.createElement('div');
+          card.className = 'blog-card';
+          card.innerHTML = `
+            <img src="../${blog.cover}" alt="${blog.title}">
+            <div class="blog-card-content">
+              <h3>${blog.title}</h3>
+              <p>${blog.summary}</p>
+              <a class="read-link" href="../${blog.link}" target="_blank">Read Blog</a>
+              <div class="blog-date">${blog.date}</div>
+            </div>
+          `;
+          blogsList.appendChild(card);
+        }
+      });
+  </script>
+</body>
+</html>
