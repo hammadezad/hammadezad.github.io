@@ -1,7 +1,6 @@
 {
   "title": "Horizontal vs Vertical Scaling Explained",
   "summary": "An in-depth, practical guide to vertical and horizontal scaling: when to use each and why it matters for modern scalable systems.",
-  "cover": "system_design/scaling-cover.jpg",    // You can use any relevant image here
   "date": "2025-08-04",
   "link": "system_design/blog-viewer.html?file=system_design/vertical_vs_horizontal_scaling.md"
 }
