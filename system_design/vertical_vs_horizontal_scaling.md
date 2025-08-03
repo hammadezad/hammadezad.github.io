@@ -1,8 +1,9 @@
----
-title: "Horizontal vs Vertical Scaling in System Design"
-date: 2025-08-04
-description: |
-  A practical guide to understanding horizontal and vertical scaling for building scalable, resilient systems.
+# Horizontal vs Vertical Scaling in System Design
+
+*Date: 2025-08-04*
+
+A practical guide to understanding horizontal and vertical scaling for building scalable, resilient systems.
+
 ---
 
 ## Introduction
