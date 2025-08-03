@@ -27,8 +27,13 @@
     const blogFile = getQueryParam('file');
     fetch(blogFile)
       .then(resp => resp.text())
-      .then(md => {
-        document.getElementById('blog-content').innerHTML = marked.parse(md);
+      .then(content => {
+        // Render HTML directly (for .html blogs), or parse markdown for .md files
+        if (blogFile.endsWith('.md')) {
+          document.getElementById('blog-content').innerHTML = marked.parse(content);
+        } else {
+          document.getElementById('blog-content').innerHTML = content;
+        }
       })
       .catch(err => {
         document.getElementById('blog-content').innerHTML = "Blog not found!";
