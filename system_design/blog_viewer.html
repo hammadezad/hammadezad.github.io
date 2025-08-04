@@ -25,19 +25,28 @@
       return urlParams.get(name);
     }
     const blogFile = getQueryParam('file');
-    fetch(blogFile)
-      .then(resp => resp.text())
-      .then(content => {
-        // Render HTML directly (for .html blogs), or parse markdown for .md files
-        if (blogFile.endsWith('.md')) {
-          document.getElementById('blog-content').innerHTML = marked.parse(content);
-        } else {
-          document.getElementById('blog-content').innerHTML = content;
-        }
-      })
-      .catch(err => {
-        document.getElementById('blog-content').innerHTML = "Blog not found!";
-      });
+    if (!blogFile) {
+      document.getElementById('blog-content').innerHTML = "No blog file specified!";
+    } else {
+      // Always fetch as absolute path for reliability
+      const filePath = blogFile.startsWith('/') ? blogFile : '/' + blogFile;
+      fetch(filePath)
+        .then(resp => {
+          if (!resp.ok) throw new Error("Not found");
+          return resp.text();
+        })
+        .then(content => {
+          // Render HTML directly (for .html blogs), or parse markdown for .md files
+          if (blogFile.endsWith('.md')) {
+            document.getElementById('blog-content').innerHTML = marked.parse(content);
+          } else {
+            document.getElementById('blog-content').innerHTML = content;
+          }
+        })
+        .catch(err => {
+          document.getElementById('blog-content').innerHTML = "Blog not found!";
+        });
+    }
   </script>
 </body>
 </html>
