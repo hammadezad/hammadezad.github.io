@@ -1,130 +1,293 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Professional Projects</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Professional Projects — Hammad Ezad</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <style>
-    :root {
-      --primary:#2563eb; --accent:#38bdf8; --bg:#f8fafc; --card:#fff; --border:#e5e7eb; --text:#22223B;
+    :root{
+      --primary:#2563eb;
+      --accent:#38bdf8;
+      --bg:#0b1220;        /* dark background to feel premium */
+      --text:#e5e7eb;      /* main text */
+      --muted:#94a3b8;     /* secondary text */
+      --card:#0f172a;      /* card background */
+      --border:#1f2a44;    /* borders */
+      --chip:#0b2244;      /* skill/tech chips */
     }
-    html { scroll-behavior:smooth; }
-    body { margin:0; font-family:'Inter','Roboto',Arial,sans-serif; background:var(--bg); color:var(--text); }
-    .navbar { background:var(--card); box-shadow:0 2px 16px #0001; position:sticky; top:0; z-index:10; }
-    .nav-inner { max-width:1100px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; }
-    .nav-left a { color:var(--primary); font-weight:700; text-decoration:none; }
-    .nav-right a { color:var(--primary); text-decoration:none; margin-left:18px; font-weight:600; }
-    .container { max-width:1100px; margin:0 auto; padding:26px 16px 60px 16px; }
-    h1 { font-size:1.9rem; margin:12px 0 6px 0; color:var(--primary); }
-    .subtitle { color:#475569; margin:0 0 18px 0; }
-    .tabs { display:flex; gap:0; overflow:auto; border:1px solid var(--border); border-radius:12px; background:#f1f5fa; }
-    .tab-btn { flex:1 0 auto; padding:12px 16px; border:none; background:transparent; font-weight:700; color:var(--primary); cursor:pointer; white-space:nowrap; }
-    .tab-btn.active { background:var(--primary); color:#fff; }
-    .panel { display:none; }
-    .panel.active { display:block; }
-    .card { background:var(--card); border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 16px #0001; overflow:hidden; }
-    .hero { display:grid; grid-template-columns: 1.2fr 1fr; gap:18px; padding:16px; }
-    .hero img { width:100%; height:220px; object-fit:cover; border-radius:12px; border:1px solid var(--border); }
-    .title { font-size:1.4rem; font-weight:800; margin:6px 0 2px 0; }
-    .summary { color:#334155; margin:6px 0 10px 0; line-height:1.55; }
-    .chips { display:flex; flex-wrap:wrap; gap:8px; margin:6px 0; }
-    .chip { background:linear-gradient(90deg,#e0eafc 0%,#cfdef3 100%); border:1px solid var(--border); color:var(--primary); padding:6px 12px; border-radius:20px; font-weight:700; font-size:0.95rem; }
-    .actions { display:flex; gap:10px; margin-top:10px; }
-    .btn { display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; text-decoration:none; font-weight:700; border:1px solid var(--border); background:#f8fafc; color:var(--primary); }
-    .btn.primary { background:var(--primary); color:#fff; border-color:var(--primary); }
-    .spacer { height:18px; }
-    @media (max-width:900px){ .hero { grid-template-columns: 1fr; } .hero img{ height:200px; } }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Inter, Roboto, system-ui, Arial, sans-serif}
+
+    /* Top nav */
+    .nav{
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(15,23,42,.75);
+      backdrop-filter: saturate(140%) blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner{
+      max-width: 1200px; margin: 0 auto; padding: 12px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .nav-left, .nav-right{display:flex; align-items:center; gap:12px;}
+    .nav a{
+      color:#cbd5e1; text-decoration:none; font-weight:800; letter-spacing:.2px;
+    }
+    .nav a:hover{color:#fff}
+
+    /* Hero banner */
+    .hero{
+      background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+      padding: 36px 0 30px 0;
+      color:#fff;
+      box-shadow: 0 4px 24px #0004 inset;
+    }
+    .hero-inner{
+      max-width: 1200px; margin: 0 auto; padding: 0 16px;
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .title{font-size:1.9rem; font-weight:900; margin:0}
+    .subtitle{margin:0; color:#f0f9ff; opacity:.92}
+    .meta{color:#e0e7ff; font-size:.95rem; opacity:.9}
+
+    /* Main container */
+    .container{max-width: 1200px; margin: 0 auto; padding: 22px 16px 70px 16px}
+
+    /* Toolbar */
+    .toolbar{
+      display:flex; gap:12px; align-items:center; margin-bottom:16px; flex-wrap:wrap;
+    }
+    .search{
+      flex:1; min-width: 220px;
+      background:#0a1328; color:#fff;
+      border:1px solid var(--border); border-radius:12px;
+      padding:10px 12px; outline:none;
+    }
+    .select{
+      background:#0a1328; color:#fff; border:1px solid var(--border);
+      border-radius:12px; padding:10px 12px; outline:none;
+    }
+
+    /* Grid of cards */
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width:1100px){ .grid{grid-template-columns: repeat(2, 1fr);} }
+    @media (max-width:720px){ .grid{grid-template-columns: 1fr;} }
+
+    .card{
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      overflow:hidden; display:flex; flex-direction:column; box-shadow:0 8px 24px #0002;
+    }
+    .cover{
+      width:100%; height:160px; object-fit:cover; display:block; border-bottom:1px solid var(--border);
+      background:#0b1220;
+    }
+    .content{padding:12px 14px 14px 14px; display:flex; flex-direction:column; gap:8px}
+    .card h3{margin:2px 0 2px 0; font-size:1.1rem; color:#dbeafe}
+    .summary{margin:0; color:#cbd5e1; line-height:1.45}
+
+    /* Tabs inside card */
+    .tabs{
+      display:flex; gap:0; border:1px solid var(--border); border-top:none; overflow:hidden; border-radius:10px; margin-top:6px;
+    }
+    .tab{
+      flex:1; text-align:center; padding:8px 6px; cursor:pointer; user-select:none;
+      background:#0a1328; color:#93c5fd; font-weight:700; border-right:1px solid var(--border);
+    }
+    .tab:last-child{border-right:none}
+    .tab.active, .tab:hover{background:var(--primary); color:#fff}
+
+    .panel{display:none; padding:10px 0 4px 0; border-top:1px solid var(--border)}
+    .panel a{color:#93c5fd; text-decoration:none; font-weight:800}
+    .panel a:hover{color:#fff; text-decoration:underline}
+
+    /* Chips row (optional tech) */
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:2px}
+    .chip{background:var(--chip); border:1px solid var(--border); color:#c7d2fe; padding:5px 10px; border-radius:999px; font-weight:800; font-size:.82rem}
+
+    /* Footer */
+    .foot{margin-top:26px; color:var(--muted); text-align:center; font-size:.95rem}
   </style>
 </head>
 <body>
-  <div class="navbar">
+  <!-- Navigation -->
+  <nav class="nav">
     <div class="nav-inner">
       <div class="nav-left">
         <a href="../index.html">← Back to Home</a>
       </div>
       <div class="nav-right">
-        <a href="https://github.com/hammadezad" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="../Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer">Resume</a>
+        <a href="../Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer"><i class="fa fa-file-arrow-down"></i> Resume</a>
       </div>
     </div>
-  </div>
+  </nav>
 
-  <div class="container">
-    <h1>Professional Projects</h1>
-    <p class="subtitle">Each tab is a project. Click to view summary, tags, and links to code and the detailed case study.</p>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="title">Professional Projects</h1>
+      <p class="subtitle">Case studies from production systems in optimization, GenAI, and applied ML.</p>
+      <p class="meta">Click “Explanation” to open each project’s detailed page.</p>
+    </div>
+  </section>
 
-    <div id="tabs" class="tabs"></div>
-    <div id="panels"></div>
-  </div>
+  <!-- Main -->
+  <main class="container">
+    <div class="toolbar">
+      <input id="q" class="search" type="search" placeholder="Search title or tech (e.g., Gurobi, Salesforce, XGBoost)"/>
+      <select id="sort" class="select" aria-label="Sort">
+        <option value="title">Sort by Title</option>
+        <option value="custom">Original Order</option>
+      </select>
+    </div>
+
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <div id="status" class="foot"></div>
+  </main>
 
   <script>
-    async function loadProjects() {
-      const res = await fetch('projects.json', { cache: 'no-store' });
-      if (!res.ok) throw new Error('Failed to load projects.json');
+    let projects = [];
+    const grid = document.getElementById('grid');
+    const status = document.getElementById('status');
+    const q = document.getElementById('q');
+    const sortSel = document.getElementById('sort');
+
+    // Safe fetch from the same folder
+    async function loadProjects(){
+      const res = await fetch('./projects.json', {cache: 'no-store'});
+      if(!res.ok) throw new Error('Failed to load projects.json');
       return res.json();
     }
-    function tabButton(p, i) {
-      const b = document.createElement('button');
-      b.className = 'tab-btn' + (i === 0 ? ' active' : '');
-      b.textContent = p.title;
-      b.dataset.panel = p.id;
-      b.onclick = () => activate(p.id);
-      return b;
-    }
-    function panel(p, i) {
-      const div = document.createElement('div');
-      div.className = 'panel' + (i === 0 ? ' active' : '');
-      div.id = p.id;
-      div.innerHTML = `
-        <div class="spacer"></div>
-        <div class="card">
-          <div class="hero">
-            <div>
-              <div class="title">${p.title}</div>
-              <div class="summary">${p.summary}</div>
-              <div class="chips">
-                ${(p.tags || []).map(t => `<span class="chip">${t}</span>`).join('')}
-              </div>
-              <div class="actions">
-                ${p.code ? `<a class="btn primary" href="${p.code}" target="_blank" rel="noreferrer"><i class="fab fa-github"></i> Code</a>` : ''}
-                ${p.case_study ? `<a class="btn" href="${p.case_study}"><i class="fa fa-file-lines"></i> Case study</a>` : ''}
-                ${p.video ? `<a class="btn" href="${p.video}" target="_blank" rel="noreferrer"><i class="fab fa-youtube"></i> Video</a>` : ''}
-              </div>
-            </div>
-            <div>
-              <img src="${p.cover}" alt="${p.title} cover">
-            </div>
-          </div>
-        </div>
-      `;
-      return div;
-    }
-    function activate(id) {
-      document.querySelectorAll('.tab-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.panel === id);
-      });
-      document.querySelectorAll('.panel').forEach(p => {
-        p.classList.toggle('active', p.id === id);
-      });
-    }
-    (async function init(){
-      try {
-        const data = await loadProjects();
-        const tabs = document.getElementById('tabs');
-        const panels = document.getElementById('panels');
-        tabs.innerHTML = '';
-        panels.innerHTML = '';
-        data.forEach((p, i) => {
-          tabs.appendChild(tabButton(p, i));
-          panels.appendChild(panel(p, i));
+
+    function render(list){
+      grid.innerHTML = '';
+      list.forEach((proj, idx)=>{
+        const card = document.createElement('article');
+        card.className = 'card';
+
+        const cover = document.createElement('img');
+        cover.className = 'cover';
+        cover.alt = proj.title || 'Project cover';
+        cover.loading = 'lazy';
+        cover.src = proj.cover || '';
+        card.appendChild(cover);
+
+        const content = document.createElement('div');
+        content.className = 'content';
+        content.innerHTML = `
+          <h3>${proj.title || ''}</h3>
+          <p class="summary">${proj.summary || ''}</p>
+        `;
+        card.appendChild(content);
+
+        // optional tech chips if "tech" is in JSON
+        if (proj.tech) {
+          const chips = document.createElement('div');
+          chips.className = 'chips';
+          proj.tech.split(',').forEach(t=>{
+            const span = document.createElement('span');
+            span.className = 'chip';
+            span.textContent = t.trim();
+            chips.appendChild(span);
+          });
+          content.appendChild(chips);
+        }
+
+        // tabs
+        const tabs = document.createElement('div');
+        tabs.className = 'tabs';
+        const tCode = document.createElement('div');
+        tCode.className = 'tab active'; tCode.textContent = 'Code'; tCode.dataset.for = `code-${idx}`;
+        tabs.appendChild(tCode);
+
+        let tVideo = null;
+        if (proj.video) {
+          tVideo = document.createElement('div');
+          tVideo.className = 'tab'; tVideo.textContent = 'Video'; tVideo.dataset.for = `video-${idx}`;
+          tabs.appendChild(tVideo);
+        }
+
+        const tExp = document.createElement('div');
+        tExp.className = 'tab'; tExp.textContent = 'Explanation'; tExp.dataset.for = `exp-${idx}`;
+        tabs.appendChild(tExp);
+
+        content.appendChild(tabs);
+
+        // panels
+        const pCode = document.createElement('div');
+        pCode.className = 'panel'; pCode.id = `code-${idx}`; pCode.style.display = '';
+        pCode.innerHTML = `<a href="${proj.code}" target="_blank" rel="noreferrer">View GitHub Repository <i class="fab fa-github"></i></a>`;
+        content.appendChild(pCode);
+
+        if (proj.video) {
+          const pVideo = document.createElement('div');
+          pVideo.className = 'panel'; pVideo.id = `video-${idx}`;
+          pVideo.innerHTML = `<a href="${proj.video}" target="_blank" rel="noreferrer">Watch Demo Video <i class="fab fa-youtube"></i></a>`;
+          content.appendChild(pVideo);
+        }
+
+        const pExp = document.createElement('div');
+        pExp.className = 'panel'; pExp.id = `exp-${idx}`;
+        // Open in same tab so relative paths work cleanly
+        pExp.innerHTML = `<a href="${proj.explanation}" target="_self">Open Case Study <i class="fa fa-file-alt"></i></a>`;
+        content.appendChild(pExp);
+
+        // tab switching
+        tabs.addEventListener('click', (e)=>{
+          const btn = e.target.closest('.tab');
+          if(!btn) return;
+          tabs.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+
+          content.querySelectorAll('.panel').forEach(p=>p.style.display='none');
+          const target = content.querySelector(`#${btn.dataset.for}`);
+          if (target) target.style.display = '';
         });
-      } catch (e) {
-        document.getElementById('tabs').textContent = 'Unable to load projects.';
-        console.warn(e);
+
+        grid.appendChild(card);
+      });
+
+      status.textContent = list.length ? '' : 'No projects match your search.';
+    }
+
+    function filterAndSort(){
+      const text = (q.value || '').toLowerCase();
+      let filtered = projects.filter(p=>{
+        const hay = [
+          p.title || '',
+          p.summary || '',
+          p.tech || ''
+        ].join(' ').toLowerCase();
+        return hay.includes(text);
+      });
+
+      if (sortSel.value === 'title') {
+        filtered = filtered.sort((a,b)=> (a.title||'').localeCompare(b.title||''));
       }
-    })();
+      // 'custom' keeps original order
+      render(filtered);
+    }
+
+    async function init(){
+      try{
+        projects = await loadProjects();
+        render(projects);
+        q.addEventListener('input', filterAndSort);
+        sortSel.addEventListener('change', filterAndSort);
+      }catch(err){
+        grid.innerHTML = '';
+        status.textContent = 'Unable to load projects. Check projects.json path and content.';
+        console.error(err);
+      }
+    }
+    init();
   </script>
 </body>
 </html>
