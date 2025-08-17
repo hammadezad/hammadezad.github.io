@@ -1,33 +1,26 @@
 [
-    {
-      "id": "vehicle_routing",
-      "title": "Vehicle Routing Optimizer",
-      "summary": "Optimized routes and schedules with a three-phase Gurobi pipeline and flexible quantities.",
-      "cover": "vehicle_routing/images/cover.jpg",
-      "code": "https://github.com/hammadezad/vehicle-routing",
-      "video": "",
-      "case_study": "vehicle_routing/index.html",
-      "tags": ["Optimization", "Gurobi", "Routing", "Operations Research"]
-    },
-    {
-      "id": "loan_approval",
-      "title": "Real-time Loan Approval System",
-      "summary": "ML workflow that reduced loan processing time by 40 percent with explainable decisions.",
-      "cover": "loan_approval/images/cover.jpg",
-      "code": "https://github.com/hammadezad/loan-approval",
-      "video": "",
-      "case_study": "loan_approval/index.html",
-      "tags": ["ML", "MLOps", "Risk"]
-    },
-    {
-      "id": "salesforce_genai",
-      "title": "Salesforce GenAI Automation",
-      "summary": "Automated CRM insights and emails with LLMs integrated into Salesforce.",
-      "cover": "salesforce_genai/images/cover.jpg",
-      "code": "https://github.com/hammadezad/salesforce-genai",
-      "video": "",
-      "case_study": "salesforce_genai/index.html",
-      "tags": ["LLM", "Salesforce", "Automation"]
-    }
-  ]
-  
+  {
+    "title": "Real-time Loan Approval System",
+    "summary": "ML model for a financial firm, reducing loan processing time by 40%.",
+    "cover": "loan_approval/images/cover.jpg",
+    "code": "https://github.com/hammadezad/loan-approval",
+    "video": "",
+    "explanation": "loan_approval/index.html"
+  },
+  {
+    "title": "Vehicle Routing Optimizer",
+    "summary": "Optimized vehicle routes and schedules, saving logistics costs for a national bottling company.",
+    "cover": "vehicle_routing/images/cover.jpg",
+    "code": "https://github.com/hammadezad/vehicle-routing",
+    "video": "",
+    "explanation": "vehicle_routing/index.html"
+  },
+  {
+    "title": "Salesforce GenAI Automation",
+    "summary": "Automated CRM insights and email workflows using Salesforce and Generative AI.",
+    "cover": "salesforce_genai/images/cover.jpg",
+    "code": "https://github.com/hammadezad/salesforce-genai",
+    "video": "",
+    "explanation": "salesforce_genai/index.html"
+  }
+]
