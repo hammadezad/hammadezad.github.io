@@ -4,19 +4,19 @@
   <meta charset="utf-8" />
   <title>Vehicle Routing Optimizer — Case Study</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Three-phase Gurobi optimization with warm starts, rate constraints, and flexible quantities." />
+  <meta name="description" content="Production-grade vehicle routing with Gurobi: three phases, warm starts, flexible quantities, and rate-card constraints." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root{
-      --bg:#0b1220; --card:#0f172a; --text:#e5e7eb; --muted:#94a3b8;
-      --border:#1f2a44; --primary:#2563eb; --accent:#38bdf8;
+      --bg:#0b1220; --panel:#0f172a; --text:#e5e7eb; --muted:#94a3b8;
+      --border:#1f2a44; --primary:#2563eb; --accent:#38bdf8; --chip:#0b2244;
     }
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
 
-    /* Nav */
+    /* Top Nav */
     .nav{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.75);
          backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
     .nav-inner{max-width:1100px;margin:0 auto;padding:12px 16px;
@@ -31,24 +31,26 @@
     .title{font-size:1.9rem;font-weight:900;margin:0 0 6px 0}
     .subtitle{margin:0;color:#eef2ff;opacity:.92}
 
-    /* Main */
+    /* Main container */
     .container{max-width:1100px;margin:0 auto;padding:24px 16px 70px}
 
-    .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+    /* Top band: summary + image */
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
     @media (max-width:900px){.grid{grid-template-columns:1fr}}
 
-    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:16px;
           box-shadow:0 8px 24px #0002;padding:16px}
 
-    .img{width:100%;height:260px;object-fit:cover;border-radius:12px;
-         border:1px solid var(--border);background:#0b1220}
-    @media (max-width:900px){.img{height:220px}}
+    /* Image that ALWAYS FITS (no cropping) */
+    .media{width:100%; aspect-ratio:16/9; background:#0b1220;
+           border:1px solid var(--border); border-radius:12px;
+           display:flex; align-items:center; justify-content:center; overflow:hidden}
+    .media img{max-width:100%; max-height:100%; object-fit:contain; display:block}
 
-    h2{margin:22px 0 10px 0;font-size:1.25rem;color:#dbeafe}
-
-    pre{background:#0b1220;color:#e5e7eb;border-radius:14px;padding:16px;overflow:auto;
-        border:1px solid var(--border)}
-    code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.95em}
+    h2{margin:24px 0 10px 0;font-size:1.25rem;color:#dbeafe}
+    p{line-height:1.6}
+    .muted{color:var(--muted)}
+    ul{margin:8px 0 0 18px;color:#cbd5e1;line-height:1.55}
 
     .btn{
       display:inline-block;background:var(--primary);color:#fff;text-decoration:none;
@@ -58,8 +60,15 @@
     .btn-secondary{background:#0a1328;border:1px solid var(--border);color:#cbd5e1}
     .btn-secondary:hover{border-color:#3b82f6;color:#fff}
 
-    ul{margin:8px 0 0 18px;color:#cbd5e1;line-height:1.55}
-    .muted{color:var(--muted)}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .chip{background:var(--chip); border:1px solid var(--border); color:#c7d2fe;
+          padding:6px 10px; border-radius:999px; font-weight:800; font-size:.82rem}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width:800px){.two-col{grid-template-columns:1fr}}
+
+    pre{background:#0b1220;color:#e5e7eb;border-radius:14px;padding:14px;overflow:auto;
+        border:1px solid var(--border);margin:8px 0 0 0}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.95em}
   </style>
 </head>
 <body>
@@ -75,23 +84,27 @@
   <section class="hero">
     <div class="hero-inner">
       <h1 class="title">Vehicle Routing Optimizer</h1>
-      <p class="subtitle">Production routing for a national bottling company with three-phase Gurobi models, warm starts, and flexible quantities.</p>
+      <p class="subtitle">Production routing for a national bottling company using a three-phase Gurobi pipeline with warm starts and flexible quantities.</p>
     </div>
   </section>
 
   <!-- Content -->
   <main class="container">
+    <!-- Summary + Cover that fits -->
     <section class="grid">
       <article class="card">
         <p class="muted" style="margin-top:0">
-          Daily dispatch planning at cluster and subcluster levels. Warm starts from earlier phases reduce solve time while enforcing realistic limits such as
-          maximum stops, route duration, idle time between stops, and per-location flex windows.
+          This project plans daily beverage deliveries across hundreds of orders with strict business rules: vehicle capacities, rate-card limits
+          (max stops, max route time, max distance between stops), delivery time windows, and per-location “flex” tolerances.
         </p>
-        <ul>
-          <li>Three phases with warm starts and unioned sets for cluster solve</li>
-          <li>Scenario-driven configuration with rotating logs and error files</li>
-          <li>Automated CSV reports for shipments, orders, routes, and scenario stats</li>
-        </ul>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">Gurobi</span>
+          <span class="chip">Optimization</span>
+          <span class="chip">Azure DevOps</span>
+          <span class="chip">CI/CD</span>
+          <span class="chip">Reporting</span>
+        </div>
         <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn" href="https://github.com/hammadezad/vehicle-routing" target="_blank" rel="noreferrer">
             <i class="fab fa-github"></i> View Code on GitHub
@@ -101,43 +114,91 @@
       </article>
 
       <aside class="card">
-        <img class="img" src="images/cover.jpg" alt="Vehicle routing visual cover">
+        <div class="media">
+          <img src="images/cover.jpg" alt="Vehicle routing visual cover"/>
+        </div>
       </aside>
     </section>
 
-    <h2>Architecture</h2>
+    <!-- Problem -->
+    <h2>Problem</h2>
     <div class="card">
-      <pre><code>main.py → run_pipeline()
- ├─ data_loader.load_data_from_dataframes()
- ├─ rate_builder.build_global_rate_dicts()
- ├─ phase0_solver.solve_phase0_subcluster()
- ├─ phase1_solver.solve_phase1_for_cluster()
- ├─ phase2_solver.flex_allocation_and_phase2()
- └─ reports.write_*_csv()</code></pre>
-      <p class="muted" style="margin:6px 0 0 0">
-        Inputs are scenario-filtered CSVs. Phase-1 unions all subclusters, warms from Phase-0 solutions, and respects capacity,
-        time windows, idle-time, and stop limits derived from rate cards.
-      </p>
+      <div class="two-col">
+        <div>
+          <p><strong>Business need.</strong> Dispatch the right vehicles on cost-efficient routes while respecting:</p>
+          <ul>
+            <li>Vehicle capacities and per-rate limits (stops, route time, inter-stop distance)</li>
+            <li>Delivery time windows and service times at each stop</li>
+            <li>Location-specific over/under shipment “flex” bounds</li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>Pain with legacy system.</strong></p>
+          <ul>
+            <li>60+ minutes per run for ~100 orders</li>
+            <li>Rigid modeling; difficult to change business rules</li>
+            <li>Manual report collation; error-prone daily operations</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
-    <h2>Warm start example</h2>
+    <!-- Solution (what) -->
+    <h2>Solution</h2>
     <div class="card">
-      <pre><code>var = model.addVar(vtype=GRB.BINARY, name=f"x_{i}_{j}_{k}")
+      <ul>
+        <li><strong>Three-phase optimizer</strong> with warm starts: subcluster → cluster → final allocation</li>
+        <li><strong>Scenario-driven</strong> configs: all limits & flags loaded from CSV/DB per scenario</li>
+        <li><strong>Robust logging</strong> (rotating logs + error file) and auto-generated shipment/order/route reports</li>
+      </ul>
+    </div>
+
+    <!-- How we solved it (how) -->
+    <h2>How we solved it</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0">Pipeline with warm starts and reusable constraint builders.</p>
+      <pre><code>run_pipeline()
+ ├─ load_data_from_dataframes()
+ ├─ build_global_rate_dicts()          # FC/MC/SC, WCap, MaxStops, MaxRouteDuration, MaxDist, VC
+ ├─ solve_phase0_subcluster()          # Subcluster models
+ ├─ solve_phase1_for_cluster()         # Union of subclusters; warm-start from Phase 0
+ ├─ flex_allocation_and_phase2()       # Final adjustments + flex constraints
+ └─ write_*_csv()                      # shipments, orders, routes, scenario stats</code></pre>
+
+      <p><strong>Warm starts that actually cut runtime:</strong></p>
+      <pre><code># Example: Phase-1 warms x, y, z, q from Phase-0 keys if available
+var = model.addVar(vtype=GRB.BINARY, name=f"x_{i}_{j}_{k}")
 key = (wave_id, cluster_id, "PHASE0", i, j, k)
 if key in X_Param:
     var.Start = X_Param[key]</code></pre>
-      <p class="muted" style="margin:6px 0 0 0">
-        Phase-0 routes seed Phase-1 variables to cut search time and stabilize solutions across daily reruns.
-      </p>
+
+      <p><strong>Key constraints enforced (selected):</strong></p>
+      <ul>
+        <li>Capacity: ∑<sub>m,p</sub> q[m,p,k]·weight[p] ≤ ∑<sub>r</sub> y[k]·VC[k,r]·WCap[r]</li>
+        <li>Stops: ∑ x[i,j,k] ≤ ∑<sub>r</sub> y[k]·VC[k,r]·MaxStops[r]</li>
+        <li>Route duration & idle time between stops bounded per rate and scenario flags</li>
+        <li>Flex windows per location + global percent guards (if enabled)</li>
+        <li>Time windows: arrival sequencing and service-time aware constraints</li>
+      </ul>
     </div>
 
-    <h2>Results and Ops</h2>
+    <!-- Impact (benefits) -->
+    <h2>Impact</h2>
     <div class="card">
       <ul>
-        <li>Solve time reduced from about 60 minutes to under 5 minutes for 100+ orders</li>
-        <li>About 15 percent logistics cost savings through better vehicle utilization and flex control</li>
-        <li>Daily reruns with automated report drop for planners and partners</li>
+        <li><strong>Runtime:</strong> ~60 min ➜ <strong>&lt; 5 min</strong> for 100+ orders (repeatable daily)</li>
+        <li><strong>Cost:</strong> ≈ <strong>15%</strong> logistics savings via better vehicle utilization & flex control</li>
+        <li><strong>Ops:</strong> Zero-touch daily runs with clean reports for planners and partners</li>
+        <li><strong>Maintainability:</strong> New rules plug in via config (no model rewrites)</li>
       </ul>
+    </div>
+
+    <!-- Quick links -->
+    <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+      <a class="btn" href="https://github.com/hammadezad/vehicle-routing" target="_blank" rel="noreferrer">
+        <i class="fab fa-github"></i> Browse Source Code
+      </a>
+      <a class="btn btn-secondary" href="../index.html">Back to Projects</a>
     </div>
   </main>
 </body>
