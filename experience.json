@@ -1,86 +1,123 @@
 [
-    {
-      "title": "Senior Data Scientist",
-      "company": "Royal Cyber Inc., Islamabad, Pakistan",
-      "period": "12/2023 – today",
-      "logo": "logos/royalcyberLogo.jpg",
-      "projects": [
-        {
-          "name": "Salesforce GenAI Automation",
-          "desc": [
-            "Built a production-ready GenAI stack using LLaMA 3 and PHI-3 hosted on Azure with FastAPI and strict privacy controls.",
-            "Implemented prompt masking/unmasking and custom trust boundary layers for GDPR-compliant usage.",
-            "Enabled real-time email generation and sentiment classification via API, reducing sales drafting time by 90%.",
-            "Deployed speech-to-text (NLP) connectors with Salesforce to generate real-time call summaries, accelerating customer-service resolution by 25%.",
-            "Reduced LLM operational cost by up to 65% compared to Salesforce Einstein GPT through strategic model benchmarking.",
-            "Built a CI/CD pipeline for LLM updates, monitoring, and deployment scalability across enterprise clients."
-          ],
-          "tech": "Python, LLaMA 3, PHI-3, FastAPI, Azure Container Apps, Salesforce API"
-        },
-        {
-          "name": "Vehicle Routing Optimization",
-          "desc": [
-            "Rebuilt the entire routing engine from scratch using Python and Gurobi Cloud, reducing solve time from 60 minutes to under 5 minutes for 100+ orders.",
-            "Delivered a secure Azure DevOps CI/CD pipeline with MuleSoft integration, enabling fully automated optimization.",
-            "Enabled 15% cost savings in fixed and distance-based logistics by optimizing vehicle utilization and flex handling.",
-            "Supported real-time planning and coordination with trucking partners through daily reruns and reporting automation.",
-            "Recognized by Niagara Bottling leadership for replacing legacy AMPL/Oracle systems with a flexible, production-grade system."
-          ],
-          "tech": "Python, Gurobi Cloud, Azure DevOps, Oracle DB"
-        }
-      ]
-    },
-    {
-      "title": "Data Manager",
-      "company": "University of Chicago - IRD Global, Karachi, Pakistan",
-      "period": "05/2022 – 11/2023",
-      "logo": "logos/uchicagoLogo.png",
-      "projects": [
-        {
-          "name": "Vaccination Timeliness Prediction",
-          "desc": [
-            "Built predictive models using XGBoost and Logistic Regression on 30+ features (geo, gender, history, weather, weekday).",
-            "Used SMOTE to counter data imbalance and achieved 87% accuracy, 98% recall for key vaccines (e.g., Measles1).",
-            "Integrated with the ZM mobile app for real-time intervention by frontline health workers.",
-            "Improved vaccination timeliness significantly in 12 high-need districts.",
-            "Developed a full pipeline and handed off a sustainable model for continued deployment."
-          ],
-          "tech": "Python, XGBoost, Logistic Regression, SMOTE"
-        }
-      ]
-    },
-    {
-      "title": "Senior Data Scientist",
-      "company": "Federation of Pakistan Chambers of Commerce & Industry, Pakistan",
-      "period": "07/2021 – 05/2022",
-      "logo": "logos/fpcciLogo.jpg",
-      "projects": [
-        {
-          "name": "Gravity Model for Exports",
-          "desc": [
-            "Built Poisson Pseudo Maximum Likelihood model to estimate the untapped market value of $1.07B in horticulture exports.",
-            "Identified high-potential markets (Afghanistan, India, Iran, China) and product categories.",
-            "Delivered export optimization insights used in cold chain investment planning."
-          ],
-          "tech": "Python, Trade Map, FAO, IMF, World Bank"
-        }
-      ]
-    },
-    {
-      "title": "Data Scientist",
-      "company": "Love for Data, Karachi, Pakistan",
-      "period": "10/2020 – 07/2021",
-      "logo": "logos/lovefordataLogo.png",
-      "projects": [
-        {
-          "name": "Loan Default Prediction",
-          "desc": [
-            "Engineered 20+ features (income, credit history, demographics) and trained ML models, achieving 92% ROC-AUC.",
-            "Integrated the model into the loan decisioning API, reducing default rates by 18% and underwriting time by 60%."
-          ],
-          "tech": "Python, scikit-learn, SQL, REST API"
-        }
-      ]
-    }
-  ]
-  
+  {
+    "title": "Senior Data Scientist",
+    "company": "Royal Cyber Inc., Islamabad, Pakistan",
+    "period": "12/2023 – Present",
+    "logo": "logos/royalcyberLogo.jpg",
+    "projects": [
+      {
+        "name": "Vehicle Routing Optimization Platform (Niagara Bottling, US)",
+        "desc": [
+          "Engineered a large-scale optimization system; reduced solve time from 60 minutes to under 5 minutes for 100+ orders.",
+          "Rebuilt routing engine with Python and Gurobi Cloud; enabled daily re-runs and automated reporting.",
+          "Delivered secure CI/CD with Azure DevOps and MuleSoft integration for fully automated optimization.",
+          "Achieved ~15% logistics cost savings via vehicle utilization and flexible-quantity handling.",
+          "Recognized for replacing legacy AMPL/Oracle with a flexible production-grade solution."
+        ],
+        "tech": "Python, Gurobi, Pandas, Azure DevOps, Oracle DB, Docker, Kubernetes"
+      },
+      {
+        "name": "Salesforce GenAI Email & Sentiment Automation (Internal)",
+        "desc": [
+          "Built an enterprise LLM platform for email generation and sentiment analysis with strict privacy controls.",
+          "Implemented prompt masking/unmasking and GDPR-aligned trust boundaries; real-time APIs via FastAPI.",
+          "Benchmarked LLaMA 3 and PHI-3; reduced LLM costs by up to 65% vs Einstein GPT.",
+          "Delivered CI/CD for model updates, monitoring, and scalable deployment on Azure Container Apps."
+        ],
+        "tech": "Python, LLaMA 3, PHI-3, HuggingFace, LangChain, LlamaIndex, FastAPI, Azure Container Apps, MLflow"
+      },
+      {
+        "name": "AI-Powered Document Receiving & Processing",
+        "desc": [
+          "Automated extraction of structured data from invoices/POs/shipping docs using OCR + transformer NLP.",
+          "Built LangChain RAG pipelines for document classification and routing; cut manual work by ~80%.",
+          "Deployed on Databricks + Airflow with ERP integrations and feature store for continuous improvement."
+        ],
+        "tech": "Python, HuggingFace, OCR, LangChain, LlamaIndex, Airflow, Databricks, Spark, AWS S3"
+      },
+      {
+        "name": "Cart Abandonment Prediction & Segmentation (Omega Engineering)",
+        "desc": [
+          "Developed ML pipelines on multi-year behavioral data; achieved ~92% accuracy (F1=0.92).",
+          "Created 9 actionable segments integrated into Salesforce Data Cloud for personalized campaigns.",
+          "Tracked with MLflow and visualized impact via Tableau/Power BI for A/B testing."
+        ],
+        "tech": "Python, scikit-learn, XGBoost, LightGBM, CatBoost, SMOTE, Salesforce Data Cloud, MLflow, Tableau, Power BI"
+      }
+    ]
+  },
+  {
+    "title": "Lead Data Scientist (Data Manager)",
+    "company": "University of Chicago — IRD Global, Karachi, Pakistan",
+    "period": "05/2022 – 11/2023",
+    "logo": "logos/uchicagoLogo.png",
+    "projects": [
+      {
+        "name": "Vaccination Timeliness Prediction",
+        "desc": [
+          "Built predictive models on 2.6M+ events; 87% accuracy and 98% recall for critical vaccines.",
+          "Addressed severe class imbalance with SMOTE; integrated into the Azm mobile app for frontline use.",
+          "Enabled prioritization across 12 districts and operationalized a sustainable MLOps pipeline."
+        ],
+        "tech": "Python, XGBoost, LightGBM, CatBoost, Logistic Regression, SMOTE, MLflow, Airflow"
+      },
+      {
+        "name": "Digital Health Data Platform & Real-Time Analytics",
+        "desc": [
+          "Deployed cloud platform processing 1K+ records/day from 200+ field workers with robust ETL.",
+          "Built workflows on AWS S3 + Airflow + dbt; delivered real-time dashboards for coverage and KPIs.",
+          "Improved reliability with Kafka streaming and completeness monitoring."
+        ],
+        "tech": "Python, Airflow, dbt, SQL, AWS S3, Kafka, Tableau, Power BI"
+      }
+    ]
+  },
+  {
+    "title": "Senior Data Scientist",
+    "company": "Federation of Pakistan Chambers of Commerce & Industry (FPCCI), Pakistan",
+    "period": "07/2021 – 05/2022",
+    "logo": "logos/fpcciLogo.jpg",
+    "projects": [
+      {
+        "name": "Gravity Model for Exports",
+        "desc": [
+          "Estimated untapped $1.07B in horticulture exports using PPML gravity modeling.",
+          "Identified high-potential markets and product categories to inform cold-chain investments."
+        ],
+        "tech": "Python, Trade Map, FAO, IMF, World Bank"
+      }
+    ]
+  },
+  {
+    "title": "Data Scientist",
+    "company": "Love for Data, Karachi, Pakistan",
+    "period": "10/2020 – 07/2021",
+    "logo": "logos/lovefordataLogo.png",
+    "projects": [
+      {
+        "name": "Loan Default Prediction",
+        "desc": [
+          "Engineered 20+ features; trained ML models to 92% ROC-AUC; reduced defaults by ~18%.",
+          "Integrated model into loan decisioning API; cut underwriting time by ~60%."
+        ],
+        "tech": "Python, scikit-learn, XGBoost, SQL, REST API"
+      }
+    ]
+  },
+  {
+    "title": "Data Scientist",
+    "company": "Kashet Microfinance (Egypt)",
+    "period": "2020 – 2021",
+    "logo": "logos/kashetLogo.png",
+    "projects": [
+      {
+        "name": "Real-Time Risk Scoring Platform",
+        "desc": [
+          "Developed scoring models on 50K+ loan records; reached 92% ROC-AUC; reduced defaults by 18%.",
+          "Containerized services with Docker and tracked experiments with MLflow; prepared for SageMaker scale."
+        ],
+        "tech": "Python, SQL, XGBoost, Random Forest, CatBoost, REST APIs, Docker, MLflow, AWS SageMaker"
+      }
+    ]
+  }
+]

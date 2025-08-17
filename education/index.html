@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Education — Hammad Ezad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root{
+      --primary:#2563eb; --accent:#38bdf8; --bg:#0b1220; --text:#e5e7eb;
+      --card:#0f172a; --border:#1f2a44; --muted:#94a3b8;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Roboto,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .nav{position:sticky;top:0;z-index:40;background:rgba(15,23,42,.7);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+    .nav a{color:#cbd5e1;text-decoration:none;font-weight:800}
+    .nav a:hover{color:#fff}
+    .container{max-width:1100px;margin:0 auto;padding:26px 16px 60px 16px}
+    h1{margin:8px 0 6px 0;color:#bfdbfe}
+    .sub{color:var(--muted);margin:0 0 18px 0}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;display:grid;grid-template-columns:82px 1fr;gap:16px;align-items:center}
+    .logo{width:82px;height:82px;border-radius:12px;object-fit:contain;border:1px solid var(--border);background:#0b1220}
+    .inst{margin:0;color:#e2e8f0;font-weight:900}
+    .deg{margin:2px 0 6px 0;color:#93c5fd;font-weight:800}
+    .meta{color:#cbd5e1;font-size:.95rem}
+    .pill{display:inline-block;margin-top:8px;background:#0b2244;border:1px solid var(--border);color:#c7d2fe;padding:6px 10px;border-radius:999px;font-weight:800;font-size:.85rem}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html">← Back to Home</a>
+      <a href="../Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer">Resume</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Education</h1>
+    <p class="sub">Econometrics, predictive analytics, and applied machine learning with strong quantitative foundations.</p>
+
+    <div id="edu-grid" class="grid"></div>
+  </main>
+
+  <script>
+    async function load() {
+      const r = await fetch('../education.json', {cache:'no-store'});
+      if(!r.ok) throw new Error('Failed to load education.json');
+      return r.json();
+    }
+    (async ()=>{
+      try{
+        const data = await load();
+        const host = document.getElementById('edu-grid');
+        host.innerHTML = '';
+        // sort by year desc if numeric
+        data.sort((a,b)=>parseInt(b.year)||0 - (parseInt(a.year)||0));
+        data.forEach(e=>{
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img class="logo" loading="lazy" src="../${e.logo || ''}" alt="${e.institution || ''} logo">
+            <div>
+              <div class="deg">${e.degree || ''}</div>
+              <h3 class="inst">${e.institution || ''}</h3>
+              <div class="meta">${e.year || ''}</div>
+              ${e.details ? `<span class="pill">${e.details}</span>` : ''}
+            </div>
+          `;
+          host.appendChild(card);
+        });
+      }catch(e){
+        document.getElementById('edu-grid').textContent = 'Unable to load education.';
+        console.warn(e);
+      }
+    })();
+  </script>
+</body>
+</html>

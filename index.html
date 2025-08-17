@@ -1,764 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hammad Ezad | Data Science Portfolio</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <!-- FontAwesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Fonts and icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <style>
-    :root {
-      --primary: #2563eb;
-      --secondary: #6a11cb;
-      --bg: #f8fafc;
-      --card-bg: #fff;
-      --border: #e5e7eb;
-      --text-main: #22223b;
-      --accent: #38bdf8;
-      --badge: #f1c40f;
-      --summary-bg: #eff6ff;
+    :root{
+      --primary:#2563eb; --secondary:#6a11cb; --accent:#38bdf8; --bg:#0b1220; --muted:#0f172a;
+      --text:#e5e7eb; --soft:#94a3b8; --card:#0f172a; --border:#1f2a44; --chip:#1e293b;
+      --glow1:rgba(56,189,248,0.25); --glow2:rgba(99,102,241,0.22);
     }
-    html { scroll-behavior: smooth;}
-    body {
-      margin: 0;
-      font-family: 'Inter', 'Roboto', Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-      min-height: 100vh;
-    }
-    .navbar {
-      background: var(--card-bg);
-      box-shadow: 0 2px 16px #0001;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-    }
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-      padding: 14px 0;
-    }
-    .nav-links a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.09em;
-      transition: color 0.15s;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 3px;
-    }
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--accent);
-      border-bottom: 2px solid var(--accent);
-    }
-    .hero {
-      width: 100vw;
-      min-width: 100vw;
-      background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-      color: #fff;
-      padding: 58px 0 40px 0;
-      box-sizing: border-box;
-      position: relative;
-    }
-    .hero-inner {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 64px;
-      max-width: 1320px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .hero-left {
-      max-width: 340px;
-      min-width: 220px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,Roboto,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
 
-    .profile-pic-card {
-      background: #fff;
-      padding: 10px;
-      border-radius: 30px;
-      box-shadow: 0 6px 24px #1e293b19;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1.2px solid #f4f4fa;
-      width: 220px;
-      height: 220px;
-      box-sizing: border-box;
-    }
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.7);
+      backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--text);text-decoration:none}
+    .brand img{width:34px;height:34px;border-radius:10px;object-fit:cover;border:1px solid var(--border)}
+    .links{display:flex;gap:18px;align-items:center}
+    .links a{color:var(--soft);text-decoration:none;font-weight:700;padding:8px 10px;border-radius:10px}
+    .links a:hover,.links a.active{color:#fff;background:#111827}
+    .resume-top{margin-left:8px;background:linear-gradient(90deg,var(--secondary),var(--primary));
+      color:#fff;text-decoration:none;padding:9px 14px;border-radius:12px;font-weight:800;box-shadow:0 6px 24px var(--glow2)}
+    .resume-top:hover{filter:brightness(1.1)}
 
-    .profile-pic-squarish {
-      width: 190px;
-      height: 190px;
-      border-radius: 26px;
-      object-fit: cover;
-      display: block;
-      background: #eaeaea;
-      /* No border on image itself, handled by card */
+    /* HERO */
+    .hero{position:relative;overflow:hidden}
+    .hero-bg{
+      position:absolute;inset:0;
+      background: radial-gradient(800px 800px at 10% -10%, var(--glow1), transparent 60%),
+                  radial-gradient(900px 700px at 110% 10%, var(--glow2), transparent 60%),
+                  linear-gradient(180deg,#0b1220 0%, #0b1220 60%, #0e1526 100%);
+      pointer-events:none;
     }
+    .hero-content{max-width:1200px;margin:0 auto;padding:56px 16px 40px;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.2fr;gap:36px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .profile{display:flex;flex-direction:column;align-items:center;padding:18px}
+    .pfp{width:180px;height:180px;border-radius:22px;object-fit:cover;border:1px solid var(--border);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+    .name{margin:12px 0 4px 0;font-size:1.8rem;font-weight:900;letter-spacing:.3px}
+    .socials{display:flex;align-items:center;gap:12px;margin-top:8px}
+    .socials a{color:#cbd5e1;font-size:1.2rem;text-decoration:none}
+    .socials a:hover{color:#fff}
+    .cta-row{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid var(--border);
+      background:#0b1220;color:#fff;text-decoration:none;font-weight:800}
+    .btn.primary{background:linear-gradient(90deg,var(--secondary),var(--primary));border-color:transparent;box-shadow:0 10px 28px var(--glow2)}
+    .btn.primary:hover{filter:brightness(1.08)}
+    .btn:hover{background:#0a1222}
 
-    .hero-left h1 {
-      font-size: 2.12em;
-      margin: 14px 0 7px 0;
-      font-weight: 700;
-      letter-spacing: 1.1px;
-    }
-    .hero-links {
-      margin: 13px 0 0 0;
-      display: flex;
-      gap: 13px;
-      align-items: center;
-    }
-    .resume-btn-small {
-      display: inline-flex;
-      align-items: center;
-      background: #2563eb;
-      color: #fff;
-      padding: 5px 16px;
-      border-radius: 14px;
-      font-size: 1em;
-      font-weight: 600;
-      margin-left: 6px;
-      text-decoration: none;
-      box-shadow: 0 1px 8px #1e90ff1a;
-      border: none;
-      transition: background 0.17s;
-      height: 34px;
-      line-height: 1.1;
-    }
-    .resume-btn-small:hover {
-      background: #38bdf8;
-      color: #fff;
-    }
-    .resume-btn-small i {
-      margin-left: 7px;
-      font-size: 1.1em;
-    }
-    .hero-right {
-      max-width: 760px;
-      min-width: 320px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .hero-headline {
-      font-size: 1.13em;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 18px;
-      text-align: left;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      background: #fff8;
-      border-radius: 8px;
-      padding: 8px 16px;
-      box-shadow: 0 2px 10px #0001;
-      max-width: 100%;
-      letter-spacing: 0.2px;
-      line-height: 1.2;
-      display: inline-block;
-    }
+    .intro{padding:22px 26px}
+    .badge{display:inline-block;background:#0b5b79;color:#b3e6ff;padding:6px 10px;border-radius:999px;font-size:.85rem;font-weight:800;border:1px solid #0f7aa4}
+    .headline{margin:8px 0 16px 0;font-weight:900;font-size:1.15rem;color:#dbeafe}
+    .summary{margin:0;background:rgba(17,24,39,.6);border:1px solid var(--border);border-radius:16px;padding:18px 22px;line-height:1.6;color:#d1d5db}
 
-    .hero-summary {
-      margin-top: 0;
-      font-size: 1.13em;
-      background: #fff8;
-      border-radius: 16px;
-      padding: 30px 38px 28px 38px;
-      box-shadow: 0 2px 16px #38bdf81a;
-      color: #232323;
-      font-weight: 500;
-      line-height: 1.64;
-    }
-    @media (max-width: 1100px) {
-      .hero-inner { flex-direction: column; gap: 34px; }
-      .hero { padding: 32px 0 12px 0; }
-      .profile-pic-card { width: 130px; height: 130px; padding: 7px; border-radius: 13px; }
-      .profile-pic-squarish { width: 112px; height: 112px; border-radius: 10px;}
-      .hero-headline { font-size: 0.98em; white-space: normal; text-align: center; }
-    }
-    @media (max-width: 800px) {
-      .profile-pic-card { width: 98px; height: 98px; padding: 4px; border-radius: 8px; }
-      .profile-pic-squarish { width: 90px; height: 90px; border-radius: 7px; }
-    }
+    /* STATS STRIP */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px}
+    .stat{background:rgba(2,6,23,.7);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center}
+    .stat .k{font-size:1.4rem;font-weight:900}
+    .stat .t{color:#93c5fd;font-weight:700}
 
+    /* SECTIONS */
+    .container{max-width:1100px;margin:0 auto;padding:26px 16px 70px 16px}
+    h2{margin:4px 0 14px 0;font-size:1.4rem;color:#bfdbfe;font-weight:900}
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{background:var(--chip);border:1px solid var(--border);color:#c7d2fe;padding:9px 14px;border-radius:999px;font-weight:800}
 
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .item{padding:16px;border-radius:16px;border:1px solid var(--border);background:rgba(2,6,23,.7)}
+    .item h3{margin:0 0 6px 0;color:#e2e8f0}
+    .item small{color:#94a3b8}
 
+    .see-all{margin-top:12px;text-align:right}
+    .see-all a{color:#93c5fd;text-decoration:none;font-weight:800}
+    .see-all a:hover{color:#fff}
 
-    .badge {
-      display: inline-block;
-      background: var(--badge);
-      color: #222;
-      border-radius: 16px;
-      padding: 5px 14px;
-      font-size: 1em;
-      font-weight: 600;
-      margin: 5px 0 10px 0;
-      letter-spacing: 0.5px;
-    }
-    .hero h1 {
-      font-size: 2.5em;
-      margin: 0 0 7px 0;
-      letter-spacing: 1px;
-      font-family: 'Inter', Arial, sans-serif;
-    }
-    .hero .roles {
-      font-size: 1.16em;
-      margin-bottom: 13px;
-      opacity: 0.98;
-      font-weight: 400;
-    }
-    .hero .about-highlight {
-      font-size: 1.09em;
-      margin-bottom: 8px;
-      font-weight: 500;
-      opacity: 0.97;
-    }
-    .hero .hero-links a {
-      color: #fff;
-      font-size: 1.13em;
-      margin: 0 11px;
-      transition: color 0.2s;
-      text-decoration: none;
-    }
-    .hero .hero-links a:hover {
-      color: var(--badge);
-    }
-    .summary-section {
-      max-width: 700px;
-      background: var(--summary-bg);
-      border-radius: 16px;
-      padding: 22px 32px 20px 32px;
-      margin: 32px auto 32px auto;
-      box-shadow: 0 2px 12px #38bdf81a;
-      font-size: 1.16em;
-      text-align: center;
-      font-weight: 500;
-      line-height: 1.55;
-    }
-    .container {
-      max-width: 970px;
-      margin: 0 auto;
-      padding: 30px 15px 70px 15px;
-    }
-    section {
-      margin-bottom: 50px;
-    }
-    h2 {
-      color: var(--primary);
-      border-bottom: 2.2px solid var(--border);
-      display: inline-block;
-      padding-bottom: 4px;
-      font-size: 1.47em;
-      margin-top: 0;
-      margin-bottom: 20px;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-    }
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-      margin-bottom: 10px;
-    }
-    .skill-chip {
-      background: linear-gradient(90deg, #e0eafc 0%, #cfdef3 100%);
-      color: var(--primary);
-      padding: 9px 19px;
-      border-radius: 20px;
-      border: 1.1px solid var(--border);
-      font-size: 1.04em;
-      font-weight: 600;
-      box-shadow: 0 2px 10px #0001;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-    .skill-chip i {
-      font-size: 1.05em;
-      opacity: 0.7;
-    }
-    .education-list {
-  margin-bottom: 20px;
-}
-    .education-entry {
-      margin-bottom: 24px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #e5e7eb;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-    .education-entry:last-child {
-      border-bottom: none;
-    }
-    .edu-logo {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-      border-radius: 7px;
-      background: #fff;
-      box-shadow: 0 2px 8px #0001;
-      flex-shrink: 0;
-      margin-top: 3px;
-    }
-    .edu-details {
-      flex: 1;
-    }
-    .experience-list { margin-bottom: 24px; }
-    .experience-entry {
-      margin-bottom: 26px;
-      background: #f9fafc;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px #0001;
-      padding: 18px 23px 8px 23px;
-    }
-    .experience-entry h3 {
-      color: #2563eb;
-      margin-bottom: 3px;
-    }
-    .experience-entry .period {
-      color: #888;
-      font-size: 0.97em;
-      margin-bottom: 7px;
-    }
-    .exp-project {
-      margin-bottom: 8px;
-    }
-    .exp-project-title {
-      font-weight: 600;
-      margin-bottom: 1px;
-      color: #444;
-    }
-    .exp-project-tech {
-      color: #38bdf8;
-      font-size: 0.99em;
-      margin-top: 1px;
-    }
-    .exp-project-desc {
-      margin-left: 19px;
-      margin-bottom: 4px;
-      color: #222;
-      font-size: 1em;
-    }
-    .exp-logo {
-      width: 44px;
-      height: 44px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 2px 8px #0001;
-      flex-shrink: 0;
-      margin-right: 18px;
-      margin-top: 3px;
-    }
-    .experience-entry {
-      display: flex;
-      align-items: flex-start;
-      gap: 15px;
-      margin-bottom: 26px;
-      background: #f9fafc;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px #0001;
-      padding: 18px 23px 8px 23px;
-    }
-    .exp-details {
-      flex: 1;
-    }
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);background:#0b1220}
+    .footer-inner{max-width:1100px;margin:0 auto;padding:20px 16px;color:#94a3b8;font-size:.95rem}
 
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 cards in a row */
-      gap: 25px;
-      justify-items: center;
-    }
-    @media (max-width: 1050px) {
-      .portfolio-grid { grid-template-columns: repeat(2, 1fr);}
-    }
-    @media (max-width: 700px) {
-      .portfolio-grid { grid-template-columns: 1fr;}
-    }
-    .portfolio-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: 0 2px 16px #0001;
-      overflow: hidden;
-      border: 1px solid #e5e7eb;
-      min-width: 270px;
-      max-width: 320px;
-      margin: 0 auto;
-      min-height: 220px;
-      display: flex;
-      flex-direction: column;
-    }
-    .portfolio-card:hover {
-      transform: translateY(-5px) scale(1.016);
-      box-shadow: 0 7px 32px #0002;
-      border-color: var(--accent);
-    }
-    .portfolio-card img {
-      width: 100%;
-      height: 50px; /* SMALL cover */
-      object-fit: cover;
-      border-radius: 12px 12px 0 0;
-      margin-bottom: 0;
-      border-bottom: 1px solid #e5e7eb;
-    }
-    .portfolio-card-content {
-      padding: 10px 14px 12px 14px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: #fff;
-    }
-    .portfolio-card h3 {
-      margin: 0 0 7px 0;
-      color: var(--primary);
-      font-size: 1.18em;
-      font-weight: 700;
-    }
-    .portfolio-card p {
-      margin: 0 0 7px 0;
-      font-size: 1em;
-      color: #444;
-    }
-    .project-tabs {
-      display: flex;
-      gap: 0;
-      margin-bottom: 7px;
-      border-radius: 8px 8px 0 0;
-      overflow: hidden;
-      box-shadow: 0 2px 4px #0001;
-      border: 1px solid #e5e7eb;
-      border-top: none;
-    }
-    .project-tab-link {
-      flex: 1;
-      text-align: center;
-      padding: 9px 0;
-      background: #f1f5fa;
-      color: #2563eb;
-      font-weight: 600;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: background 0.18s, color 0.18s;
-      font-size: 1em;
-    }
-    .project-tab-link.active, .project-tab-link:hover {
-      background: #2563eb;
-      color: #fff;
-    }
-    .project-tab-content {
-      padding: 13px 0 0 0;
-      border-top: 1px solid #e5e7eb;
-      min-height: 32px;
-      background: #fff;
-    }
-    .contact-links a {
-      color: var(--primary);
-      font-size: 1.4em;
-      margin-right: 18px;
-      transition: color 0.18s;
-      vertical-align: middle;
-    }
-    .contact-links a:hover { color: var(--accent);}
-    .resume-btn {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      padding: 11px 30px;
-      border-radius: 24px;
-      font-size: 1.09em;
-      font-weight: 700;
-      margin-top: 19px;
-      text-decoration: none;
-      transition: background 0.18s;
-      box-shadow: 0 2px 18px #1e90ff22;
-      border: none;
-    }
-    .resume-btn:hover {
-      background: var(--accent);
-      color: #fff;
-    }
-    footer {
-      background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-      color: #fff;
-      text-align: center;
-      padding: 15px 0 8px 0;
-      position: relative;
-      font-size: 1em;
-      margin-top: 24px;
-      letter-spacing: 0.5px;
-      box-shadow: 0 -2px 14px #0001;
-    }
-    @media (max-width: 900px) {
-      .container {padding: 18px 6px 70px 6px;}
-      .summary-section {padding: 16px 8px;}
-    }
-    @media (max-width: 600px) {
-      .hero img {width: 80px; height: 80px;}
-      .portfolio-card img {height: 40px;}
-      .portfolio-grid {grid-template-columns: 1fr;}
-      h2 {font-size: 1.13em;}
-      .nav-links {gap: 13px;}
-      .summary-section {padding: 10px 3px;}
+    /* Responsive */
+    @media (max-width:980px){
+      .hero-content{grid-template-columns:1fr;gap:16px;padding-top:32px}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .grid{grid-template-columns:1fr}
     }
   </style>
-  <script>
-    // Highlight active navbar link on scroll
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('section');
-      const navLinks = document.querySelectorAll('.nav-links a');
-      window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 60;
-          if (pageYOffset >= sectionTop) current = section.getAttribute('id');
-        });
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if(link.getAttribute('href').includes(current)) link.classList.add('active');
-        });
-      });
-    });
-  </script>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="nav-links">
-      <a href="#about" class="active">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="#experience">Experience</a>
-      <a href="#portfolio">Projects</a>
-      <a href="system_design/blogs.html">System Design</a>
-      <a href="#models">ML Models</a>
-      <a href="#contact">Contact</a>
-    </div>   
-  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <img src="my_picture.jpg" alt="Hammad Ezad"/>
+        <span>Hammad Ezad</span>
+      </a>
+      <div class="links">
+        <a href="#skills" class="active">Skills</a>
+        <a href="experience/index.html">Experience</a>
+        <a href="education/index.html">Education</a>
+        <a href="professional_projects/index.html">Professional Projects</a>
+        <a href="system_design/blogs.html">System Design</a>
+        <a class="resume-top" href="Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer">
+          Resume <i class="fa fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
 
   <!-- HERO -->
-  <section class="hero" id="about">
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div class="profile-pic-card">
-          <img src="my_picture.jpg" alt="Hammad Ezad" class="profile-pic-squarish">
-        </div>
-        <h1>Hammad Ezad</h1>
-        <div class="hero-links">
+  <header class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="card profile">
+        <img class="pfp" src="my_picture.jpg" alt="Hammad Ezad" />
+        <div class="name">Hammad Ezad</div>
+        <div class="socials">
           <a href="mailto:hammadezad2211@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
-          <a href="https://github.com/hammadezad" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/hammad-ezad-51927522/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a class="resume-btn-small" href="Hammad_Ezad_CV.pdf" download>Resume <i class="fa fa-download"></i></a>
+          <a href="https://github.com/hammadezad" target="_blank" rel="noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/hammad-ezad-51927522/" target="_blank" rel="noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="cta-row">
+          <a class="btn primary" href="Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer"><i class="fa fa-file"></i> Open Resume</a>
+          <a class="btn" href="professional_projects/index.html"><i class="fa fa-diagram-project"></i> Professional Projects</a>
         </div>
       </div>
-      <div class="hero-right">
-        <div class="hero-headline">
-          Senior Data Scientist | GenAI, Machine Learning & Optimization Expert
-        </div>
-        <div class="summary-section hero-summary">
-          I am a Senior Data Scientist and AI Engineer with a strong foundation in quantitative economics, experienced in building and deploying scalable GenAI, machine learning, and optimization solutions across industries. With expertise in Python, NLP, LLMs, Azure, Salesforce, and Gurobi, I have led high-impact projects that modernize legacy systems, automate business processes, and deliver measurable results, reducing costs by up to 65%, improving speed and accuracy, and transforming data into actionable value for finance, healthcare, and logistics clients. Recognized for my end-to-end project leadership, rapid prototyping, and ability to deliver production-ready solutions in complex, regulated environments, I thrive at the intersection of business strategy and cutting-edge technology.
+
+      <div class="intro card">
+        <span class="badge">Senior Data Scientist · GenAI · Optimization</span>
+        <h1 class="headline">I build production ML, LLM, and optimization systems that reduce cost and improve speed at scale.</h1>
+        <p class="summary">
+          I blend quantitative economics with modern AI engineering to deliver measurable impact across finance, healthcare, and logistics.
+          My toolkit spans Python, Gurobi, Azure, Salesforce, and LLM ops. I enjoy the full journey from messy data and modeling to clean deployment, observability, and stakeholder value.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="k">8+ yrs</div>
+            <div class="t">Hands-on</div>
+          </div>
+          <div class="stat">
+            <div class="k">65% ↓</div>
+            <div class="t">Costs delivered</div>
+          </div>
+          <div class="stat">
+            <div class="k">Real-time</div>
+            <div class="t">Pipelines</div>
+          </div>
+          <div class="stat">
+            <div class="k">Prod-ready</div>
+            <div class="t">GenAI & OR</div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-  
-  
-  
-  
-  
-  
-  
+  </header>
 
-
-  <div class="container">
-    <!-- SKILLS SECTION -->
+  <!-- MAIN -->
+  <main class="container">
+    <!-- SKILLS -->
     <section id="skills">
       <h2>Skills</h2>
-      <div class="skills-list" id="skills-list"></div>
+      <div id="skills-list" class="chips"></div>
     </section>
 
-
-    <section id="experience">
-      <h2>Professional Experience</h2>
-      <div class="experience-list" id="experience-list"></div>
-    </section>
-    
-
-
-    <!-- EDUCATION SECTION -->
-    <section id="education">
-      <h2>Education</h2>
-      <div class="education-list" id="education-list"></div>
+    <!-- EXPERIENCE TEASER -->
+    <section id="xp-teaser">
+      <h2>Experience Preview</h2>
+      <div id="xp-grid" class="grid"></div>
+      <div class="see-all"><a href="experience/index.html">View all experience →</a></div>
     </section>
 
-    <!-- PORTFOLIO/PROJECTS SECTION -->
-    <section id="portfolio">
-      <h2>Featured Projects</h2>
-      <div class="portfolio-grid" id="projects-list"></div>
+    <!-- EDUCATION TEASER -->
+    <section id="edu-teaser">
+      <h2>Education Preview</h2>
+      <div id="edu-grid" class="grid"></div>
+      <div class="see-all"><a href="education/index.html">View all education →</a></div>
     </section>
 
-    
-
-    <!-- MACHINE LEARNING MODELS SECTION -->
-    <section id="models">
-      <h2>Machine Learning Models</h2>
-      <div class="portfolio-grid">
-        <!-- ... your ML model cards ... -->
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
+    <!-- CONTACT -->
     <section id="contact">
       <h2>Contact</h2>
-      <div class="contact-links">
-        <a href="mailto:hammadezad2211@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
-        <a href="https://github.com/hammadezad" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/hammad-ezad-51927522/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      </div>
-      <div>
-        <a class="resume-btn" href="Hammad_Ezad_CV.pdf" download>Download Resume</a>
+      <div class="item">
+        <p>Email: <a href="mailto:hammadezad2211@gmail.com" style="color:#93c5fd;text-decoration:none">hammadezad2211@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/hammadezad" target="_blank" rel="noreferrer" style="color:#93c5fd;text-decoration:none">github.com/hammadezad</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/hammad-ezad-51927522/" target="_blank" rel="noreferrer" style="color:#93c5fd;text-decoration:none">linkedin.com/in/hammad-ezad-51927522</a></p>
       </div>
     </section>
-  </div>
+  </main>
+
+  <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 Hammad Ezad | Data Science & Machine Learning Portfolio</p>
+    <div class="footer-inner">© <span id="year"></span> Hammad Ezad · Data Science & Machine Learning</div>
   </footer>
 
-  <!-- DYNAMIC SKILLS SCRIPT -->
   <script>
-    fetch('skills.json')
-      .then(response => response.json())
-      .then(skills => {
-        const skillsList = document.getElementById('skills-list');
-        skillsList.innerHTML = '';
-        skills.forEach(skill => {
-          const span = document.createElement('span');
-          span.className = 'skill-chip';
-          span.innerHTML = `<i class="${skill.icon}"></i> ${skill.name}`;
-          skillsList.appendChild(span);
-        });
+    // active link highlight for in-page sections
+    document.addEventListener('scroll', () => {
+      const anchors = [['#skills','skills']];
+      const y = window.scrollY + 64;
+      let active = null;
+      anchors.forEach(([href, id])=>{
+        const el = document.getElementById(id);
+        if (el && y >= el.offsetTop) active = href;
       });
-  </script>
-  <!-- DYNAMIC EDUCATION SCRIPT -->
-  <script>
-    fetch('education.json')
-      .then(response => response.json())
-      .then(eduArr => {
-        const eduDiv = document.getElementById('education-list');
-        eduArr.forEach(edu => {
-          const entry = document.createElement('div');
-          entry.className = 'education-entry';
-          entry.innerHTML = `
-            <img class="edu-logo" src="${edu.logo}" alt="${edu.institution} logo">
-            <div class="edu-details">
-              <strong>${edu.degree}</strong><br>
-              <span style="color:#2563eb;">${edu.institution}</span> &mdash; <span>${edu.year}</span><br>
-              <small style="color:#444;">${edu.details || ''}</small>
+      document.querySelectorAll('.links a').forEach(a=>{
+        const href = a.getAttribute('href');
+        if(href && href.startsWith('#')){
+          a.classList.toggle('active', href===active);
+        }
+      });
+    });
+
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // skills from skills.json
+    fetch('skills.json').then(r=>r.json()).then(skills=>{
+      const host = document.getElementById('skills-list');
+      host.innerHTML = '';
+      skills.forEach(s=>{
+        const chip = document.createElement('span');
+        chip.className = 'chip';
+        chip.innerHTML = `<i class="${s.icon}" style="opacity:.8"></i> ${s.name}`;
+        host.appendChild(chip);
+      });
+    });
+
+    // experience teaser: first two entries from experience.json
+    fetch('experience.json').then(r=>r.json()).then(xp=>{
+      const list = Array.isArray(xp)? xp.slice(0,2) : [];
+      const host = document.getElementById('xp-grid');
+      host.innerHTML = '';
+      list.forEach(row=>{
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `
+          <h3>${row.title} <small>· ${row.company}</small></h3>
+          <small>${row.period}</small>
+          ${(row.projects||[]).slice(0,2).map(p=>`
+            <div style="margin-top:8px">
+              <strong>${p.name}</strong>
+              <ul style="margin:6px 0 0 18px;color:#cbd5e1">
+                ${(p.desc||[]).slice(0,3).map(d=>`<li>${d}</li>`).join('')}
+              </ul>
+              <small style="color:#93c5fd;display:block;margin-top:6px">${p.tech||''}</small>
             </div>
-          `;
-          eduDiv.appendChild(entry);
-        });
+          `).join('')}
+        `;
+        host.appendChild(div);
       });
+    });
+
+    // education teaser: first two entries from education.json
+    fetch('education.json').then(r=>r.json()).then(edu=>{
+      const list = Array.isArray(edu)? edu.slice(0,2) : [];
+      const host = document.getElementById('edu-grid');
+      host.innerHTML = '';
+      list.forEach(e=>{
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `
+          <h3>${e.degree}</h3>
+          <small>${e.institution} · ${e.year}</small>
+          ${e.details? `<p style="margin-top:8px;color:#cbd5e1">${e.details}</p>`:''}
+        `;
+        host.appendChild(div);
+      });
+    });
   </script>
-
-  <!-- DYNAMIC PROJECTS SCRIPT -->
-  <script>
-    fetch('projects.json')
-      .then(response => response.json())
-      .then(projects => {
-        const projList = document.getElementById('projects-list');
-        projList.innerHTML = '';
-        projects.forEach((proj, idx) => {
-          const card = document.createElement('div');
-          card.className = 'portfolio-card';
-          // Tab Links
-          const codeTab = `<a class="project-tab-link active" data-tab="code${idx}" onclick="showTab(${idx}, 'code')">Code</a>`;
-          const videoTab = proj.video ? `<a class="project-tab-link" data-tab="video${idx}" onclick="showTab(${idx}, 'video')">Video</a>` : '';
-          const explanationTab = `<a class="project-tab-link" data-tab="explanation${idx}" onclick="showTab(${idx}, 'explanation')">Explanation</a>`;
-          // Tab Content
-          const codeContent = `<div class="project-tab-content" id="code${idx}"><a href="${proj.code}" target="_blank">View GitHub Repository <i class="fab fa-github"></i></a></div>`;
-          const videoContent = proj.video ? `<div class="project-tab-content" id="video${idx}" style="display:none;"><a href="${proj.video}" target="_blank">Watch Demo Video <i class="fab fa-youtube"></i></a></div>` : '';
-          const explanationContent = `<div class="project-tab-content" id="explanation${idx}" style="display:none;"><a href="${proj.explanation}" target="_blank">Read Detailed Case Study <i class="fa fa-file-alt"></i></a></div>`;
-          card.innerHTML = `
-            <img src="${proj.cover}" alt="${proj.title}">
-            <div class="portfolio-card-content">
-              <h3>${proj.title}</h3>
-              <p>${proj.summary}</p>
-              <div class="project-tabs">
-                ${codeTab}
-                ${videoTab}
-                ${explanationTab}
-              </div>
-              ${codeContent}
-              ${videoContent}
-              ${explanationContent}
-            </div>
-          `;
-          projList.appendChild(card);
-        });
-      });
-    // Tab Switching Function
-    function showTab(idx, tab) {
-      const tabs = ['code', 'video', 'explanation'];
-      tabs.forEach(t => {
-        const tabBtn = document.querySelector(`.project-tab-link[data-tab="${t}${idx}"]`);
-        const tabContent = document.getElementById(`${t}${idx}`);
-        if (tabBtn) tabBtn.classList.remove('active');
-        if (tabContent) tabContent.style.display = 'none';
-      });
-      const activeBtn = document.querySelector(`.project-tab-link[data-tab="${tab}${idx}"]`);
-      const activeContent = document.getElementById(`${tab}${idx}`);
-      if (activeBtn) activeBtn.classList.add('active');
-      if (activeContent) activeContent.style.display = '';
-    }
-  </script>
-
-
-  <script>
-    fetch('experience.json')
-      .then(response => response.json())
-      .then(experiences => {
-        const expDiv = document.getElementById('experience-list');
-        expDiv.innerHTML = '';
-        experiences.forEach(exp => {
-          const entry = document.createElement('div');
-          entry.className = 'experience-entry';
-          entry.innerHTML = `
-            <img class="exp-logo" src="${exp.logo}" alt="${exp.company} logo">
-            <div class="exp-details">
-              <h3>${exp.title} <span class="period">| ${exp.company} (${exp.period})</span></h3>
-              ${exp.projects.map(proj => `
-                <div class="exp-project">
-                  <div class="exp-project-title">${proj.name}</div>
-                  <ul class="exp-project-desc">
-                    ${proj.desc.map(d => `<li>${d}</li>`).join('')}
-                  </ul>
-                  <div class="exp-project-tech">${proj.tech}</div>
-                </div>
-              `).join('')}
-            </div>
-          `;
-          expDiv.appendChild(entry);
-        });
-      });
-
-  </script>
-
 </body>
 </html>
