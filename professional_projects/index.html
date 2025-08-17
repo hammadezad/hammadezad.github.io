@@ -13,17 +13,18 @@
     :root{
       --primary:#2563eb;
       --accent:#38bdf8;
-      --bg:#0b1220;        /* dark background to feel premium */
-      --text:#e5e7eb;      /* main text */
-      --muted:#94a3b8;     /* secondary text */
-      --card:#0f172a;      /* card background */
-      --border:#1f2a44;    /* borders */
-      --chip:#0b2244;      /* skill/tech chips */
+      --bg:#0b1220;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --card:#0f172a;
+      --border:#1f2a44;
+      --chip:#0b2244;
+      --error:#b91c1c;
+      --error-bg:#7f1d1d;
     }
     *{box-sizing:border-box}
     html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Inter, Roboto, system-ui, Arial, sans-serif}
 
-    /* Top nav */
     .nav{
       position: sticky; top: 0; z-index: 40;
       background: rgba(15,23,42,.75);
@@ -34,34 +35,23 @@
       max-width: 1200px; margin: 0 auto; padding: 12px 16px;
       display:flex; align-items:center; justify-content:space-between; gap:16px;
     }
-    .nav-left, .nav-right{display:flex; align-items:center; gap:12px;}
-    .nav a{
-      color:#cbd5e1; text-decoration:none; font-weight:800; letter-spacing:.2px;
-    }
+    .nav a{ color:#cbd5e1; text-decoration:none; font-weight:800; letter-spacing:.2px; }
     .nav a:hover{color:#fff}
 
-    /* Hero banner */
     .hero{
       background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
       padding: 36px 0 30px 0;
       color:#fff;
       box-shadow: 0 4px 24px #0004 inset;
     }
-    .hero-inner{
-      max-width: 1200px; margin: 0 auto; padding: 0 16px;
-      display:flex; flex-direction:column; gap:10px;
-    }
+    .hero-inner{ max-width: 1200px; margin: 0 auto; padding: 0 16px; display:flex; flex-direction:column; gap:10px; }
     .title{font-size:1.9rem; font-weight:900; margin:0}
     .subtitle{margin:0; color:#f0f9ff; opacity:.92}
     .meta{color:#e0e7ff; font-size:.95rem; opacity:.9}
 
-    /* Main container */
     .container{max-width: 1200px; margin: 0 auto; padding: 22px 16px 70px 16px}
 
-    /* Toolbar */
-    .toolbar{
-      display:flex; gap:12px; align-items:center; margin-bottom:16px; flex-wrap:wrap;
-    }
+    .toolbar{ display:flex; gap:12px; align-items:center; margin-bottom:16px; flex-wrap:wrap; }
     .search{
       flex:1; min-width: 220px;
       background:#0a1328; color:#fff;
@@ -73,11 +63,7 @@
       border-radius:12px; padding:10px 12px; outline:none;
     }
 
-    /* Grid of cards */
-    .grid{
-      display:grid; gap:18px;
-      grid-template-columns: repeat(3, 1fr);
-    }
+    .grid{ display:grid; gap:18px; grid-template-columns: repeat(3, 1fr); }
     @media (max-width:1100px){ .grid{grid-template-columns: repeat(2, 1fr);} }
     @media (max-width:720px){ .grid{grid-template-columns: 1fr;} }
 
@@ -93,7 +79,6 @@
     .card h3{margin:2px 0 2px 0; font-size:1.1rem; color:#dbeafe}
     .summary{margin:0; color:#cbd5e1; line-height:1.45}
 
-    /* Tabs inside card */
     .tabs{
       display:flex; gap:0; border:1px solid var(--border); border-top:none; overflow:hidden; border-radius:10px; margin-top:6px;
     }
@@ -108,12 +93,20 @@
     .panel a{color:#93c5fd; text-decoration:none; font-weight:800}
     .panel a:hover{color:#fff; text-decoration:underline}
 
-    /* Chips row (optional tech) */
     .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:2px}
     .chip{background:var(--chip); border:1px solid var(--border); color:#c7d2fe; padding:5px 10px; border-radius:999px; font-weight:800; font-size:.82rem}
 
-    /* Footer */
     .foot{margin-top:26px; color:var(--muted); text-align:center; font-size:.95rem}
+
+    .error{
+      background: var(--error-bg);
+      color: #fecaca;
+      border: 1px solid var(--error);
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
@@ -140,6 +133,8 @@
 
   <!-- Main -->
   <main class="container">
+    <div id="error" class="error" style="display:none;"></div>
+
     <div class="toolbar">
       <input id="q" class="search" type="search" placeholder="Search title or tech (e.g., Gurobi, Salesforce, XGBoost)"/>
       <select id="sort" class="select" aria-label="Sort">
@@ -156,14 +151,21 @@
     let projects = [];
     const grid = document.getElementById('grid');
     const status = document.getElementById('status');
+    const errorBox = document.getElementById('error');
     const q = document.getElementById('q');
     const sortSel = document.getElementById('sort');
 
-    // Safe fetch from the same folder
     async function loadProjects(){
       const res = await fetch('./projects.json', {cache: 'no-store'});
-      if(!res.ok) throw new Error('Failed to load projects.json');
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status} loading ./projects.json`);
+      }
       return res.json();
+    }
+
+    function showError(msg){
+      errorBox.textContent = msg;
+      errorBox.style.display = '';
     }
 
     function render(list){
@@ -187,7 +189,6 @@
         `;
         card.appendChild(content);
 
-        // optional tech chips if "tech" is in JSON
         if (proj.tech) {
           const chips = document.createElement('div');
           chips.className = 'chips';
@@ -200,52 +201,62 @@
           content.appendChild(chips);
         }
 
-        // tabs
         const tabs = document.createElement('div');
         tabs.className = 'tabs';
+
         const tCode = document.createElement('div');
-        tCode.className = 'tab active'; tCode.textContent = 'Code'; tCode.dataset.for = `code-${idx}`;
+        tCode.className = 'tab active';
+        tCode.textContent = 'Code';
+        tCode.setAttribute('role','button');
+        tCode.dataset.for = `code-${idx}`;
         tabs.appendChild(tCode);
 
-        let tVideo = null;
         if (proj.video) {
-          tVideo = document.createElement('div');
-          tVideo.className = 'tab'; tVideo.textContent = 'Video'; tVideo.dataset.for = `video-${idx}`;
+          const tVideo = document.createElement('div');
+          tVideo.className = 'tab';
+          tVideo.textContent = 'Video';
+          tVideo.setAttribute('role','button');
+          tVideo.dataset.for = `video-${idx}`;
           tabs.appendChild(tVideo);
         }
 
         const tExp = document.createElement('div');
-        tExp.className = 'tab'; tExp.textContent = 'Explanation'; tExp.dataset.for = `exp-${idx}`;
+        tExp.className = 'tab';
+        tExp.textContent = 'Explanation';
+        tExp.setAttribute('role','button');
+        tExp.dataset.for = `exp-${idx}`;
         tabs.appendChild(tExp);
 
         content.appendChild(tabs);
 
-        // panels
         const pCode = document.createElement('div');
-        pCode.className = 'panel'; pCode.id = `code-${idx}`; pCode.style.display = '';
+        pCode.className = 'panel';
+        pCode.id = `code-${idx}`;
+        pCode.style.display = '';
         pCode.innerHTML = `<a href="${proj.code}" target="_blank" rel="noreferrer">View GitHub Repository <i class="fab fa-github"></i></a>`;
         content.appendChild(pCode);
 
         if (proj.video) {
           const pVideo = document.createElement('div');
-          pVideo.className = 'panel'; pVideo.id = `video-${idx}`;
+          pVideo.className = 'panel';
+          pVideo.id = `video-${idx}`;
           pVideo.innerHTML = `<a href="${proj.video}" target="_blank" rel="noreferrer">Watch Demo Video <i class="fab fa-youtube"></i></a>`;
           content.appendChild(pVideo);
         }
 
         const pExp = document.createElement('div');
-        pExp.className = 'panel'; pExp.id = `exp-${idx}`;
-        // Open in same tab so relative paths work cleanly
+        pExp.className = 'panel';
+        pExp.id = `exp-${idx}`;
         pExp.innerHTML = `<a href="${proj.explanation}" target="_self">Open Case Study <i class="fa fa-file-alt"></i></a>`;
         content.appendChild(pExp);
 
-        // tab switching
         tabs.addEventListener('click', (e)=>{
           const btn = e.target.closest('.tab');
           if(!btn) return;
+          // visual state
           tabs.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
           btn.classList.add('active');
-
+          // panels
           content.querySelectorAll('.panel').forEach(p=>p.style.display='none');
           const target = content.querySelector(`#${btn.dataset.for}`);
           if (target) target.style.display = '';
@@ -260,18 +271,12 @@
     function filterAndSort(){
       const text = (q.value || '').toLowerCase();
       let filtered = projects.filter(p=>{
-        const hay = [
-          p.title || '',
-          p.summary || '',
-          p.tech || ''
-        ].join(' ').toLowerCase();
+        const hay = [p.title||'', p.summary||'', p.tech||''].join(' ').toLowerCase();
         return hay.includes(text);
       });
-
       if (sortSel.value === 'title') {
-        filtered = filtered.sort((a,b)=> (a.title||'').localeCompare(b.title||''));
+        filtered.sort((a,b)=> (a.title||'').localeCompare(b.title||''));
       }
-      // 'custom' keeps original order
       render(filtered);
     }
 
@@ -282,9 +287,10 @@
         q.addEventListener('input', filterAndSort);
         sortSel.addEventListener('change', filterAndSort);
       }catch(err){
-        grid.innerHTML = '';
-        status.textContent = 'Unable to load projects. Check projects.json path and content.';
         console.error(err);
+        showError('Unable to load projects. Make sure professional_projects/projects.json exists and contains valid JSON.');
+        grid.innerHTML = '';
+        status.textContent = '';
       }
     }
     init();
