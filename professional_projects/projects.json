@@ -22,5 +22,14 @@
     "code": "https://github.com/hammadezad/salesforce-genai",
     "video": "",
     "explanation": "salesforce_genai/index.html"
+  },
+  {
+    "title": "Vaccination Timeliness Predictor",
+    "summary": "Predict late vaccinations before the due date to trigger proactive outreach and raise on-time coverage.",
+    "cover": "vaccination_timeliness/images/cover.jpg",
+    "code": "https://github.com/hammadezad/vax-timely",
+    "video": "",
+    "explanation": "vaccination_timeliness/index.html",
+    "tech": "Python, scikit-learn, XGBoost, SMOTE"
   }
 ]
