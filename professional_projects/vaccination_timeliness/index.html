@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Vaccination Timeliness Predictor — Case Study</title>
+  <meta name="description" content="Production-grade pipeline to predict late vaccine doses for proactive outreach. Real code, private data excluded, synthetic data for demos."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root{
+      --bg:#0b1220; --card:#0f172a; --text:#e5e7eb; --muted:#94a3b8;
+      --border:#1f2a44; --primary:#2563eb; --accent:#38bdf8; --ok:#16a34a; --warn:#f59e0b;
+      --chip:#0b2244; --code:#0a1328;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
+    a{color:#c7d2fe} a:hover{color:#fff}
+    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
+    pre{background:var(--code);border:1px solid var(--border);padding:12px 14px;border-radius:12px;overflow:auto}
+
+    /* Nav */
+    .nav{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.75);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+    .nav a{text-decoration:none;font-weight:800;color:#cbd5e1}
+    .nav a:hover{color:#fff}
+
+    /* Hero */
+    .hero{background:linear-gradient(90deg,#6a11cb 0%,#2575fc 100%);color:#fff;padding:40px 0 34px}
+    .hero-inner{max-width:1100px;margin:0 auto;padding:0 16px}
+    .title{font-size:2rem;font-weight:900;margin:0}
+    .subtitle{margin:8px 0 0;color:#eef2ff;opacity:.92;max-width:900px}
+
+    /* Container */
+    .container{max-width:1100px;margin:0 auto;padding:22px 16px 70px}
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
+    @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:700px){.grid{grid-template-columns:1fr}}
+
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 8px 24px #0002}
+    .card .inner{padding:16px 16px}
+    .h3{margin:0 0 8px 0;font-size:1.1rem;color:#dbeafe;font-weight:900;letter-spacing:.2px}
+
+    .meta{display:grid;gap:12px;grid-template-columns:repeat(4,1fr)}
+    @media (max-width:980px){.meta{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:660px){.meta{grid-template-columns:1fr}}
+    .kv{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px}
+    .kv h4{margin:0 0 6px 0;font-size:.82rem;color:#93c5fd;text-transform:uppercase;letter-spacing:.8px}
+    .kv p{margin:0;color:#cbd5e1;font-weight:700}
+
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .chip{background:var(--chip);border:1px solid var(--border);color:#c7d2fe;padding:6px 10px;border-radius:999px;font-weight:800;font-size:.78rem}
+
+    .two-col{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+    @media (max-width:980px){.two-col{grid-template-columns:1fr}}
+
+    .metrics{width:100%;border-collapse:collapse;margin-top:8px}
+    .metrics th,.metrics td{border:1px solid var(--border);padding:8px 10px;text-align:center}
+    .metrics th{background:#0a1328;color:#dbeafe}
+    .metrics td{background:#0d1630}
+    .kpi{display:inline-block;padding:4px 8px;border-radius:10px;background:#0a1328;border:1px solid var(--border);font-weight:800}
+    .kpi.ok{color:#86efac} .kpi.warn{color:#fde68a}
+
+    .note{color:var(--muted);font-size:.95rem}
+    .callout{background:#0a1328;border:1px solid var(--border);border-left:4px solid var(--accent);padding:12px;border-radius:12px}
+
+    .footer{margin-top:28px;color:var(--muted)}
+    .btn{display:inline-flex;gap:8px;align-items:center;border-radius:10px;background:#0a1328;border:1px solid var(--border);padding:10px 12px;text-decoration:none;font-weight:800}
+    .btn:hover{background:#0e1a36;border-color:#2dd4bf}
+    .btns{display:flex;gap:10px;flex-wrap:wrap}
+
+    /* Section spacing */
+    section{margin-top:22px}
+  </style>
+</head>
+<body>
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../../index.html">← Back to Home</a>
+      <div class="btns">
+        <a class="btn" href="https://github.com/your-username/VaxTimely" target="_blank" rel="noreferrer">
+          <i class="fa-brands fa-github"></i> View Code
+        </a>
+        <a class="btn" href="../../Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer">
+          <i class="fa fa-file-arrow-down"></i> Resume
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="title">Vaccination Timeliness Predictor</h1>
+      <p class="subtitle">
+        We needed to vaccinate children in Pakistan on time. Calling families after a missed due date was too late,
+        so we built a model to <strong>predict lateness ahead of time</strong> and trigger proactive calls or outreach visits.
+        This page explains the production code I’ve open-sourced (with private data excluded) and how the system works end-to-end.
+      </p>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- Quick facts -->
+    <section class="meta">
+      <div class="kv">
+        <h4>Role</h4>
+        <p>End-to-end ML Engineer — data, modeling, evaluation, deployment</p>
+      </div>
+      <div class="kv">
+        <h4>Stack</h4>
+        <p>Python, scikit-learn, XGBoost, imbalanced-learn, pandas, numpy</p>
+      </div>
+      <div class="kv">
+        <h4>Models</h4>
+        <p>Logistic Regression, XGBoost; per-vaccine training</p>
+      </div>
+      <div class="kv">
+        <h4>Privacy</h4>
+        <p>Real code, <span class="kpi warn">private data offline</span>, synthetic data for demos</p>
+      </div>
+    </section>
+
+    <!-- Problem & Context -->
+    <section class="card">
+      <div class="inner">
+        <h3 class="h3">Problem & Context</h3>
+        <p>
+          Immunization programs aim to administer each dose by its due date. In practice, many children arrive late because
+          of travel, weather, clinic capacity, or awareness gaps. We wanted to <strong>predict who is likely to arrive late before the due date</strong>,
+          so call centers and outreach teams could prioritize reminders and reduce missed or delayed doses.
+        </p>
+        <div class="callout">
+          <b>Target definition:</b> A dose is late if <code>admin_date &gt; due_date + 14 days</code>.
+          We train separate models for Penta-1, Penta-2, Penta-3, Measles-1, and Measles-2.
+        </div>
+      </div>
+    </section>
+
+    <!-- Data & Features -->
+    <section class="card">
+      <div class="inner">
+        <h3 class="h3">Data & Features</h3>
+        <p class="note">This repo contains a synthetic generator that mirrors the real schema and class balance to protect privacy.</p>
+        <div class="two-col">
+          <div>
+            <p>Feature families the code expects:</p>
+            <ul>
+              <li><b>Categorical:</b> town, gender, vaccination_event_type, weekday, is_weekend</li>
+              <li><b>Numeric:</b> avg_temp</li>
+              <li><b>Dates:</b> due_date, admin_date (used to build the label, not leaked into features)</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">one-hot on categoricals</span>
+              <span class="chip">scale numeric</span>
+              <span class="chip">no target leakage</span>
+            </div>
+            <p>
+              The pipeline uses a <code>ColumnTransformer</code> for one-hot encoding and scaling.
+              You can add custom domain features such as <i>season</i>, <i>distance to clinic</i>, or <i>SMS contactability</i> by editing <code>config.py</code> and <code>features.py</code>.
+            </p>
+          </div>
+          <div>
+            <div class="callout">
+              <b>Class imbalance:</b> Late cases are typically a minority. We handle this with
+              <b>SMOTE</b> applied <i>only on the training fold</i> to synthesize minority examples and improve recall without leaking test information.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modeling -->
+    <section class="card">
+      <div class="inner">
+        <h3 class="h3">Modeling Approach</h3>
+        <ul>
+          <li><b>Baselines:</b> Logistic Regression for interpretability and a strong linear baseline.</li>
+          <li><b>Boosted Trees:</b> XGBoost for non-linear interactions and robust performance.</li>
+          <li><b>Per-vaccine training:</b> Each vaccine has its own model and artifacts.</li>
+          <li><b>Clean pipeline:</b> <code>[prep → (SMOTE) → estimator]</code> with a stratified train/test split.</li>
+          <li><b>Thresholding:</b> Default decision threshold at 0.5. You can tune this to prioritize recall if operations can handle more calls.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip">LogReg</span>
+          <span class="chip">XGBoost</span>
+          <span class="chip">SMOTE</span>
+          <span class="chip">Stratified split</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live metrics loader -->
+    <section class="card">
+      <div class="inner">
+        <h3 class="h3">Evaluation Snapshot</h3>
+        <p class="note">
+          If you train using this repository’s CLI, metrics JSON files appear under <code>artifacts/&lt;vaccine&gt;/metrics.json</code>.
+          Select a vaccine to load its metrics directly. Update <code>METRICS_BASE</code> in the script below if your path is different.
+        </p>
+
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <label for="vsel"><b>Vaccine:</b></label>
+          <select id="vsel">
+            <option value="penta1">penta1</option>
+            <option value="penta2">penta2</option>
+            <option value="penta3">penta3</option>
+            <option value="measles1">measles1</option>
+            <option value="measles2">measles2</option>
+          </select>
+          <span id="kpi" class="kpi">AUC —</span>
+        </div>
+
+        <table class="metrics" aria-live="polite" style="margin-top:10px">
+          <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+          <tbody id="mtb">
+            <tr><td>accuracy</td><td>—</td></tr>
+            <tr><td>precision</td><td>—</td></tr>
+            <tr><td>recall</td><td>—</td></tr>
+            <tr><td>f1</td><td>—</td></tr>
+            <tr><td>roc_auc</td><td>—</td></tr>
+            <tr><td>threshold</td><td>—</td></tr>
+            <tr><td>confusion_matrix</td><td>—</td></tr>
+          </tbody>
+        </table>
+        <p id="mstatus" class="note"></p>
+      </div>
+    </section>
+
+    <!-- Ops Impact -->
+    <section class="card">
+      <div class="inner">
+        <h3 class="h3">Operational Impact</h3>
+        <p>
+          The model scores upcoming appointments and flags the highest-risk children for proactive calls or outreach.
+          A simple policy is to contact the top 20% highest-risk cases per clinic each week.
+          The goal is to increase on-time vaccinations and reduce late arrivals without overloading staff.
+        </p>
+        <ul>
+          <li><b>Actionable outputs:</b> child_id, risk score (probability of lateness), binary flag at threshold</li>
+          <li><b>Workflow:</b> export CSV → call center tool → log outcomes → feed back for continuous improvement</li>
+          <li><b>Ethics:</b> no sensitive PII leaves secure systems; the public repo ships synthetic data only</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Reproduce -->
+    <section class="card">
+      <div class="inner">
+        <h3 class="h3">How to Reproduce Locally</h3>
+        <p>Install dependencies:</p>
+<pre><code>pip install -r requirements.txt</code></pre>
+        <p>Train all vaccines on synthetic data and write artifacts:</p>
+<pre><code>python -m timeliness.pipeline --train-all --use-synthetic --out-dir artifacts</code></pre>
+        <p>Predict for a batch using the saved model for Penta-1:</p>
+<pre><code>python -m timeliness.pipeline --predict \
+  --vaccine penta1 \
+  --model-path artifacts/penta1/model.joblib \
+  --input-csv artifacts/penta1/example_batch.csv \
+  --out-csv artifacts/penta1/predictions.csv</code></pre>
+      </div>
+    </section>
+
+    <!-- Notes -->
+    <section class="card">
+      <div class="inner">
+        <h3 class="h3">SMOTE, Leakage, and Thresholds — Quick Notes</h3>
+        <ul>
+          <li><b>SMOTE:</b> synthesize only on the training fold. Never oversample before the split.</li>
+          <li><b>Date leakage:</b> never feed the target-defining difference between <code>admin_date</code> and <code>due_date</code> as a feature.</li>
+          <li><b>Thresholds:</b> start at 0.5; adjust to meet operational recall vs workload constraints.</li>
+        </ul>
+      </div>
+    </section>
+
+    <p class="footer">
+      Built with ❤️ for public health. Code is open; real data is not.
+    </p>
+  </main>
+
+  <script>
+    // Adjust if your metrics live elsewhere
+    const METRICS_BASE = "../../artifacts";
+    const tb = document.getElementById('mtb');
+    const vsel = document.getElementById('vsel');
+    const kpi = document.getElementById('kpi');
+    const mstatus = document.getElementById('mstatus');
+
+    function rowHTML(k,v){
+      if (k === "confusion_matrix") {
+        return `<tr><td>${k}</td><td><code>[${v[0].join(', ')}], [${v[1].join(', ')}]</code></td></tr>`;
+      }
+      return `<tr><td>${k}</td><td>${typeof v === 'number' ? v.toFixed(4) : v}</td></tr>`;
+    }
+
+    async function loadMetrics(){
+      const v = vsel.value;
+      const url = `${METRICS_BASE}/${v}/metrics.json`;
+      tb.innerHTML = `<tr><td colspan="2">Loading ${url}…</td></tr>`;
+      mstatus.textContent = '';
+      try{
+        const res = await fetch(url, {cache:'no-store'});
+        if(!res.ok) throw new Error(`HTTP ${res.status}`);
+        const m = await res.json();
+        tb.innerHTML = [
+          rowHTML('accuracy', m.accuracy),
+          rowHTML('precision', m.precision),
+          rowHTML('recall', m.recall),
+          rowHTML('f1', m.f1),
+          rowHTML('roc_auc', m.roc_auc),
+          rowHTML('threshold', m.threshold),
+          rowHTML('confusion_matrix', m.confusion_matrix || [[0,0],[0,0]]),
+        ].join('');
+        kpi.textContent = `AUC ${m.roc_auc.toFixed(3)}`;
+        kpi.className = 'kpi ' + (m.roc_auc >= 0.75 ? 'ok' : 'warn');
+        mstatus.textContent = 'Loaded metrics.json successfully.';
+      }catch(err){
+        tb.innerHTML = `<tr><td colspan="2">No metrics file found. Train locally to generate artifacts, or update METRICS_BASE.</td></tr>`;
+        kpi.textContent = 'AUC —';
+        kpi.className = 'kpi';
+        mstatus.textContent = `Could not load ${url}.`;
+        console.warn(err);
+      }
+    }
+    vsel.addEventListener('change', loadMetrics);
+    loadMetrics();
+  </script>
+</body>
+</html>
+
+
