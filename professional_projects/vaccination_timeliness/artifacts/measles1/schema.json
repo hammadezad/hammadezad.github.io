@@ -1,0 +1,19 @@
+{
+  "id_col": "child_id",
+  "categorical": [
+    "town",
+    "gender",
+    "vaccination_event_type",
+    "weekday",
+    "is_weekend"
+  ],
+  "numeric": [
+    "avg_temp"
+  ],
+  "date_cols": [
+    "due_date",
+    "admin_date"
+  ],
+  "target_col": "late",
+  "vaccine_col": "vaccine"
+}
