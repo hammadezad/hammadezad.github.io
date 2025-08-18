@@ -7,10 +7,9 @@
   <meta name="description" content="Royal Cyber’s containerized Einstein GPT suite: Email Composer, Call Summaries, and Opportunities/Cases Insights using open-source LLMs (Llama3, Mixtral)."/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
   <style>
     :root{
-      --bg:#0b1220; --card:#0f172a; --text:#e5e7eb; --muted:#94a3b8;
+      --bg:#0b1220; --panel:#0f172a; --text:#e5e7eb; --muted:#94a3b8;
       --border:#1f2a44; --primary:#2563eb; --accent:#38bdf8; --ok:#16a34a; --warn:#f59e0b;
       --chip:#0b2244; --code:#0a1328;
     }
@@ -19,10 +18,13 @@
     a{color:#c7d2fe} a:hover{color:#fff}
     code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
     pre{background:var(--code);border:1px solid var(--border);padding:12px 14px;border-radius:12px;overflow:auto}
+    h2,h3{letter-spacing:.2px}
+    h2{font-size:1.4rem}
+    h3{font-size:1.15rem;margin-top:8px}
 
     /* Nav */
     .nav{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.75);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
-    .nav-inner{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+    .nav-inner{max-width:1150px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
     .nav a{text-decoration:none;font-weight:800;color:#cbd5e1}
     .nav a:hover{color:#fff}
 
@@ -35,49 +37,41 @@
       background-position: center, center;
       background-blend-mode: overlay;
       color:#fff;
-      padding:42px 0 36px;
+      padding:46px 0 38px;
     }
-    .hero-inner{max-width:1100px;margin:0 auto;padding:0 16px}
-    .title{font-size:2rem;font-weight:900;margin:0}
-    .subtitle{margin:8px 0 0;color:#eef2ff;opacity:.92;max-width:900px}
+    .hero-inner{max-width:1150px;margin:0 auto;padding:0 16px}
+    .title{font-size:2.1rem;font-weight:900;margin:0}
+    .subtitle{margin:8px 0 0;color:#eef2ff;opacity:.92;max-width:950px}
 
-    /* Container */
-    .container{max-width:1100px;margin:0 auto;padding:22px 16px 70px}
-    .grid{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
-    @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:700px){.grid{grid-template-columns:1fr}}
+    /* Layout */
+    .container{max-width:1150px;margin:0 auto;padding:22px 16px 80px}
+    .toc{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px}
+    .toc h3{margin:0 0 8px 0;color:#dbeafe}
+    .toc ul{margin:0;padding-left:18px}
+    .toc a{color:#c7d2fe;text-decoration:none}
+    .toc a:hover{color:#fff;text-decoration:underline}
 
-    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 8px 24px #0002}
-    .card .inner{padding:16px 16px}
-    .h3{margin:0 0 8px 0;font-size:1.1rem;color:#dbeafe;font-weight:900;letter-spacing:.2px}
-
-    .meta{display:grid;gap:12px;grid-template-columns:repeat(4,1fr)}
-    @media (max-width:980px){.meta{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:660px){.meta{grid-template-columns:1fr}}
-    .kv{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px}
-    .kv h4{margin:0 0 6px 0;font-size:.82rem;color:#93c5fd;text-transform:uppercase;letter-spacing:.8px}
-    .kv p{margin:0;color:#cbd5e1;font-weight:700}
-
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .section{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px 18px;margin-top:22px;box-shadow:0 8px 24px #0002}
+    .lead{color:#dbeafe;font-weight:800}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
     .chip{background:var(--chip);border:1px solid var(--border);color:#c7d2fe;padding:6px 10px;border-radius:999px;font-weight:800;font-size:.78rem}
+    .note{color:var(--muted);}
 
     .two-col{display:grid;grid-template-columns:2fr 1fr;gap:18px}
     @media (max-width:980px){.two-col{grid-template-columns:1fr}}
 
-    .img-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
-    .img-card img{display:block;width:100%;height:auto}
-    .img-caption{padding:10px 12px;color:#cbd5e1;border-top:1px solid var(--border)}
+    .figure{background:var(--panel);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+    .figure img{display:block;width:100%;height:auto;object-fit:cover}
+    .figcap{border-top:1px solid var(--border);padding:10px 12px;color:#cbd5e1}
 
-    .btn{display:inline-flex;gap:8px;align-items:center;border-radius:10px;background:#0a1328;border:1px solid var(--border);padding:10px 12px;text-decoration:none;font-weight:800}
-    .btn:hover{background:#0e1a36;border-color:#2dd4bf}
-    .btns{display:flex;gap:10px;flex-wrap:wrap}
+    .kv{display:grid;grid-template-columns:1fr 2fr;gap:10px;margin:8px 0}
+    .kv b{color:#93c5fd}
+    .list-tight li{margin:6px 0}
 
-    table.kvtab{width:100%;border-collapse:collapse;margin-top:10px}
-    .kvtab th,.kvtab td{border:1px solid var(--border);padding:8px 10px}
-    .kvtab th{background:#0a1328;color:#dbeafe;text-align:left}
-    .kvtab td{background:#0d1630}
+    details{margin-top:10px;border:1px solid var(--border);border-radius:10px}
+    summary{cursor:pointer;padding:10px 12px;background:#0a1328;border-bottom:1px solid var(--border);font-weight:800;color:#dbeafe}
+    details > div{padding:12px}
 
-    section{margin-top:22px}
     .footer{margin-top:28px;color:var(--muted)}
   </style>
 </head>
@@ -86,12 +80,12 @@
   <nav class="nav">
     <div class="nav-inner">
       <a href="../../index.html">← Back to Home</a>
-      <div class="btns">
-        <a class="btn" href="https://github.com/hammadezad/customer360-ai-accelerator" target="_blank" rel="noreferrer">
-          <i class="fa-brands fa-github"></i> View Code
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="chip" href="https://github.com/hammadezad/customer360-ai-accelerator" target="_blank" rel="noreferrer">
+          <i class="fa-brands fa-github"></i>&nbsp;Code
         </a>
-        <a class="btn" href="../../Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer">
-          <i class="fa fa-file-arrow-down"></i> Resume
+        <a class="chip" href="../../Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer">
+          <i class="fa fa-file-arrow-down"></i>&nbsp;Resume
         </a>
       </div>
     </div>
@@ -102,60 +96,207 @@
     <div class="hero-inner">
       <h1 class="title">Salesforce GenAI Automation</h1>
       <p class="subtitle">
-        A production-ready, <b>containerized Einstein GPT suite</b> that plugs into Salesforce and
-        delivers three outcomes: <b>Auto-Email Generation</b>, <b>Call Summaries</b>, and
-        <b>Opportunities & Cases Insights</b>. Built with open-source LLMs (Llama3, Mixtral) for cost,
-        privacy, and customization.
+        A production-ready, <b>containerized Einstein GPT suite</b> integrated with Salesforce.
+        It delivers <b>Auto‑Email Generation</b>, <b>Call Summaries</b>, and
+        <b>Opportunities & Cases Insights</b>, powered by open‑source LLMs (Llama3, Mixtral)
+        for lower cost, strong privacy, and full customization.
       </p>
     </div>
   </section>
 
   <main class="container">
-    <!-- Quick facts -->
-    <section class="meta">
-      <div class="kv"><h4>Role</h4><p>Solution Owner & ML Engineer — design, APIs, prompts, deployment</p></div>
-      <div class="kv"><h4>Stack</h4><p>FastAPI, Docker, Azure Container Apps, Groq (Llama3/Mixtral)</p></div>
-      <div class="kv"><h4>Salesforce</h4><p>Action buttons + flows call the APIs, responses written back to records</p></div>
-      <div class="kv"><h4>Security</h4><p><span class="chip">Secrets in env</span> <span class="chip">No PII outside org</span> <span class="chip">HTTPS ingress</span></p></div>
+    <!-- TOC -->
+    <section class="toc">
+      <h3>On this page</h3>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#email">Email Composer</a></li>
+        <li><a href="#insights">Opportunities & Cases Insights</a></li>
+        <li><a href="#calls">Call Summaries</a></li>
+        <li><a href="#deployment">Deployment</a></li>
+        <li><a href="#security">Security & Privacy</a></li>
+      </ul>
     </section>
 
-    <!-- Problem & Solution -->
-    <section class="card">
-      <div class="inner">
-        <h3 class="h3">Problem & Solution</h3>
-        <p>
-          Sales teams lose time in manual drafting, summarizing calls, and parsing CRM text.
-          Credit-metered GPT add-ons also get expensive. We built a <b>self-hosted suite</b>
-          of three services that reduce cost, keep data private, and automate routine sales
-          communication.
-        </p>
-        <div class="chips">
-          <span class="chip">Lower cost with OSS LLMs</span>
-          <span class="chip">Private by design</span>
-          <span class="chip">Salesforce-native UX</span>
-          <span class="chip">Containerized</span>
-        </div>
+    <!-- Overview -->
+    <section id="overview" class="section">
+      <h2>Overview</h2>
+      <p class="lead">
+        The suite consists of three FastAPI microservices, each shipped as a container.
+        Salesforce invokes them through Flows or Apex. Responses are written back to Salesforce
+        records to drive next actions without leaving the CRM.
+      </p>
+      <div class="chips">
+        <span class="chip">FastAPI</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Azure Container Apps</span>
+        <span class="chip">Groq (Llama3/Mixtral)</span>
+        <span class="chip">Salesforce Flows/Apex</span>
       </div>
     </section>
 
-    <!-- Services Grid -->
-    <section class="grid">
-      <article class="card"><div class="inner"><h3 class="h3">1) Auto-Email Generation</h3><p>Generates crisp, on-brand emails from Salesforce context.</p></div></article>
-      <article class="card"><div class="inner"><h3 class="h3">2) Opportunities & Cases Insights</h3><p>Summaries, objections, NBAs, sentiment and case insights.</p></div></article>
-      <article class="card"><div class="inner"><h3 class="h3">3) Call Summaries</h3><p>Concise summaries + action items from transcripts.</p></div></article>
-    </section>
-
     <!-- Architecture -->
-    <section class="two-col">
-      <div class="card"><div class="inner"><h3 class="h3">Architecture</h3><p>Each microservice runs as a separate container. Salesforce invokes APIs, responses are written back to records.</p></div></div>
-      <div class="img-card"><img src="./images/architecture.jpeg" alt="Architecture diagram"/><div class="img-caption">Replace with your real diagram.</div></div>
+    <section id="architecture" class="section two-col">
+      <div>
+        <h2>Architecture</h2>
+        <p>
+          Each service exposes a stable REST contract. Requests carry just the fields required for
+          generation or analysis; sensitive identifiers can be hashed or redacted. The platform
+          supports rolling revisions, per‑service scaling, and secrets injection.
+        </p>
+        <ul class="list-tight">
+          <li><b>Ingress:</b> HTTPS endpoints with API‑key auth.</li>
+          <li><b>Services:</b> Email Composer, Sales Insights, Call Summaries.</li>
+          <li><b>LLM layer:</b> Groq API with Llama3 or Mixtral models.</li>
+          <li><b>Ops:</b> metrics by service (latency, error rates, token usage).</li>
+        </ul>
+      </div>
+      <figure class="figure">
+        <img src="./images/architecture.jpeg" alt="Architecture diagram" loading="lazy" style="aspect-ratio: 16/9;"/>
+        <figcaption class="figcap">High‑level architecture as implemented in production.</figcaption>
+      </figure>
     </section>
 
-    <!-- Screens -->
-    <section class="grid">
-      <div class="img-card"><img src="./images/email_generation.png" alt="Email"/><div class="img-caption">Auto-Email Generation</div></div>
-      <div class="img-card"><img src="./images/cases_opportunities.png" alt="Cases"/><div class="img-caption">Cases & Opportunities</div></div>
-      <div class="img-card"><img src="./images/call_summaries.png" alt="Calls"/><div class="img-caption">Call Summaries</div></div>
+    <!-- Email Composer -->
+    <section id="email" class="section">
+      <h2>Email Composer</h2>
+      <p>
+        Generates polished, on‑brand emails directly from Salesforce context (lead/opportunity/contact).
+        Operators choose a prompt style (Introduce, Nudge, Check‑in, Reignite, Invite) and the service
+        returns a <b>Subject</b> and <b>Body</b> with strict markers for deterministic parsing.
+      </p>
+      <div class="kv"><b>Inputs</b><div>Recipient and sender profiles, recent interactions, selected template style.</div></div>
+      <div class="kv"><b>Outputs</b><div>Subject (1 line) and Body (HTML or plain text), ready to send.</div></div>
+      <div class="kv"><b>Salesforce UX</b><div>Button/Flow on record → preview pane → one‑click insert to Email Composer or send.</div></div>
+      <div class="chips">
+        <span class="chip">Brand tone control</span><span class="chip">Section markers</span><span class="chip">Auditable prompts</span>
+      </div>
+      <details>
+        <summary>Example request</summary>
+        <div><pre><code>POST /generate-email
+{
+  "recipient_first_name": "Sara",
+  "recipient_last_name": "Becker",
+  "recipient_email": "sara@example.com",
+  "template_type": "introduce",
+  "recipient_company": "Acme GmbH",
+  "sender_company": "Royal Cyber",
+  "sender_first_name": "Hammad"
+}</code></pre></div>
+      </details>
+      <figure class="figure" style="margin-top:14px">
+        <img src="./images/email_generation.png" alt="Email generation screen" loading="lazy" style="aspect-ratio: 16/9;"/>
+        <figcaption class="figcap">Email generation flow with selectable prompt styles.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Opportunities & Cases Insights -->
+    <section id="insights" class="section">
+      <h2>Opportunities & Cases Insights</h2>
+      <p>
+        Analyzes long‑form CRM text (notes, emails, events) and returns concise fields that sales and service
+        teams can act on immediately. Opportunity responses include <b>Summary</b>, <b>Objection</b>,
+        and <b>Next Best Action</b>. Case responses include <b>Summary</b>, <b>Intent</b>,
+        <b>Sentiment</b>, and <b>Days Open</b>.
+      </p>
+      <div class="kv"><b>Inputs</b><div>Opportunity or Case fields + recent email/task/event bodies.</div></div>
+      <div class="kv"><b>Outputs</b><div>Structured strings for UI and reporting; “Days Open” is numeric only.</div></div>
+      <div class="kv"><b>Salesforce UX</b><div>Flow writes fields back to the record; admins can add them to page layouts & dashboards.</div></div>
+      <div class="chips">
+        <span class="chip">Regex‑hardened parsing</span><span class="chip">Summaries & NBAs</span><span class="chip">Sentiment at a glance</span>
+      </div>
+      <details>
+        <summary>Example requests</summary>
+        <div><pre><code>POST /generate-opportunity-responses
+[{
+  "opportunity_id": "o-1",
+  "opportunity_name": "Invoice AI rollout",
+  "account_name": "Acme GmbH",
+  "amount": 50000,
+  "close_date": "2025-09-30T00:00:00Z",
+  "description": "Rolling out Azure Document Intelligence with HIL review."
+}]
+
+POST /generate-case-responses
+[{
+  "case_id": "cs-7",
+  "account_name": "Acme GmbH",
+  "case_reason": "Billing issue",
+  "status": "Open",
+  "subject": "Incorrect invoice totals",
+  "description": "Two line items double-counted",
+  "date_opened": "2025-08-10T00:00:00Z"
+}]</code></pre></div>
+      </details>
+      <figure class="figure" style="margin-top:14px">
+        <img src="./images/cases_opportunities.png" alt="Cases and opportunities" loading="lazy" style="aspect-ratio: 16/9;"/>
+        <figcaption class="figcap">Structured fields make dashboards and prioritization straightforward.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Call Summaries -->
+    <section id="calls" class="section">
+      <h2>Call Summaries</h2>
+      <p>
+        Converts raw transcripts into an executive <b>Summary</b> and a prioritized list of <b>Action Items</b>.
+        Accepts structured diarization (timestamp, speaker, text) or free‑form lines, plus optional “mentions”
+        such as longest monologue, challenges, or next steps for extra context.
+      </p>
+      <div class="kv"><b>Inputs</b><div>Call metadata + transcript (structured or free‑text) + optional mentions.</div></div>
+      <div class="kv"><b>Outputs</b><div>Summary paragraph and bullet list of action items, aligned to CRM follow‑ups.</div></div>
+      <div class="kv"><b>Salesforce UX</b><div>Flow attaches the summary back to the activity; tasks are generated automatically from action items.</div></div>
+      <div class="chips">
+        <span class="chip">Speaker‑aware</span><span class="chip">Consistent output schema</span><span class="chip">Great for follow‑ups</span>
+      </div>
+      <details>
+        <summary>Example request</summary>
+        <div><pre><code>POST /generate-call-summary
+{
+  "call_id": "c-101",
+  "call_type": "demo",
+  "call_status": "completed",
+  "call_duration": "31:12",
+  "caller_name": "Hammad",
+  "recipient_name": "Client A",
+  "transcript": [
+    {"timestamp": "00:10", "speaker": "Hammad", "text": "Welcome and agenda."},
+    "00:45 - Client: Need OCR accuracy > 99%."
+  ],
+  "mentions": {"challenges": "OCR layout variance", "next_steps": "POC on 10 invoices"}
+}</code></pre></div>
+      </details>
+      <figure class="figure" style="margin-top:14px">
+        <img src="./images/call_summaries.png" alt="Call summaries" loading="lazy" style="aspect-ratio: 16/9;"/>
+        <figcaption class="figcap">Summaries + action items flow straight into Salesforce tasks.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Deployment -->
+    <section id="deployment" class="section">
+      <h2>Deployment</h2>
+      <p>
+        Local development uses <code>docker compose</code>. Production runs on <b>Azure Container Apps</b>, with
+        one app per service, external ingress, and secrets managed per revision.
+      </p>
+<pre><code># Local
+docker compose up --build
+
+# Azure (example)
+az containerapp secret set --name email-composer --resource-group rg-cca --secrets GROQ_API_KEY=&lt;key&gt;
+az containerapp update --name email-composer --resource-group rg-cca --image myacr.azurecr.io/email-composer:v2</code></pre>
+    </section>
+
+    <!-- Security -->
+    <section id="security" class="section">
+      <h2>Security & Privacy</h2>
+      <ul class="list-tight">
+        <li><b>Principle of least data:</b> only required fields are sent to the LLM; PII can be hashed or redacted.</li>
+        <li><b>Secrets:</b> API keys injected via environment variables; never stored in code or images.</li>
+        <li><b>Logging:</b> prompts excluded from logs by default; anonymized request IDs for traces.</li>
+        <li><b>Reliability:</b> strict output markers + regex extraction; fallbacks compute numeric fields when needed.</li>
+      </ul>
+      <p class="note">This design keeps unit costs predictable while meeting enterprise privacy expectations.</p>
     </section>
 
     <p class="footer">© 2025 Royal Cyber Inc. — Built by Hammad Ezad</p>
