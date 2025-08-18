@@ -19,7 +19,7 @@
   {
     "title": "Salesforce GenAI Automation",
     "summary": "Automated CRM insights and email workflows using Salesforce and Generative AI.",
-    "cover": "salesforce_genai/images/cover.jpg",
+    "cover": "salesforce_genai/images/cover.png",
     "code": "https://github.com/hammadezad/customer360-ai-accelerator",
     "video": "",
     "explanation": "salesforce_genai/index.html"

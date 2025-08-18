@@ -137,26 +137,32 @@
     </section>
 
     <!-- Architecture -->
-    <section id="architecture" class="section two-col">
-      <div>
+    <section id="architecture" class="section">
         <h2>Architecture</h2>
         <p>
-          Each service exposes a stable REST contract. Requests carry just the fields required for
-          generation or analysis; sensitive identifiers can be hashed or redacted. The platform
-          supports rolling revisions, per‑service scaling, and secrets injection.
+        Each service exposes a stable REST contract. Requests carry just the fields required for
+        generation or analysis; sensitive identifiers can be hashed or redacted. The platform
+        supports rolling revisions, per-service scaling, and secrets injection.
         </p>
         <ul class="list-tight">
-          <li><b>Ingress:</b> HTTPS endpoints with API‑key auth.</li>
-          <li><b>Services:</b> Email Composer, Sales Insights, Call Summaries.</li>
-          <li><b>LLM layer:</b> Groq API with Llama3 or Mixtral models.</li>
-          <li><b>Ops:</b> metrics by service (latency, error rates, token usage).</li>
+        <li><b>Ingress:</b> HTTPS endpoints with API-key auth.</li>
+        <li><b>Services:</b> Email Composer, Sales Insights, Call Summaries.</li>
+        <li><b>LLM layer:</b> Groq API with Llama3 or Mixtral models.</li>
+        <li><b>Ops:</b> metrics by service (latency, error rates, token usage).</li>
         </ul>
-      </div>
-      <figure class="figure">
-        <img src="./images/architecture.jpg" alt="Architecture diagram" loading="lazy" style="aspect-ratio: 16/9;"/>
-        <figcaption class="figcap">High‑level architecture as implemented in production.</figcaption>
-      </figure>
+    
+        <!-- Big full-width architecture image -->
+        <figure class="figure" style="margin-top:16px">
+        <img src="./images/architecture.jpg" 
+            alt="Architecture diagram" 
+            loading="lazy" 
+            style="width:100%;max-height:650px;object-fit:contain"/>
+        <figcaption class="figcap">
+            High-level architecture of the Salesforce GenAI Automation suite.
+        </figcaption>
+        </figure>
     </section>
+    
 
     <!-- Email Composer -->
     <section id="email" class="section">
