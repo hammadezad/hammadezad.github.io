@@ -1,11 +1,12 @@
 [
   {
-    "title": "Real-time Loan Approval System",
-    "summary": "ML model for a financial firm, reducing loan processing time by 40%.",
-    "cover": "loan_approval/images/cover.jpg",
-    "code": "https://github.com/hammadezad/loan-approval",
+    "title": "Customer Segmentation & Email Nudge",
+    "summary": "Segment customers from behavioral data and generate targeted emails to reduce cart abandonment. Modular Python + Streamlit with optional OpenAI.",
+    "cover": "customer_segmentation/images/cover.jpg",
+    "code": "https://github.com/hammadezad/customer-segmentation-email-nudge",
     "video": "",
-    "explanation": "loan_approval/index.html"
+    "explanation": "customer_segmentation/index.html",
+    "tech": "Python, scikit-learn, Streamlit, OpenAI"
   },
   {
     "title": "Vehicle Routing Optimizer",
