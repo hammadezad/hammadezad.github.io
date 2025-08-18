@@ -2,17 +2,17 @@
   {
     "title": "Customer Segmentation & Email Nudge",
     "summary": "Segment customers from behavioral data and generate targeted emails to reduce cart abandonment. Modular Python + Streamlit with optional OpenAI.",
-    "cover": "customer_segmentation/images/cover.jpg",
+    "cover": "customer_segmentation_ai/images/cover.jpg",
     "code": "https://github.com/hammadezad/customer-segmentation-email-nudge",
     "video": "",
-    "explanation": "customer_segmentation/index.html",
+    "explanation": "customer_segmentation_ai/index.html",
     "tech": "Python, scikit-learn, Streamlit, OpenAI"
   },
   {
     "title": "Vehicle Routing Optimizer",
     "summary": "Optimized vehicle routes and schedules, saving logistics costs for a national bottling company.",
     "cover": "vehicle_routing/images/cover.jpg",
-    "code": "https://github.com/hammadezad/vehicle-routing",
+    "code": "https://github.com/hammadezad/vehicle_routing_optimization",
     "video": "",
     "explanation": "vehicle_routing/index.html"
   },
@@ -20,7 +20,7 @@
     "title": "Salesforce GenAI Automation",
     "summary": "Automated CRM insights and email workflows using Salesforce and Generative AI.",
     "cover": "salesforce_genai/images/cover.jpg",
-    "code": "https://github.com/hammadezad/salesforce-genai",
+    "code": "https://github.com/hammadezad/customer360-ai-accelerator",
     "video": "",
     "explanation": "salesforce_genai/index.html"
   },
@@ -28,7 +28,7 @@
     "title": "Vaccination Timeliness Predictor",
     "summary": "Predict late vaccinations before the due date to trigger proactive outreach and raise on-time coverage.",
     "cover": "vaccination_timeliness/images/cover.jpg",
-    "code": "https://github.com/hammadezad/vax-timely",
+    "code": "https://github.com/hammadezad/VaxTimely_timeliness_vaccination_prediction",
     "video": "",
     "explanation": "vaccination_timeliness/index.html",
     "tech": "Python, scikit-learn, XGBoost, SMOTE"
