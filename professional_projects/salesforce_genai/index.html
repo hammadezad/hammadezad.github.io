@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Salesforce GenAI Automation — Case Study</title>
-  <meta name="description" content="Royal Cyber’s containerized Einstein GPT suite: Email Composer, Call Summaries, and Opportunities/Cases Insights using open‑source LLMs (Llama3, Mixtral)."/>
+  <meta name="description" content="Royal Cyber’s containerized Einstein GPT suite: Email Composer, Call Summaries, and Opportunities/Cases Insights using open-source LLMs (Llama3, Mixtral)."/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
@@ -87,7 +87,7 @@
     <div class="nav-inner">
       <a href="../../index.html">← Back to Home</a>
       <div class="btns">
-        <a class="btn" href="https://github.com/hammadezad/rc-einstein-gpt-suite" target="_blank" rel="noreferrer">
+        <a class="btn" href="https://github.com/hammadezad/customer360-ai-accelerator" target="_blank" rel="noreferrer">
           <i class="fa-brands fa-github"></i> View Code
         </a>
         <a class="btn" href="../../Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer">
@@ -102,9 +102,9 @@
     <div class="hero-inner">
       <h1 class="title">Salesforce GenAI Automation</h1>
       <p class="subtitle">
-        A production‑ready, <b>containerized Einstein GPT suite</b> that plugs into Salesforce and
-        delivers three outcomes: <b>Auto‑Email Generation</b>, <b>Call Summaries</b>, and
-        <b>Opportunities & Cases Insights</b>. Built with open‑source LLMs (Llama3, Mixtral) for cost,
+        A production-ready, <b>containerized Einstein GPT suite</b> that plugs into Salesforce and
+        delivers three outcomes: <b>Auto-Email Generation</b>, <b>Call Summaries</b>, and
+        <b>Opportunities & Cases Insights</b>. Built with open-source LLMs (Llama3, Mixtral) for cost,
         privacy, and customization.
       </p>
     </div>
@@ -113,22 +113,10 @@
   <main class="container">
     <!-- Quick facts -->
     <section class="meta">
-      <div class="kv">
-        <h4>Role</h4>
-        <p>Solution Owner & ML Engineer — design, APIs, prompts, deployment</p>
-      </div>
-      <div class="kv">
-        <h4>Stack</h4>
-        <p>FastAPI, Docker, Azure Container Apps, Groq (Llama3/Mixtral)</p>
-      </div>
-      <div class="kv">
-        <h4>Salesforce</h4>
-        <p>Action buttons + flows call the APIs, responses written back to records</p>
-      </div>
-      <div class="kv">
-        <h4>Security</h4>
-        <p><span class="chip">Secrets in env</span> <span class="chip">No PII outside org</span> <span class="chip">HTTPS ingress</span></p>
-      </div>
+      <div class="kv"><h4>Role</h4><p>Solution Owner & ML Engineer — design, APIs, prompts, deployment</p></div>
+      <div class="kv"><h4>Stack</h4><p>FastAPI, Docker, Azure Container Apps, Groq (Llama3/Mixtral)</p></div>
+      <div class="kv"><h4>Salesforce</h4><p>Action buttons + flows call the APIs, responses written back to records</p></div>
+      <div class="kv"><h4>Security</h4><p><span class="chip">Secrets in env</span> <span class="chip">No PII outside org</span> <span class="chip">HTTPS ingress</span></p></div>
     </section>
 
     <!-- Problem & Solution -->
@@ -137,206 +125,40 @@
         <h3 class="h3">Problem & Solution</h3>
         <p>
           Sales teams lose time in manual drafting, summarizing calls, and parsing CRM text.
-          Credit‑metered GPT add‑ons also get expensive. We built a <b>self‑hosted suite</b>
+          Credit-metered GPT add-ons also get expensive. We built a <b>self-hosted suite</b>
           of three services that reduce cost, keep data private, and automate routine sales
           communication.
         </p>
         <div class="chips">
           <span class="chip">Lower cost with OSS LLMs</span>
           <span class="chip">Private by design</span>
-          <span class="chip">Salesforce‑native UX</span>
+          <span class="chip">Salesforce-native UX</span>
           <span class="chip">Containerized</span>
         </div>
       </div>
     </section>
 
-    <!-- The Three Services -->
+    <!-- Services Grid -->
     <section class="grid">
-      <article class="card">
-        <div class="inner">
-          <h3 class="h3">1) Auto‑Email Generation</h3>
-          <p>Generates crisp, on‑brand emails from Salesforce context. Prompt styles: <b>Introduce</b>, <b>Nudge</b>, <b>Check‑in</b>, <b>Reignite</b>, <b>Invite</b>.</p>
-          <ul>
-            <li>Endpoint: <code>POST /generate-email</code></li>
-            <li>Models: Llama3/Mixtral (tunable)</li>
-            <li>Output: <code>subject</code>, <code>body</code></li>
-          </ul>
-        </div>
-      </article>
-      <article class="card">
-        <div class="inner">
-          <h3 class="h3">2) Opportunities & Cases Insights</h3>
-          <p>Returns <b>Summary</b>, <b>Objection</b>, and <b>Next Best Action</b> for opportunities, and <b>Summary</b>, <b>Intent</b>, <b>Sentiment</b>, <b>Days Open</b> for cases.</p>
-          <ul>
-            <li>Endpoints: <code>POST /generate-opportunity-responses</code>, <code>POST /generate-case-responses</code></li>
-            <li>Regex‑based extraction for robust formatting</li>
-          </ul>
-        </div>
-      </article>
-      <article class="card">
-        <div class="inner">
-          <h3 class="h3">3) Call Summaries</h3>
-          <p>Parses structured or free‑text transcripts and returns a concise <b>Summary</b> and bullet <b>Action Items</b>.</p>
-          <ul>
-            <li>Endpoint: <code>POST /generate-call-summary</code></li>
-            <li>Handles speaker diarization, timestamps, mentions</li>
-          </ul>
-        </div>
-      </article>
+      <article class="card"><div class="inner"><h3 class="h3">1) Auto-Email Generation</h3><p>Generates crisp, on-brand emails from Salesforce context.</p></div></article>
+      <article class="card"><div class="inner"><h3 class="h3">2) Opportunities & Cases Insights</h3><p>Summaries, objections, NBAs, sentiment and case insights.</p></div></article>
+      <article class="card"><div class="inner"><h3 class="h3">3) Call Summaries</h3><p>Concise summaries + action items from transcripts.</p></div></article>
     </section>
 
     <!-- Architecture -->
     <section class="two-col">
-      <div class="card">
-        <div class="inner">
-          <h3 class="h3">Architecture</h3>
-          <p>Each microservice runs as a separate container with its own FastAPI app. Salesforce invokes endpoints via Apex/Flows, and responses are written back to the corresponding records.</p>
-          <table class="kvtab">
-            <thead><tr><th>Component</th><th>Purpose</th></tr></thead>
-            <tbody>
-              <tr><td>Email Composer</td><td>Subject + body generation with strict output markers</td></tr>
-              <tr><td>Sales Insights</td><td>Summaries, objections, next actions; sentiment and days‑open</td></tr>
-              <tr><td>Call Summaries</td><td>Structured summary + action items from transcript</td></tr>
-              <tr><td>Gateway/Ingress</td><td>HTTPS endpoints; auth handled by Salesforce + API keys</td></tr>
-            </tbody>
-          </table>
-          <div class="chips">
-            <span class="chip">FastAPI</span>
-            <span class="chip">Groq API</span>
-            <span class="chip">Docker</span>
-            <span class="chip">Azure Container Apps</span>
-          </div>
-        </div>
-      </div>
-      <div class="img-card">
-        <img src="./images/architecture.png" alt="High-level architecture diagram"/>
-        <div class="img-caption">Drop your diagram here (export from your slide deck).</div>
-      </div>
+      <div class="card"><div class="inner"><h3 class="h3">Architecture</h3><p>Each microservice runs as a separate container. Salesforce invokes APIs, responses are written back to records.</p></div></div>
+      <div class="img-card"><img src="./images/architecture.png" alt="Architecture diagram"/><div class="img-caption">Replace with your real diagram.</div></div>
     </section>
 
-    <!-- Example Payloads -->
-    <section class="card">
-      <div class="inner">
-        <h3 class="h3">Example Requests</h3>
-        <p class="h4"><b>Email Composer</b></p>
-<pre><code>curl -X POST http://localhost:8001/generate-email \
- -H "Content-Type: application/json" \
- -d '{
-  "recipient_first_name": "Sara",
-  "recipient_last_name": "Becker",
-  "recipient_email": "sara@example.com",
-  "template_type": "introduce",
-  "recipient_id": "r-1",
-  "recipient_phone": "+49 111",
-  "recipient_company": "Acme GmbH",
-  "recipient_industry": "Retail",
-  "recipient_title": "Head of Ops",
-  "recipient_address": "Berlin",
-  "sender_id": "s-1",
-  "sender_email": "me@example.com",
-  "sender_first_name": "Hammad",
-  "sender_last_name": "Ezad",
-  "sender_phone": "+92 333",
-  "sender_company": "Royal Cyber",
-  "sender_industry": "Tech",
-  "sender_title": "Senior Data Scientist",
-  "sender_address": "Sahiwal"
- }'</code></pre>
-
-        <p class="h4"><b>Opportunities</b></p>
-<pre><code>curl -X POST http://localhost:8003/generate-opportunity-responses \
- -H "Content-Type: application/json" \
- -d '[{
-  "opportunity_id":"o-1",
-  "opportunity_name":"Invoice AI rollout",
-  "account_name":"Acme GmbH",
-  "amount":50000,
-  "close_date":"2025-09-30T00:00:00Z",
-  "description":"Rolling out Azure Document Intelligence with HIL review."
-}]'</code></pre>
-
-        <p class="h4"><b>Cases</b></p>
-<pre><code>curl -X POST http://localhost:8003/generate-case-responses \
- -H "Content-Type: application/json" \
- -d '[{
-  "case_id":"cs-7",
-  "account_name":"Acme GmbH",
-  "case_reason":"Billing issue",
-  "status":"Open",
-  "subject":"Incorrect invoice totals",
-  "description":"Two line items double-counted",
-  "date_opened":"2025-08-10T00:00:00Z"
-}]'</code></pre>
-
-        <p class="h4"><b>Call Summaries</b></p>
-<pre><code>curl -X POST http://localhost:8002/generate-call-summary \
- -H "Content-Type: application/json" \
- -d '{
-  "call_id":"c-101","call_type":"demo","call_status":"completed",
-  "call_duration":"31:12","call_start_time":"2025-08-18T10:00:00Z",
-  "call_end_time":"2025-08-18T10:31:12Z","caller_name":"Hammad",
-  "recipient_name":"Client A","is_call_recorded":true,
-  "transcript":[
-    {"timestamp":"00:10","speaker":"Hammad","text":"Welcome and agenda."},
-    "00:45 - Client: Need OCR accuracy > 99%."
-  ],
-  "mentions":{"challenges":"OCR layout variance","next_steps":"POC on 10 invoices"}
- }'</code></pre>
-      </div>
-    </section>
-
-    <!-- Screens from slide deck -->
+    <!-- Screens -->
     <section class="grid">
-      <div class="img-card">
-        <img src="./images/email_generation.png" alt="Email generation slide"/>
-        <div class="img-caption">Auto‑Email Generation — prompt styles and outputs.</div>
-      </div>
-      <div class="img-card">
-        <img src="./images/cases_opportunities.png" alt="Cases and opportunities slide"/>
-        <div class="img-caption">Cases & Opportunities — insights and next actions.</div>
-      </div>
-      <div class="img-card">
-        <img src="./images/call_summaries.png" alt="Call summaries slide"/>
-        <div class="img-caption">Call Summaries — structured outputs with action items.</div>
-      </div>
+      <div class="img-card"><img src="./images/email_generation.png" alt="Email"/><div class="img-caption">Auto-Email Generation</div></div>
+      <div class="img-card"><img src="./images/cases_opportunities.png" alt="Cases"/><div class="img-caption">Cases & Opportunities</div></div>
+      <div class="img-card"><img src="./images/call_summaries.png" alt="Calls"/><div class="img-caption">Call Summaries</div></div>
     </section>
 
-    <!-- Deployment -->
-    <section class="card">
-      <div class="inner">
-        <h3 class="h3">Deployment</h3>
-        <p>Local dev uses <code>docker compose</code> to run all three services. Production uses <b>Azure Container Apps</b>, each service with its own revision, secret, and ingress.</p>
-<pre><code># Local
-docker compose up --build
-
-# Azure (example snippet)
-az containerapp secret set --name email-composer --resource-group rg-cca --secrets GROQ_API_KEY=&lt;key&gt;
-az containerapp update --name email-composer --resource-group rg-cca --image myacr.azurecr.io/email-composer:v2</code></pre>
-        <p class="chips">
-          <span class="chip">Rolling revisions</span>
-          <span class="chip">Metrics per service</span>
-          <span class="chip">Per-service scaling</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- Cost & Privacy -->
-    <section class="card">
-      <div class="inner">
-        <h3 class="h3">Cost & Privacy</h3>
-        <p>Open-source LLMs via Groq keep unit costs low and predictable. Sensitive data never leaves the secure boundary; only relevant fields are sent to the LLM, with configurable redaction.</p>
-        <ul>
-          <li><b>PII policy:</b> redact or hash; never store prompts in logs</li>
-          <li><b>Observability:</b> request/latency metrics with anonymized IDs</li>
-          <li><b>Fallbacks:</b> strict output markers + regex parsing for resilience</li>
-        </ul>
-      </div>
-    </section>
-
-    <p class="footer">
-      © 2025 Royal Cyber Inc. Built by Hammad Ezad — containerized microservices for Salesforce-native AI.
-    </p>
+    <p class="footer">© 2025 Royal Cyber Inc. — Built by Hammad Ezad</p>
   </main>
 </body>
 </html>
-
