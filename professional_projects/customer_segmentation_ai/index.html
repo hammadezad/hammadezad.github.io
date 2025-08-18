@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customer Segmentation & Cart-Abandonment Email Nudge — Case Study</title>
+  <meta name="description" content="End-to-end project: define the problem, engineer features, train a segmentation model, and generate tailored email nudges (templates or OpenAI) to reduce cart abandonment." />
+
+  <!-- fonts/icons (optional; safe if offline too) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#0b1220; --panel:#0f172a; --text:#e5e7eb; --muted:#94a3b8;
+      --border:#1f2a44; --primary:#2563eb; --accent:#06b6d4; --chip:#0b2244;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{opacity:.9}
+    header{position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);background:rgba(11,18,32,.65);border-bottom:1px solid var(--border)}
+    .nav{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+    .title{font-weight:900;font-size:1.4rem}
+    .navlinks{display:flex;gap:12px;flex-wrap:wrap}
+    .navlinks a{color:var(--muted);padding:6px 10px;border:1px solid var(--border);border-radius:999px}
+    .navlinks a:hover{color:var(--text);border-color:var(--accent)}
+
+    .container{max-width:1100px;margin:0 auto;padding:24px 16px 70px}
+    .hero{background:linear-gradient(90deg,#0f172a 0%,#0b2248 100%);border:1px solid var(--border);border-radius:18px;padding:24px;margin-top:16px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+    .h1{font-size:2rem;font-weight:900;margin:0 0 6px}
+    .sub{color:var(--muted);margin:0 0 14px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{background:var(--primary);color:#fff;border-radius:999px;padding:6px 10px;font-weight:700;font-size:.85rem}
+
+    section{padding:28px 0;border-bottom:1px solid var(--border)}
+    h2{font-size:1.4rem;margin:0 0 10px}
+    p{line-height:1.55}
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+    .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+    .kpi .label{color:var(--muted);font-size:.8rem}
+    .kpi .value{font-weight:900;font-size:1.25rem}
+
+    code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    pre{background:#0a0f1a;border:1px solid var(--border);padding:12px;border-radius:12px;overflow:auto}
+
+    /* gallery */
+    figure{margin:0}
+    .gallery{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    figure img{width:100%;height:220px;object-fit:contain;background:#0a0f1a;border:1px solid var(--border);border-radius:12px}
+    figcaption{font-size:.85rem;color:var(--muted);margin-top:6px}
+
+    .footer{color:var(--muted);margin-top:26px}
+    .cta{display:inline-flex;gap:8px;align-items:center;background:var(--chip);padding:10px 12px;border:1px solid var(--border);border-radius:12px}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="title">Customer Segmentation & Email Nudge</div>
+    <nav class="navlinks">
+      <a href="#problem">Problem</a>
+      <a href="#data">Data & Labels</a>
+      <a href="#method">Method</a>
+      <a href="#app">App</a>
+      <a href="#gallery">EDA Gallery</a>
+      <a href="#outcomes">Outcomes</a>
+      <a href="#run">Run</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1 class="h1">Reducing Cart Abandonment with Segmentation and Targeted Emails</h1>
+    <p class="sub">
+      Objective: identify customer intent segments from clickstream and cart behavior, then generate the right email nudge for each segment. The project is fully modular, data-private, and ships with a Streamlit UI plus optional OpenAI copy generation.
+    </p>
+    <div class="badges">
+      <span class="badge">Python</span>
+      <span class="badge">scikit-learn</span>
+      <span class="badge">Streamlit</span>
+      <span class="badge">Email Generation</span>
+      <span class="badge">OpenAI Optional</span>
+      <span class="badge">End-to-End</span>
+    </div>
+  </section>
+
+  <section id="problem">
+    <h2>Context and Problem</h2>
+    <div class="grid">
+      <div class="card">
+        <p>
+          B2B carts have long cycles and high order values. Many sessions add items and leave before purchase, creating lost revenue and poor experience. The organization lacked a personalized re-engagement strategy and needed a way to detect <em>why</em> a user is stuck and what message would move them forward.
+        </p>
+      </div>
+      <div class="card">
+        <div class="kpis">
+          <div class="kpi">
+            <div class="label">Current cart abandonment rate</div>
+            <div class="value">≈ 92.4%</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Registered vs Anonymous</div>
+            <div class="value">83.4% vs 98.8%</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Goal</div>
+            <div class="value">Personalized nudges per segment</div>
+          </div>
+        </div>
+        <p class="footer">Numbers from the internal business case and POC summary.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="data">
+    <h2>Data and Segment Labels</h2>
+    <div class="grid">
+      <div class="card">
+        <p>
+          Data covers carts, orders, products, quotes, inventory and user activity; synthetic data can be used for demos. We engineer a compact feature set capturing recency, frequency, product interest, time in cart, and operational constraints such as shipping speed.
+        </p>
+        <ul>
+          <li>Key engineered signals: counts of carts and cart entries, unique years active, time gaps and minutes between events, product-quality flags, and availability constraints</li>
+          <li>Label design: eight intent segments used for training and evaluation</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p><strong>Segments</strong></p>
+        <ul>
+          <li>Discount Seeker</li>
+          <li>Shipping Cost Sensitive Shopper</li>
+          <li>First-Time Visitor</li>
+          <li>Indecisive Shopper</li>
+          <li>Abandoned After Payment Shopper</li>
+          <li>Frequent Buyer</li>
+          <li>Low Engagement User</li>
+          <li>General User</li>
+        </ul>
+        <p class="footer">Labels can be refined as tracking improves and business rules evolve.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="method">
+    <h2>Method and Pipeline</h2>
+    <div class="grid">
+      <div class="card">
+        <p>
+          The repository is modular. Data loading validates schema, feature transformation preserves column order, a Random-Forest classifier provides a strong baseline, and inference exposes both class labels and calibrated probabilities. A single page Streamlit app drives human-in-the-loop review and email drafting.
+        </p>
+        <ul>
+          <li><code>src/</code>: config, features, model, inference, email generation</li>
+          <li><code>scripts/train.py</code> for training and evaluation</li>
+          <li><code>scripts/score_csv.py</code> for batch scoring</li>
+          <li>Optional OpenAI path for subject and body generation inside the app</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p><strong>Email strategy</strong></p>
+        <ul>
+          <li>Offline templates guarantee fast, private operation</li>
+          <li>OpenAI generation can be toggled on to adapt tone and offer structure</li>
+          <li>Output is short, on-brand, with a clear CTA; content is editable in the UI</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="app">
+    <h2>Productization</h2>
+    <div class="grid">
+      <div class="card">
+        <p>
+          The Streamlit UI runs locally against a private CSV. You pick a user, the model predicts a segment, probabilities are shown as a top-k bar chart, and a ready email appears on the same page. History is downloadable for review. Artifacts and data stay out of Git for privacy.
+        </p>
+      </div>
+      <div class="card">
+        <pre><code># quick start (PowerShell)
+. .venv\Scripts\Activate
+pip install -r requirements.txt
+python -c "from src.synthetic_data import make_synthetic, save_csv; import os; os.makedirs('data', exist_ok=True); save_csv(make_synthetic(500), 'data/final_cleaned.csv')"
+$env:PYTHONPATH = (Get-Location).Path
+$env:DATA_PATH = "data\final_cleaned.csv"
+$env:MODEL_PATH = "artifacts\random_forest_model.pkl"
+python -m scripts.train --csv $env:DATA_PATH --label label1 --model_out $env:MODEL_PATH
+streamlit run app\streamlit_app.py</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2>Exploratory Distributions and Simple Rules</h2>
+    <p class="sub">Charts below visualize full distributions versus the subset meeting heuristic conditions for each segment.</p>
+
+    <div class="gallery">
+      <!-- Abandoned After Payment Shopper -->
+      <figure>
+        <img src="./images/Abandoned_After_Payment_Shopper_abandoned_count_distribution.png" alt="Abandoned After Payment Shopper — abandoned_count distribution">
+        <figcaption>Abandoned After Payment Shopper — abandoned_count</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/Abandoned_After_Payment_Shopper_cr_md_cartentry_minutes_avg_distribution.png" alt="Abandoned After Payment Shopper — cartentry minutes avg">
+        <figcaption>Abandoned After Payment Shopper — cartentry minutes avg</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/Abandoned_After_Payment_Shopper_unique_payment_types_distribution.png" alt="Abandoned After Payment Shopper — unique payment types">
+        <figcaption>Abandoned After Payment Shopper — unique payment types</figcaption>
+      </figure>
+
+      <!-- Discount Seeker -->
+      <figure>
+        <img src="./images/Discount_Seeker_cr_md_product_days_avg_distribution.png" alt="Discount Seeker — product days avg">
+        <figcaption>Discount Seeker — product days avg</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/Discount_Seeker_p_q_low_distribution.png" alt="Discount Seeker — low or medium price-quality flags">
+        <figcaption>Discount Seeker — price-quality flags</figcaption>
+      </figure>
+
+      <!-- First-Time Visitor -->
+      <figure>
+        <img src="./images/First_Time_Visitor_cr_unique_years_distribution.png" alt="First-Time Visitor — unique years">
+        <figcaption>First-Time Visitor — unique years</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/First_Time_Visitor_not_abandoned_count_distribution.png" alt="First-Time Visitor — not_abandoned_count">
+        <figcaption>First-Time Visitor — not_abandoned_count</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/First_Time_Visitor_num_carts_distribution.png" alt="First-Time Visitor — number of carts">
+        <figcaption>First-Time Visitor — number of carts</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/First_Time_Visitor_orders_num_distribution.png" alt="First-Time Visitor — orders number">
+        <figcaption>First-Time Visitor — orders number</figcaption>
+      </figure>
+
+      <!-- Frequent Buyer -->
+      <figure>
+        <img src="./images/Frequent_Buyer_cr_unique_years_distribution.png" alt="Frequent Buyer — unique years">
+        <figcaption>Frequent Buyer — unique years</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/Frequent_Buyer_not_abandoned_count_distribution.png" alt="Frequent Buyer — not_abandoned_count">
+        <figcaption>Frequent Buyer — not_abandoned_count</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/Frequent_Buyer_num_carts_distribution.png" alt="Frequent Buyer — number of carts">
+        <figcaption>Frequent Buyer — number of carts</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/Frequent_Buyer_orders_num_distribution.png" alt="Frequent Buyer — orders number">
+        <figcaption>Frequent Buyer — orders number</figcaption>
+      </figure>
+
+      <!-- Indecisive Shopper -->
+      <figure>
+        <img src="./images/Indecisive_Shopper_abandoned_count_distribution.png" alt="Indecisive Shopper — abandoned_count">
+        <figcaption>Indecisive Shopper — abandoned_count</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/Indecisive_Shopper_cr_md_days_avg_distribution.png" alt="Indecisive Shopper — days average">
+        <figcaption>Indecisive Shopper — days average</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/Indecisive_Shopper_num_carts_distribution.png" alt="Indecisive Shopper — number of carts">
+        <figcaption>Indecisive Shopper — number of carts</figcaption>
+      </figure>
+
+      <!-- Low Engagement User -->
+      <figure>
+        <img src="./images/Low_Engagement_User_cr_md_cart_minutes_avg_distribution.png" alt="Low Engagement User — cart minutes average">
+        <figcaption>Low Engagement User — cart minutes average</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/Low_Engagement_User_num_carts_distribution.png" alt="Low Engagement User — number of carts">
+        <figcaption>Low Engagement User — number of carts</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="outcomes">
+    <h2>Findings and Outcomes</h2>
+    <div class="grid">
+      <div class="card">
+        <p>
+          The model separates distinct behaviors. Discount seekers show lower price-quality flags with long product interest windows. Shipping-cost sensitive users respond to thresholds and delivery options. First-time visitors have minimal history and need frictionless checkout. Abandoned-after-payment shoppers require trustworthy payment retry flows. The app links each prediction to an editable email tailored to the segment.
+        </p>
+      </div>
+      <div class="card">
+        <p><strong>Next steps</strong></p>
+        <ul>
+          <li>Collect user-level telemetry from GA4 and session replay where permissible</li>
+          <li>Iterate label definitions with business and measure uplift via A/B tests</li>
+          <li>Add explainability and threshold tuning for rare classes</li>
+          <li>Wire CRM journeys so emails trigger automatically with guardrails</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="run">
+    <h2>Repository and How to Run</h2>
+    <div class="grid">
+      <div class="card">
+        <p>
+          The repo keeps data and artifacts local. Training produces a pickle under <code>artifacts/</code>. The app reads your CSV path from <code>DATA_PATH</code> and serves a single page UI. OpenAI generation is optional and falls back to templates when no key is set.
+        </p>
+        <a class="cta" href="../index.html"><i class="fa fa-arrow-left"></i> Back to Professional Projects</a>
+      </div>
+      <div class="card">
+        <pre><code># optional OpenAI for email copy
+$env:OPENAI_API_KEY = "sk-..."; $env:OPENAI_MODEL="gpt-4o-mini"
+streamlit run app\streamlit_app.py</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <p class="footer">
+    © 2025 Royal Cyber Inc. — Built by Hammad “Madu” Ezad. This page summarizes a private data workflow; images are illustrative charts generated from exploratory analysis.
+  </p>
+</main>
+</body>
+</html>
