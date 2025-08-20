@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hammad Ezad | Data Science Portfolio</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Hammad Ezad | Senior Data Scientist</title>
 
-  <!-- Fonts and icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Performance hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- OpenGraph and Twitter -->
+  <meta property="og:title" content="Hammad Ezad — Senior Data Scientist"/>
+  <meta property="og:description" content="I build production ML, LLM, and optimization systems that reduce cost and improve speed at scale."/>
+  <meta property="og:image" content="assets/og-card.png"/>
+  <meta property="og:url" content="https://hammadezad.github.io/"/>
+  <meta name="twitter:card" content="summary_large_image"/>
 
   <style>
     :root{
       --primary:#2563eb; --secondary:#6a11cb; --accent:#38bdf8; --bg:#0b1220; --muted:#0f172a;
       --text:#e5e7eb; --soft:#94a3b8; --card:#0f172a; --border:#1f2a44; --chip:#1e293b;
-      --glow1:rgba(56,189,248,0.25); --glow2:rgba(99,102,241,0.22);
+      --glow1:rgba(56,189,248,0.25); --glow2:rgba(99,102,241,0.22); --ok:#16a34a; --warn:#f59e0b;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;font-family:Inter,Roboto,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:#93c5fd}
 
     /* NAV */
     .nav{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.7);
@@ -25,7 +37,7 @@
     .nav-inner{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--text);text-decoration:none}
     .brand img{width:34px;height:34px;border-radius:10px;object-fit:cover;border:1px solid var(--border)}
-    .links{display:flex;gap:18px;align-items:center}
+    .links{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
     .links a{color:var(--soft);text-decoration:none;font-weight:700;padding:8px 10px;border-radius:10px}
     .links a:hover,.links a.active{color:#fff;background:#111827}
     .resume-top{margin-left:8px;background:linear-gradient(90deg,var(--secondary),var(--primary));
@@ -58,59 +70,85 @@
 
     .intro{padding:22px 26px}
     .badge{display:inline-block;background:#0b5b79;color:#b3e6ff;padding:6px 10px;border-radius:999px;font-size:.85rem;font-weight:800;border:1px solid #0f7aa4}
-    .headline{margin:8px 0 16px 0;font-weight:900;font-size:1.15rem;color:#dbeafe}
+    .headline{margin:8px 0 16px 0;font-weight:900;font-size:1.2rem;color:#dbeafe}
     .summary{margin:0;background:rgba(17,24,39,.6);border:1px solid var(--border);border-radius:16px;padding:18px 22px;line-height:1.6;color:#d1d5db}
 
-    /* STATS STRIP */
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px}
-    .stat{background:rgba(2,6,23,.7);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center}
-    .stat .k{font-size:1.4rem;font-weight:900}
-    .stat .t{color:#93c5fd;font-weight:700}
+    /* Recruiter strip */
+    .strip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+    .pill{background:#061020;border:1px solid var(--border);border-radius:999px;padding:8px 12px;font-weight:800;color:#c7d2fe;display:flex;align-items:center;gap:8px;justify-content:center}
 
-    /* SECTIONS */
+    /* TLDR metrics */
+    .tldr{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .kpi{background:rgba(2,6,23,.7);border:1px solid var(--border);border-radius:14px;padding:12px;text-align:center}
+    .kpi .n{font-size:1.25rem;font-weight:900}
+    .kpi .l{color:#93c5fd;font-weight:700}
+
+    /* Main sections */
     .container{max-width:1100px;margin:0 auto;padding:26px 16px 70px 16px}
     h2{margin:4px 0 14px 0;font-size:1.4rem;color:#bfdbfe;font-weight:900}
-    .chips{display:flex;flex-wrap:wrap;gap:10px}
-    .chip{background:var(--chip);border:1px solid var(--border);color:#c7d2fe;padding:9px 14px;border-radius:999px;font-weight:800}
 
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .item{padding:16px;border-radius:16px;border:1px solid var(--border);background:rgba(2,6,23,.7)}
-    .item h3{margin:0 0 6px 0;color:#e2e8f0}
-    .item small{color:#94a3b8}
+    /* Top projects */
+    .projects{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .project{padding:16px;border-radius:16px;border:1px solid var(--border);background:rgba(2,6,23,.7)}
+    .project h3{margin:0;color:#e2e8f0}
+    .meta{color:#94a3b8;font-size:.95rem}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .chip{background:var(--chip);border:1px solid var(--border);color:#c7d2fe;padding:7px 12px;border-radius:999px;font-weight:800}
+    .proj-cta{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
 
-    .see-all{margin-top:12px;text-align:right}
-    .see-all a{color:#93c5fd;text-decoration:none;font-weight:800}
-    .see-all a:hover{color:#fff}
+    /* Contact bar */
+    .contactbar{position:sticky;bottom:0;background:rgba(11,18,32,.9);backdrop-filter:blur(8px);border-top:1px solid var(--border)}
+    .contact-inner{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
 
-    /* FOOTER */
     footer{border-top:1px solid var(--border);background:#0b1220}
     .footer-inner{max-width:1100px;margin:0 auto;padding:20px 16px;color:#94a3b8;font-size:.95rem}
 
     /* Responsive */
     @media (max-width:980px){
       .hero-content{grid-template-columns:1fr;gap:16px;padding-top:32px}
-      .stats{grid-template-columns:repeat(2,1fr)}
-      .grid{grid-template-columns:1fr}
+      .strip{grid-template-columns:1fr 1fr}
+      .tldr{grid-template-columns:1fr 1fr}
+      .projects{grid-template-columns:1fr}
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none!important;transition:none!important}
     }
   </style>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Hammad Ezad",
+    "jobTitle":"Senior Data Scientist",
+    "url":"https://hammadezad.github.io/",
+    "email":"mailto:hammadezad2211@gmail.com",
+    "sameAs":[
+      "https://github.com/hammadezad",
+      "https://www.linkedin.com/in/hammad-ezad-51927522"
+    ],
+    "knowsAbout":["Machine Learning","Optimization","Gurobi","MLOps","LLM Ops","AWS","Azure","FastAPI"],
+    "alumniOf":"University of Konstanz"
+  }
+  </script>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="nav">
+  <nav class="nav" aria-label="Primary">
     <div class="nav-inner">
-      <a class="brand" href="#top">
-        <img src="my_picture.jpg" alt="Hammad Ezad"/>
+      <a class="brand" href="#top" aria-label="Home">
+        <img src="my_picture.jpg" alt="Portrait of Hammad Ezad"/>
         <span>Hammad Ezad</span>
       </a>
-      <div class="links">
-        <a href="#skills" class="active">Skills</a>
+      <div class="links" role="navigation">
+        <a href="#projects" class="active">Projects</a>
+        <a href="professional_projects/index.html">All Projects</a>
         <a href="experience/index.html">Experience</a>
         <a href="education/index.html">Education</a>
-        <a href="professional_projects/index.html">Professional Projects</a>
-        <a href="system_design/blogs.html">System Design</a>
-        <a class="resume-top" href="Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer">
-          Resume <i class="fa fa-arrow-up-right-from-square"></i>
+        <a class="resume-top" href="Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer" aria-label="Download résumé">
+          Résumé <i class="fa fa-arrow-up-right-from-square"></i>
         </a>
       </div>
     </div>
@@ -118,19 +156,19 @@
 
   <!-- HERO -->
   <header class="hero" id="top">
-    <div class="hero-bg"></div>
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-content">
       <div class="card profile">
-        <img class="pfp" src="my_picture.jpg" alt="Hammad Ezad" />
+        <img class="pfp" src="my_picture.jpg" alt="Hammad Ezad portrait"/>
         <div class="name">Hammad Ezad</div>
-        <div class="socials">
+        <div class="socials" aria-label="Social links">
           <a href="mailto:hammadezad2211@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
           <a href="https://github.com/hammadezad" target="_blank" rel="noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
           <a href="https://www.linkedin.com/in/hammad-ezad-51927522/" target="_blank" rel="noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
         <div class="cta-row">
-          <a class="btn primary" href="Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer"><i class="fa fa-file"></i> Open Resume</a>
-          <a class="btn" href="professional_projects/index.html"><i class="fa fa-diagram-project"></i> Professional Projects</a>
+          <a class="btn primary" href="Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer"><i class="fa fa-file"></i> Download résumé</a>
+          <a class="btn" href="professional_projects/index.html"><i class="fa fa-diagram-project"></i> View projects</a>
         </div>
       </div>
 
@@ -138,74 +176,150 @@
         <span class="badge">Senior Data Scientist · GenAI · Optimization</span>
         <h1 class="headline">I build production ML, LLM, and optimization systems that reduce cost and improve speed at scale.</h1>
         <p class="summary">
-          I blend quantitative economics with modern AI engineering to deliver measurable impact across finance, healthcare, and logistics.
-          My toolkit spans Python, Gurobi, Azure, Salesforce, and LLM ops. I enjoy the full journey from messy data and modeling to clean deployment, observability, and stakeholder value.
+          Economist turned data scientist with five years across logistics, health, and e-commerce. I design end-to-end systems from data to deployment with CI/CD, observability, and measurable business impact.
         </p>
 
-        <div class="stats">
-          <div class="stat">
-            <div class="k">5+ yrs</div>
-            <div class="t">Hands-on</div>
-          </div>
-          <div class="stat">
-            <div class="k">65% ↓</div>
-            <div class="t">Costs delivered</div>
-          </div>
-          <div class="stat">
-            <div class="k">Real-time</div>
-            <div class="t">Pipelines</div>
-          </div>
-          <div class="stat">
-            <div class="k">Prod-ready</div>
-            <div class="t">GenAI & OR</div>
-          </div>
+        <!-- Recruiter skim strip -->
+        <div class="strip" aria-label="Quick facts">
+          <div class="pill"><i class="fa fa-location-dot"></i> Based in Pakistan</div>
+          <div class="pill"><i class="fa fa-plane-departure"></i> Open to relocate: Berlin, Munich, Hamburg</div>
+          <div class="pill"><i class="fa fa-language"></i> English C2 · German A2 → B1</div>
+          <div class="pill"><i class="fa fa-briefcase"></i> Availability: two weeks</div>
+          <div class="pill"><i class="fa fa-euro-sign"></i> Target: €65k</div>
+        </div>
+
+        <!-- TLDR metrics that match your résumé claims -->
+        <div class="tldr" aria-label="Impact highlights">
+          <div class="kpi"><div class="n">60 → under 10 min</div><div class="l">VRP runtime</div></div>
+          <div class="kpi"><div class="n">8–10%</div><div class="l">Logistics cost savings</div></div>
+          <div class="kpi"><div class="n">F1 ≈ 0.87</div><div class="l">Cart abandonment</div></div>
+          <div class="kpi"><div class="n">50–60%</div><div class="l">Manual handling reduced</div></div>
         </div>
       </div>
     </div>
   </header>
 
   <!-- MAIN -->
-  <main class="container">
-    <!-- SKILLS -->
-    <section id="skills">
-      <h2>Skills</h2>
-      <div id="skills-list" class="chips"></div>
-    </section>
+  <main class="container" id="projects">
+    <h2>Top projects</h2>
+    <div class="projects">
+      <!-- Project 1 -->
+      <article class="project" aria-labelledby="p1">
+        <h3 id="p1">Vehicle Routing Optimization</h3>
+        <div class="meta">Niagara Bottling · Python + Gurobi · Airflow · K8s · Grafana</div>
+        <p style="margin-top:8px;color:#cbd5e1">
+          Three-phase solver with warm starts and time windows. Daily production runs with dashboards and report exports for planners.
+        </p>
+        <div class="chips">
+          <span class="chip">60 → under 10 min</span>
+          <span class="chip">8–10% cost down</span>
+          <span class="chip">Multi-DC rollout</span>
+        </div>
+        <div class="proj-cta">
+          <a class="btn" href="professional_projects/vehicle_routing/index.html">Case study</a>
+          <a class="btn" href="professional_projects/vehicle_routing/architecture.png" target="_blank" rel="noreferrer">Architecture</a>
+        </div>
+      </article>
 
-    <!-- EXPERIENCE TEASER -->
-    <section id="xp-teaser">
-      <h2>Experience Preview</h2>
-      <div id="xp-grid" class="grid"></div>
-      <div class="see-all"><a href="experience/index.html">View all experience →</a></div>
-    </section>
+      <!-- Project 2 -->
+      <article class="project" aria-labelledby="p2">
+        <h3 id="p2">AI-Receiving: OCR + Routing</h3>
+        <div class="meta">Niagara Bottling · Azure Document Intelligence · LangChain · Airflow</div>
+        <p style="margin-top:8px;color:#cbd5e1">
+          Document ingestion, OCR, and automated classification to ERP. Near real-time processing with monitoring and alerting.
+        </p>
+        <div class="chips">
+          <span class="chip">50–60% manual down</span>
+          <span class="chip">Thousands docs/day</span>
+          <span class="chip">Azure Functions</span>
+        </div>
+        <div class="proj-cta">
+          <a class="btn" href="professional_projects/air_receiving/index.html">Case study</a>
+        </div>
+      </article>
 
-    <!-- EDUCATION TEASER -->
-    <section id="edu-teaser">
-      <h2>Education Preview</h2>
-      <div id="edu-grid" class="grid"></div>
-      <div class="see-all"><a href="education/index.html">View all education →</a></div>
-    </section>
+      <!-- Project 3 -->
+      <article class="project" aria-labelledby="p3">
+        <h3 id="p3">Cart Abandonment Prediction</h3>
+        <div class="meta">Omega Engineering · XGBoost · MLflow · Salesforce Data Cloud</div>
+        <p style="margin-top:8px;color:#cbd5e1">
+          Ensemble models with SMOTE and campaign automation. Dashboarded outcomes and re-engagement segments.
+        </p>
+        <div class="chips">
+          <span class="chip">F1 ≈ 0.87</span>
+          <span class="chip">AUC ≈ 0.90</span>
+          <span class="chip">5%+ lift</span>
+        </div>
+        <div class="proj-cta">
+          <a class="btn" href="professional_projects/customer_segmentation_ai/index.html">Case study</a>
+        </div>
+      </article>
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="item">
-        <p>Email: <a href="mailto:hammadezad2211@gmail.com" style="color:#93c5fd;text-decoration:none">hammadezad2211@gmail.com</a></p>
-        <p>GitHub: <a href="https://github.com/hammadezad" target="_blank" rel="noreferrer" style="color:#93c5fd;text-decoration:none">github.com/hammadezad</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/hammad-ezad-51927522/" target="_blank" rel="noreferrer" style="color:#93c5fd;text-decoration:none">linkedin.com/in/hammad-ezad-51927522</a></p>
+      <!-- Project 4 -->
+      <article class="project" aria-labelledby="p4">
+        <h3 id="p4">Vaccination Timeliness</h3>
+        <div class="meta">IRD Global · 2.6M+ records · Airflow · MLflow · ZM app</div>
+        <p style="margin-top:8px;color:#cbd5e1">
+          Per-vaccine models integrated into a field app for proactive outreach in twelve districts.
+        </p>
+        <div class="chips">
+          <span class="chip">Recall ≈ 90–95%</span>
+          <span class="chip">Scaled to 12 districts</span>
+        </div>
+        <div class="proj-cta">
+          <a class="btn" href="professional_projects/vaccination_timeliness/index.html">Case study</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Résumé and Education teasers -->
+    <section style="margin-top:24px">
+      <h2>Résumé and education</h2>
+      <div class="projects">
+        <div class="project">
+          <h3>Résumé</h3>
+          <p style="margin-top:8px;color:#cbd5e1">
+            Senior Data Scientist focused on production ML, LLM ops, and large-scale optimization. Open to roles in Germany.
+          </p>
+          <div class="proj-cta">
+            <a class="btn primary" href="Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer"><i class="fa fa-file"></i> Download résumé</a>
+            <a class="btn" href="experience/index.html">Experience</a>
+          </div>
+        </div>
+        <div class="project">
+          <h3>Education</h3>
+          <p style="margin-top:8px;color:#cbd5e1">University of Konstanz · University of Bologna</p>
+          <div class="proj-cta">
+            <a class="btn" href="education/index.html">View education</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- Sticky contact bar -->
+  <div class="contactbar" role="contentinfo" aria-label="Contact">
+    <div class="contact-inner">
+      <div><strong>Interview me for Senior or Mid Data Scientist roles in Germany.</strong></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn" href="mailto:hammadezad2211@gmail.com?subject=Interview%20request%20—%20Senior%20Data%20Scientist&body=Hi%20Hammad,%20can%20we%20schedule%20a%2030-minute%20call%20this%20week%3F">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/hammad-ezad-51927522/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn" href="professional_projects/index.html">See all projects</a>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
-    <div class="footer-inner">© <span id="year"></span> Hammad Ezad · Data Science & Machine Learning</div>
+    <div class="footer-inner">© <span id="year"></span> Hammad Ezad · Data Science and Machine Learning</div>
   </footer>
 
   <script>
-    // active link highlight for in-page sections
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Keep nav link active state for in-page anchors
     document.addEventListener('scroll', () => {
-      const anchors = [['#skills','skills']];
+      const anchors = [['#projects','projects']];
       const y = window.scrollY + 64;
       let active = null;
       anchors.forEach(([href, id])=>{
@@ -217,63 +331,6 @@
         if(href && href.startsWith('#')){
           a.classList.toggle('active', href===active);
         }
-      });
-    });
-
-    // year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // skills from skills.json
-    fetch('skills.json').then(r=>r.json()).then(skills=>{
-      const host = document.getElementById('skills-list');
-      host.innerHTML = '';
-      skills.forEach(s=>{
-        const chip = document.createElement('span');
-        chip.className = 'chip';
-        chip.innerHTML = `<i class="${s.icon}" style="opacity:.8"></i> ${s.name}`;
-        host.appendChild(chip);
-      });
-    });
-
-    // experience teaser: first two entries from experience.json
-    fetch('experience.json').then(r=>r.json()).then(xp=>{
-      const list = Array.isArray(xp)? xp.slice(0,2) : [];
-      const host = document.getElementById('xp-grid');
-      host.innerHTML = '';
-      list.forEach(row=>{
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.innerHTML = `
-          <h3>${row.title} <small>· ${row.company}</small></h3>
-          <small>${row.period}</small>
-          ${(row.projects||[]).slice(0,2).map(p=>`
-            <div style="margin-top:8px">
-              <strong>${p.name}</strong>
-              <ul style="margin:6px 0 0 18px;color:#cbd5e1">
-                ${(p.desc||[]).slice(0,3).map(d=>`<li>${d}</li>`).join('')}
-              </ul>
-              <small style="color:#93c5fd;display:block;margin-top:6px">${p.tech||''}</small>
-            </div>
-          `).join('')}
-        `;
-        host.appendChild(div);
-      });
-    });
-
-    // education teaser: first two entries from education.json
-    fetch('education.json').then(r=>r.json()).then(edu=>{
-      const list = Array.isArray(edu)? edu.slice(0,2) : [];
-      const host = document.getElementById('edu-grid');
-      host.innerHTML = '';
-      list.forEach(e=>{
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.innerHTML = `
-          <h3>${e.degree}</h3>
-          <small>${e.institution} · ${e.year}</small>
-          ${e.details? `<p style="margin-top:8px;color:#cbd5e1">${e.details}</p>`:''}
-        `;
-        host.appendChild(div);
       });
     });
   </script>
