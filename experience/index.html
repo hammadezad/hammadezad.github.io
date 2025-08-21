@@ -4,117 +4,378 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Experience — Hammad Ezad</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <meta name="description" content="Experience timeline for Hammad Ezad — Senior Data Scientist focused on production ML, LLM Ops, and optimization."/>
+  <meta property="og:title" content="Experience — Hammad Ezad"/>
+  <meta property="og:description" content="Senior Data Scientist: production ML, LLM Ops, and optimization."/>
+  <meta property="og:image" content="../assets/og-card.png"/>
+
   <style>
     :root{
-      --primary:#2563eb; --accent:#38bdf8; --bg:#0b1220; --text:#e5e7eb;
-      --card:#0f172a; --border:#1f2a44; --muted:#94a3b8; --chip:#0b2244;
+      --primary:#2563eb; --accent:#38bdf8; --bg:#0b1220; --panel:#0f172a;
+      --text:#e5e7eb; --muted:#94a3b8; --border:#1f2a44; --chip:#0b2244;
+      --ok:#16a34a; --warn:#f59e0b;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,Roboto,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
-    .nav{position:sticky;top:0;z-index:40;background:rgba(15,23,42,.7);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
-    .nav-inner{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
+
+    /* Nav */
+    .nav{position:sticky;top:0;z-index:40;background:rgba(15,23,42,.75);
+      backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;justify-content:space-between}
     .nav a{color:#cbd5e1;text-decoration:none;font-weight:800}
     .nav a:hover{color:#fff}
-    .container{max-width:1100px;margin:0 auto;padding:26px 16px 70px 16px}
-    h1{margin:8px 0 6px 0;color:#bfdbfe}
-    .sub{color:var(--muted);margin:0 0 18px 0}
-    .timeline{position:relative;margin:20px 0}
-    .timeline:before{content:"";position:absolute;left:18px;top:0;bottom:0;width:2px;background:var(--border)}
-    .role{position:relative;margin-left:48px;margin-bottom:22px}
-    .dot{position:absolute;left:-34px;top:4px;width:14px;height:14px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--primary));box-shadow:0 0 0 4px rgba(56,189,248,.12)}
-    .role-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px}
-    .header{display:flex;gap:14px;align-items:center}
+    .cta{background:linear-gradient(90deg,#6a11cb,var(--primary));padding:9px 14px;border-radius:12px;color:#fff;box-shadow:0 6px 24px rgba(99,102,241,.25)}
+
+    /* Layout */
+    .wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:270px 1fr;gap:20px;padding:22px 16px 60px}
+    .side{position:sticky;top:64px;align-self:start}
+    .main{min-width:0}
+
+    /* Sidebar card */
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:18px}
+    .side .card{padding:16px}
+    .name{font-weight:900;font-size:1.3rem}
+    .sub{color:var(--muted);margin-top:6px}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:#061020;border:1px solid var(--border);border-radius:999px;padding:8px 12px;font-weight:800;color:#c7d2fe;margin:6px 6px 0 0}
+
+    /* Filters */
+    .filters{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+    .filter{background:#0a1a32;border:1px solid var(--border);border-radius:10px;padding:8px 10px;color:#c7d2fe;font-weight:800;cursor:pointer}
+    .filter.active{background:#102544;color:#fff;border-color:#244076}
+    .search{margin-top:10px;width:100%;background:#081024;border:1px solid var(--border);color:#fff;border-radius:12px;padding:10px}
+
+    /* Results header */
+    .hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    h1{margin:0 0 6px 0;color:#bfdbfe;font-size:1.4rem}
+    .hint{color:var(--muted);font-size:.95rem}
+
+    /* Role blocks */
+    .role{margin-bottom:16px}
+    .role .head{display:flex;gap:14px;align-items:center;padding:14px 16px}
     .logo{width:44px;height:44px;border-radius:10px;object-fit:cover;border:1px solid var(--border)}
-    .title{margin:0;color:#e2e8f0}
+    .title{margin:0;color:#e2e8f0;font-size:1.05rem}
     .meta{color:#93c5fd;font-weight:800;margin-top:2px}
-    .project{margin-top:12px;border-top:1px dashed var(--border);padding-top:12px}
-    .pname{font-weight:900;margin:0 0 6px 0}
-    .bullets{margin:6px 0 0 18px;color:#cbd5e1}
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .role-body{border-top:1px dashed var(--border);padding:10px 16px 14px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
     .chip{background:var(--chip);border:1px solid var(--border);color:#c7d2fe;padding:6px 10px;border-radius:999px;font-weight:800;font-size:.85rem}
-    .toolbar{display:flex;gap:10px;margin-bottom:12px}
-    .search{flex:1;background:#081024;border:1px solid var(--border);color:#fff;border-radius:12px;padding:10px}
-    .hint{color:var(--muted);font-size:.9rem}
+
+    /* Project items */
+    .project{background:rgba(2,6,23,.6);border:1px solid var(--border);border-radius:14px;padding:12px;margin-top:12px}
+    .pname{font-weight:900;margin:0 0 6px 0;color:#e2e8f0}
+    .pmeta{color:#94a3b8;font-size:.95rem}
+    .bullets{margin:8px 0 0 18px;color:#cbd5e1}
+    .bullets li{margin:4px 0}
+    .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:#0b1220;color:#fff;text-decoration:none;font-weight:800}
+    .btn:hover{background:#0a1222}
+    .btn.primary{background:linear-gradient(90deg,#6a11cb,var(--primary));border-color:transparent;box-shadow:0 6px 18px rgba(37,99,235,.28)}
+
+    /* Expand/collapse */
+    .toggle{margin-left:auto;color:#93c5fd;cursor:pointer;font-weight:800}
+    .toggle i{transition:transform .2s ease}
+    .role.collapsed .role-body{display:none}
+    .role.collapsed .toggle i{transform:rotate(-90deg)}
+
+    /* Footer */
+    footer{border-top:1px solid var(--border);background:#0b1220}
+    .ft{max-width:1200px;margin:0 auto;padding:18px 16px;color:#94a3b8;font-size:.95rem}
+
+    /* Print */
+    @media print{
+      .nav,.side{display:none}
+      .wrap{grid-template-columns:1fr;padding:0}
+      body{background:#fff;color:#000}
+      .card,.project{border-color:#ddd}
+      .btn{display:none}
+    }
+
+    /* Responsive */
+    @media (max-width:980px){
+      .wrap{grid-template-columns:1fr}
+      .side{position:static}
+    }
   </style>
 </head>
 <body>
-  <nav class="nav">
+  <!-- Top nav -->
+  <nav class="nav" aria-label="Primary">
     <div class="nav-inner">
-      <a href="../index.html">← Back to Home</a>
-      <a href="../Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer">Resume</a>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a href="../index.html" aria-label="Back to Home">← Home</a>
+        <a href="../professional_projects/index.html">Projects</a>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <a class="cta" href="../Hammad_Ezad_CV.pdf" target="_blank" rel="noreferrer"><i class="fa fa-file"></i> Résumé</a>
+        <a class="btn" href="mailto:hammadezad2211@gmail.com?subject=Interview%20request%20—%20Senior%20Data%20Scientist">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/hammad-ezad-51927522/" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
     </div>
   </nav>
 
-  <main class="container">
-    <h1>Experience</h1>
-    <p class="sub">End-to-end delivery across optimization, GenAI, and ML platforms.</p>
+  <div class="wrap">
+    <!-- Sidebar -->
+    <aside class="side">
+      <div class="card" role="complementary">
+        <div class="name">Hammad Ezad</div>
+        <div class="sub">Senior Data Scientist · GenAI · Optimization</div>
+        <div style="margin-top:10px">
+          <span class="pill"><i class="fa fa-location-dot"></i> Based in Pakistan</span>
+          <span class="pill"><i class="fa fa-plane-departure"></i> Open to Berlin · Munich · Hamburg</span>
+          <span class="pill"><i class="fa fa-language"></i> English C2 · German A2 → B1</span>
+          <span class="pill"><i class="fa fa-briefcase"></i> Availability two weeks</span>
+          <span class="pill"><i class="fa fa-euro-sign"></i> Target €65k</span>
+        </div>
 
-    <div class="toolbar">
-      <input id="q" class="search" type="search" placeholder="Search by company, project, or tech… (e.g., Gurobi, Salesforce, XGBoost)"/>
-    </div>
-    <div id="timeline" class="timeline"></div>
-    <p class="hint">Tip: Use the search to filter roles and projects live.</p>
-  </main>
+        <div style="margin-top:12px">
+          <input id="q" class="search" type="search" placeholder="Search e.g. Gurobi, Azure, XGBoost"/>
+          <div class="filters" aria-label="Quick filters">
+            <button class="filter" data-tag="Optimization">Optimization</button>
+            <button class="filter" data-tag="GenAI">GenAI</button>
+            <button class="filter" data-tag="Health">Health</button>
+            <button class="filter" data-tag="Fintech">Fintech</button>
+            <button class="filter" data-tag="All">All</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <div class="hdr">
+        <div>
+          <h1>Experience</h1>
+          <div class="hint">End-to-end delivery across optimization, GenAI, ML platforms.</div>
+        </div>
+        <div class="hint" id="count"></div>
+      </div>
+
+      <div id="roles"></div>
+    </main>
+  </div>
+
+  <footer>
+    <div class="ft">© <span id="year"></span> Hammad Ezad · Data Science and Machine Learning</div>
+  </footer>
 
   <script>
-    let data = [];
-    function render(filter=""){
-      const host = document.getElementById('timeline');
-      host.innerHTML = '';
-      const q = filter.trim().toLowerCase();
-      data.forEach(role=>{
-        // role or any project matches query?
-        const roleText = (role.title+' '+role.company+' '+role.period).toLowerCase();
-        const projMatch = (role.projects||[]).some(p=>{
-          const t = (p.name+' '+(p.tech||'')+' '+(p.desc||[]).join(' ')).toLowerCase();
-          return t.includes(q);
-        });
-        if(q && !roleText.includes(q) && !projMatch) return;
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-        const wrap = document.createElement('div');
-        wrap.className = 'role';
-        wrap.innerHTML = `
-          <div class="dot"></div>
-          <div class="role-card">
-            <div class="header">
-              <img class="logo" src="../${role.logo||''}" alt="${role.company||''} logo"/>
-              <div>
-                <h3 class="title">${role.title||''}</h3>
-                <div class="meta">${role.company||''} · ${role.period||''}</div>
-              </div>
-            </div>
-            <div class="projects"></div>
+    // Inlined data based on your résumé
+    const ROLES = [
+      {
+        title: "Senior Data Scientist",
+        company: "Royal Cyber Inc.",
+        period: "2023–Present",
+        logo: "../assets/royalcyber.png",
+        tags: ["Optimization","GenAI","E-commerce"],
+        tldr: [
+          "VRP runtime 60 → under 10 min",
+          "8–10% logistics cost savings",
+          "50–60% manual doc handling reduced"
+        ],
+        projects: [
+          {
+            name: "Vehicle Routing Optimization — Niagara Bottling (US)",
+            meta: "Python · Gurobi · Airflow · Docker · Kubernetes · Azure DevOps · Grafana/Prometheus",
+            links: [
+              {href:"../professional_projects/vehicle_routing/index.html", label:"Case study"},
+              {href:"../professional_projects/vehicle_routing/architecture.png", label:"Architecture"}
+            ],
+            desc: [
+              "Engineered a three-phase solver with warm starts, time windows, and flex constraints; daily production runs.",
+              "Automated pipelines with Airflow and Azure DevOps; containerized with Docker/Kubernetes.",
+              "Built Grafana/Prometheus dashboards and stable CSV report exports for planners."
+            ],
+            chips: ["60 → under 10 min","8–10% cost down","Multi-DC rollout"]
+          },
+          {
+            name: "360 Sales Agent — Salesforce GenAI Automation (Internal)",
+            meta: "Transformers · LangChain · LlamaIndex · FastAPI · Azure Container Apps · MLflow",
+            links: [
+              {href:"../professional_projects/salesforce_genai/index.html", label:"Case study"}
+            ],
+            desc: [
+              "Benchmarked LLaMA 3 and Phi-3 vs GPT APIs; retained quality while reducing inference costs ~40% in pilots.",
+              "Served real-time APIs via FastAPI; implemented GDPR-compliant masking and real-time monitoring."
+            ],
+            chips: ["≈40% inference cost down","Realtime APIs","GDPR-safe"]
+          },
+          {
+            name: "AIR — AI-Receiving (Niagara Bottling, US)",
+            meta: "Azure Document Intelligence · LangChain · Airflow · Azure Functions · ERP integration",
+            links: [
+              {href:"../professional_projects/air_receiving/index.html", label:"Case study"}
+            ],
+            desc: [
+              "OCR + NLP pipeline to extract and route invoices, POs, and shipping docs.",
+              "Containerized workflows with Docker + Airflow; near real-time processing at scale."
+            ],
+            chips: ["50–60% manual down","Thousands docs/day","Azure Functions"]
+          },
+          {
+            name: "Cart Abandonment Prediction — Omega Engineering (US/EU)",
+            meta: "XGBoost · LightGBM · CatBoost · MLflow · Salesforce Data Cloud · Power BI",
+            links: [
+              {href:"../professional_projects/customer_segmentation_ai/index.html", label:"Case study"}
+            ],
+            desc: [
+              "Modeled 2+ years of behavioral data with class-imbalance handling using SMOTE.",
+              "Linked nine customer segments to Salesforce Data Cloud for automated re-engagement; dashboards in Power BI."
+            ],
+            chips: ["F1 ≈ 0.87","AUC ≈ 0.90","5%+ lift"]
+          }
+        ]
+      },
+      {
+        title: "Lead Data Scientist",
+        company: "IRD Global",
+        period: "2022–2023",
+        logo: "../assets/ird.png",
+        tags: ["Health","ML Platforms"],
+        tldr: [
+          "Recall ≈ 90–95% for priority vaccines",
+          "Scaled to 12 districts",
+          "Streaming observability for 200+ field workers"
+        ],
+        projects: [
+          {
+            name: "Vaccination Timeliness Prediction — Pakistan",
+            meta: "XGBoost · LightGBM · scikit-learn · Airflow · MLflow · ZM mobile app",
+            links: [
+              {href:"../professional_projects/vaccination_timeliness/index.html", label:"Case study"}
+            ],
+            desc: [
+              "Trained per-vaccine models on 2.6M+ records; integrated into the ZM app for field decisions.",
+              "Automated training and deployment with Airflow and MLflow; monitored recall and drift."
+            ],
+            chips: ["Recall ≈ 90–95%","2.6M+ records","12 districts"]
+          },
+          {
+            name: "Digital Health Data Platform & Real-Time Analytics",
+            meta: "AWS S3 · dbt · Airflow · Python/SQL · Kafka · Power BI/Tableau",
+            links: [],
+            desc: [
+              "Built a cloud data platform to ingest 1K+ daily field records with automated validation and transformation.",
+              "Enabled streaming monitoring for 200+ workers, improving response times to delays."
+            ],
+            chips: ["1K+ records/day","Kafka streaming","BI dashboards"]
+          }
+        ]
+      },
+      {
+        title: "Data Scientist",
+        company: "Love for Data (Kashet Microfinance, Egypt)",
+        period: "2020–2021",
+        logo: "../assets/lovefordata.png",
+        tags: ["Fintech"],
+        tldr: [
+          "ROC-AUC 0.82",
+          "Default rate ↓ ~18% in pilot",
+          "Approval time ↓ 40–50%"
+        ],
+        projects: [
+          {
+            name: "Credit Risk Modeling and Real-Time Scoring",
+            meta: "XGBoost · LightGBM · CatBoost · RF · Docker · AWS SageMaker · MLflow",
+            links: [],
+            desc: [
+              "Trained ensemble models on 50K+ loan records with reproducible MLflow tracking.",
+              "Integrated real-time risk scoring APIs into the approval system; improved financial inclusion."
+            ],
+            chips: ["ROC-AUC 0.82","~18% default ↓","40–50% faster"]
+          }
+        ]
+      }
+    ];
+
+    const rolesHost = document.getElementById('roles');
+    const countEl = document.getElementById('count');
+    const qEl = document.getElementById('q');
+    const filterBtns = Array.from(document.querySelectorAll('.filter'));
+
+    function roleHTML(role){
+      const chips = (role.tldr||[]).map(c=>`<span class="chip">${c}</span>`).join('');
+      const projects = (role.projects||[]).map(p=>{
+        const links = (p.links||[]).map(l=>`<a class="btn" href="${l.href}" target="_blank" rel="noreferrer">${l.label}</a>`).join('');
+        const chips = (p.chips||[]).map(c=>`<span class="chip">${c}</span>`).join('');
+        return `
+          <div class="project">
+            <div class="pname">${p.name}</div>
+            <div class="pmeta">${p.meta}</div>
+            <ul class="bullets">${(p.desc||[]).map(d=>`<li>${d}</li>`).join('')}</ul>
+            ${chips? `<div class="chips">${chips}</div>`:''}
+            ${links? `<div class="links">${links}</div>`:''}
           </div>
         `;
-        const projectsHost = wrap.querySelector('.projects');
-        (role.projects||[]).forEach(p=>{
-          const div = document.createElement('div');
-          div.className = 'project';
-          div.innerHTML = `
-            <div class="pname">${p.name||''}</div>
-            <ul class="bullets">${(p.desc||[]).map(d=>`<li>${d}</li>`).join('')}</ul>
-            ${p.tech ? `<div class="chips">${p.tech.split(',').map(s=>`<span class="chip">${s.trim()}</span>`).join('')}</div>`:''}
-          `;
-          projectsHost.appendChild(div);
-        });
-        host.appendChild(wrap);
-      });
-      if(!host.children.length){
-        host.innerHTML = '<div class="role"><div class="role-card">No matches. Try a different search.</div></div>';
-      }
+      }).join('');
+      return `
+        <section class="role card" data-tags="${(role.tags||[]).join(' ')}">
+          <div class="head">
+            <img class="logo" src="${role.logo||'../assets/company.png'}" alt="${role.company} logo"/>
+            <div>
+              <h3 class="title">${role.title}</h3>
+              <div class="meta">${role.company} · ${role.period}</div>
+              ${chips? `<div class="chips" aria-label="Impact">${chips}</div>`:''}
+            </div>
+            <div class="toggle" title="Collapse/expand"><i class="fa fa-chevron-down"></i></div>
+          </div>
+          <div class="role-body">
+            ${projects}
+          </div>
+        </section>
+      `;
     }
 
-    async function init(){
-      const res = await fetch('../experience.json',{cache:'no-store'});
-      data = await res.json();
-      // newest first if periods contain years
-      data.sort((a,b)=> (b.period||'').localeCompare(a.period||''));
-      render('');
-      document.getElementById('q').addEventListener('input', e=>render(e.target.value));
+    function render(){
+      const q = (qEl.value||"").toLowerCase().trim();
+      const active = filterBtns.find(b=>b.classList.contains('active'));
+      const tag = active? active.dataset.tag : 'All';
+
+      let visible = 0;
+      rolesHost.innerHTML = ROLES.map(r=>{
+        // text search across role and projects
+        const text = [
+          r.title, r.company, r.period, (r.tags||[]).join(' '),
+          ...((r.projects||[]).flatMap(p=>[p.name,p.meta,(p.desc||[]).join(' '),(p.chips||[]).join(' ')]))
+        ].join(' ').toLowerCase();
+
+        const tagMatch = (tag==='All') || (r.tags||[]).includes(tag);
+        const qMatch = !q || text.includes(q);
+        if(tagMatch && qMatch){ visible++; return roleHTML(r); }
+        return '';
+      }).join('');
+
+      if(visible===0){
+        rolesHost.innerHTML = `<div class="card" style="padding:16px">No matches. Try a different search or clear filters.</div>`;
+      }
+      countEl.textContent = visible ? `${visible} role${visible>1?'s':''}` : '';
+
+      // bind expand/collapse
+      rolesHost.querySelectorAll('.role .toggle').forEach(t=>{
+        t.addEventListener('click', ()=>{
+          const role = t.closest('.role');
+          role.classList.toggle('collapsed');
+        });
+      });
     }
-    init();
+
+    // init
+    filterBtns.forEach(b=>{
+      b.addEventListener('click', ()=>{
+        filterBtns.forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        render();
+      });
+    });
+    // Default filter is All
+    filterBtns.find(b=>b.dataset.tag==='All').classList.add('active');
+    qEl.addEventListener('input', render);
+
+    render();
   </script>
 </body>
 </html>
